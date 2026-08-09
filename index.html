@@ -1,133 +1,449 @@
 <!DOCTYPE html>
-<html lang="en-us">
+<html lang="ja">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
     <title>Unity Web Player | 運が全て。</title>
+
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
+
+    <style>
+      /* =========================
+         ページ全体
+      ========================= */
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        background:
+          radial-gradient(
+            circle at 20% 20%,
+            rgba(255, 255, 255, 0.08) 0 2px,
+            transparent 3px
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(255, 255, 255, 0.06) 0 2px,
+            transparent 3px
+          ),
+          linear-gradient(
+            135deg,
+            #111122,
+            #292950
+          );
+      }
+
+      /* =========================
+         Unityゲーム本体
+      ========================= */
+
+      #unity-container {
+        position: absolute;
+
+        width: 960px;
+        height: 600px;
+
+        left: 50%;
+        top: 50%;
+
+        transform: translate(-50%, -50%);
+
+        background: #000;
+
+        border-radius: 14px;
+
+        overflow: hidden;
+
+        box-shadow:
+          0 20px 60px rgba(0, 0, 0, 0.55);
+      }
+
+      #unity-canvas {
+        display: block;
+
+        width: 960px;
+        height: 600px;
+
+        background: #000;
+      }
+
+      /* =========================
+         ローディング
+      ========================= */
+
+      #unity-loading-bar {
+        position: absolute;
+
+        left: 50%;
+        top: 50%;
+
+        transform: translate(-50%, -50%);
+
+        width: 420px;
+
+        z-index: 10;
+      }
+
+      #unity-logo {
+        display: none;
+      }
+
+      #unity-progress-bar-empty {
+        width: 100%;
+        height: 12px;
+
+        background: rgba(255, 255, 255, 0.2);
+
+        border-radius: 20px;
+
+        overflow: hidden;
+      }
+
+      #unity-progress-bar-full {
+        width: 0%;
+        height: 100%;
+
+        background: white;
+
+        border-radius: 20px;
+      }
+
+      /* =========================
+         警告
+      ========================= */
+
+      #unity-warning {
+        position: absolute;
+
+        left: 0;
+        top: 0;
+
+        width: 100%;
+
+        z-index: 20;
+      }
+
+      /* =========================
+         フッター
+      ========================= */
+
+      #unity-footer {
+        display: none;
+      }
+
+      #unity-logo-title-footer {
+        display: none;
+      }
+
+      #unity-build-title {
+        display: none;
+      }
+
+      /* =========================
+         フルスクリーンボタン
+      ========================= */
+
+      #unity-fullscreen-button {
+        position: absolute;
+
+        right: 12px;
+        bottom: 12px;
+
+        width: 42px;
+        height: 42px;
+
+        border-radius: 8px;
+
+        background: rgba(0, 0, 0, 0.65);
+
+        cursor: pointer;
+
+        z-index: 15;
+      }
+
+      #unity-fullscreen-button::after {
+        content: "⛶";
+
+        color: white;
+
+        font-size: 25px;
+
+        position: absolute;
+
+        left: 50%;
+        top: 50%;
+
+        transform: translate(-50%, -50%);
+      }
+
+      /* =========================
+         スマホ
+      ========================= */
+
+      .unity-mobile {
+        position: fixed !important;
+
+        width: 100% !important;
+        height: 100% !important;
+
+        left: 0 !important;
+        top: 0 !important;
+
+        transform: none !important;
+
+        border-radius: 0 !important;
+      }
+
+      @media (max-width: 960px), (max-height: 600px) {
+
+        #unity-container {
+          border-radius: 0;
+          box-shadow: none;
+        }
+
+      }
+    </style>
   </head>
+
   <body>
+
     <div id="unity-container" class="unity-desktop">
-      <canvas id="unity-canvas" width=960 height=600 tabindex="-1"></canvas>
+
+      <canvas
+        id="unity-canvas"
+        width="960"
+        height="600"
+        tabindex="-1">
+      </canvas>
+
       <div id="unity-loading-bar">
+
         <div id="unity-logo"></div>
+
         <div id="unity-progress-bar-empty">
           <div id="unity-progress-bar-full"></div>
         </div>
-      </div>
-      <div id="unity-warning"> </div>
-      <div id="unity-footer">
-        <div id="unity-logo-title-footer"></div>
-        <div id="unity-fullscreen-button"></div>
-        <div id="unity-build-title">運が全て。</div>
-      </div>
-    </div>
-    <script>
-      var canvas = document.querySelector("#unity-canvas");
 
-      // Shows a temporary message banner/ribbon for a few seconds, or
-      // a permanent error message on top of the canvas if type=='error'.
-      // If type=='warning', a yellow highlight color is used.
-      // Modify or remove this function to customize the visually presented
-      // way that non-critical warnings and error messages are presented to the
-      // user.
+      </div>
+
+      <div id="unity-warning"></div>
+
+      <div id="unity-footer">
+
+        <div id="unity-logo-title-footer"></div>
+
+        <div id="unity-fullscreen-button"></div>
+
+        <div id="unity-build-title">
+          運が全て。
+        </div>
+
+      </div>
+
+    </div>
+
+    <script>
+
+      var canvas =
+        document.querySelector("#unity-canvas");
+
+
+      // Unityの警告・エラー表示
       function unityShowBanner(msg, type) {
-        var warningBanner = document.querySelector("#unity-warning");
+
+        var warningBanner =
+          document.querySelector("#unity-warning");
+
         function updateBannerVisibility() {
-          warningBanner.style.display = warningBanner.children.length ? 'block' : 'none';
+
+          warningBanner.style.display =
+            warningBanner.children.length
+              ? 'block'
+              : 'none';
+
         }
-        var div = document.createElement('div');
+
+        var div =
+          document.createElement('div');
+
         div.innerHTML = msg;
+
         warningBanner.appendChild(div);
-        if (type == 'error') div.style = 'background: red; padding: 10px;';
-        else {
-          if (type == 'warning') div.style = 'background: yellow; padding: 10px;';
+
+        if (type == 'error') {
+
+          div.style =
+            'background: red; padding: 10px;';
+
+        } else {
+
+          if (type == 'warning') {
+
+            div.style =
+              'background: yellow; padding: 10px;';
+
+          }
+
           setTimeout(function() {
+
             warningBanner.removeChild(div);
+
             updateBannerVisibility();
+
           }, 5000);
+
         }
+
         updateBannerVisibility();
       }
 
+
       var buildUrl = "Build";
-      var loaderUrl = buildUrl + "/ビルド.loader.js";
+
+      var loaderUrl =
+        buildUrl + "/ビルド.loader.js";
+
+
       var config = {
+
         arguments: [],
-        dataUrl: buildUrl + "/ビルド.data",
-        frameworkUrl: buildUrl + "/ビルド.framework.js",
-        codeUrl: buildUrl + "/ビルド.wasm",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "DefaultCompany",
-        productName: "運が全て。",
-        productVersion: "1.0",
-        showBanner: unityShowBanner,
-        // errorHandler: function(err, url, line) {
-        //    alert("error " + err + " occurred at line " + line);
-        //    // Return 'true' if you handled this error and don't want Unity
-        //    // to process it further, 'false' otherwise.
-        //    return true;
-        // },
+
+        dataUrl =
+          buildUrl + "/ビルド.data",
+
+        frameworkUrl =
+          buildUrl + "/ビルド.framework.js",
+
+        codeUrl =
+          buildUrl + "/ビルド.wasm",
+
+        streamingAssetsUrl =
+          "StreamingAssets",
+
+        companyName =
+          "DefaultCompany",
+
+        productName =
+          "運が全て。",
+
+        productVersion =
+          "1.0",
+
+        showBanner =
+          unityShowBanner
+
       };
 
-      // By default, Unity keeps WebGL canvas render target size matched with
-      // the DOM size of the canvas element (scaled by window.devicePixelRatio)
-      // Set this to false if you want to decouple this synchronization from
-      // happening inside the engine, and you would instead like to size up
-      // the canvas DOM size and WebGL render target sizes yourself.
-      // config.matchWebGLToCanvasSize = false;
 
-      // If you would like all file writes inside Unity Application.persistentDataPath
-      // directory to automatically persist so that the contents are remembered when
-      // the user revisits the site the next time, uncomment the following line:
-      // config.autoSyncPersistentDataPath = true;
-      // This autosyncing is currently not the default behavior to avoid regressing
-      // existing user projects that might rely on the earlier manual
-      // JS_FileSystem_Sync() behavior, but in future Unity version, this will be
-      // expected to change.
+      if (
+        /iPhone|iPad|iPod|Android/i.test(
+          navigator.userAgent
+        )
+      ) {
 
-      if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
-        // Mobile device style: fill the whole browser client area with the game canvas:
+        var meta =
+          document.createElement('meta');
 
-        var meta = document.createElement('meta');
         meta.name = 'viewport';
-        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
-        document.getElementsByTagName('head')[0].appendChild(meta);
-        document.querySelector("#unity-container").className = "unity-mobile";
-        canvas.className = "unity-mobile";
 
-        // To lower canvas resolution on mobile devices to gain some
-        // performance, uncomment the following line:
-        // config.devicePixelRatio = 1;
+        meta.content =
+          'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
 
+        document
+          .getElementsByTagName('head')[0]
+          .appendChild(meta);
+
+
+        document
+          .querySelector("#unity-container")
+          .className = "unity-mobile";
+
+
+        canvas.className =
+          "unity-mobile";
 
       } else {
-        // Desktop style: Render the game canvas in a window that can be maximized to fullscreen:
-        canvas.style.width = "960px";
-        canvas.style.height = "600px";
+
+        canvas.style.width =
+          "960px";
+
+        canvas.style.height =
+          "600px";
+
       }
 
-      document.querySelector("#unity-loading-bar").style.display = "block";
 
-      var script = document.createElement("script");
-      script.src = loaderUrl;
+      document
+        .querySelector("#unity-loading-bar")
+        .style.display = "block";
+
+
+      var script =
+        document.createElement("script");
+
+      script.src =
+        loaderUrl;
+
+
       script.onload = () => {
-        createUnityInstance(canvas, config, (progress) => {
-          document.querySelector("#unity-progress-bar-full").style.width = 100 * progress + "%";
-              }).then((unityInstance) => {
-                document.querySelector("#unity-loading-bar").style.display = "none";
-                document.querySelector("#unity-fullscreen-button").onclick = () => {
-                  unityInstance.SetFullscreen(1);
-                };
 
-              }).catch((message) => {
-                alert(message);
-              });
+        createUnityInstance(
+          canvas,
+          config,
+          (progress) => {
+
+            document
+              .querySelector(
+                "#unity-progress-bar-full"
+              )
+              .style.width =
+                100 * progress + "%";
+
+          }
+        )
+
+        .then((unityInstance) => {
+
+          document
+            .querySelector(
+              "#unity-loading-bar"
+            )
+            .style.display =
+              "none";
+
+
+          document
+            .querySelector(
+              "#unity-fullscreen-button"
+            )
+            .onclick = () => {
+
+              unityInstance.SetFullscreen(1);
+
             };
+
+        })
+
+        .catch((message) => {
+
+          alert(message);
+
+        });
+
+      };
+
 
       document.body.appendChild(script);
 
     </script>
+
   </body>
 </html>
+
