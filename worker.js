@@ -20,7 +20,7 @@ export default {
       key = "index.html";
     }
 
-    const object = await env.GAME.get(key);
+    const object = await env.MY_BUCKET.get(key);
 
     if (!object) {
       return new Response("Not Found: " + key, {
