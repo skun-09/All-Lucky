@@ -4,13 +4,6 @@ on:
   push:
     branches:
       - main
-    paths:
-      - 'Build/**'
-      - 'TemplateData/**'
-      - 'index.html'
-      - 'worker.js'
-      - 'wrangler.jsonc'
-      - '.github/workflows/deploy-r2.yml'
 
 env:
   CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
