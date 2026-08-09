@@ -1,0 +1,47 @@
+name: Upload Unity Build to R2
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'Build/**'
+      - 'TemplateData/**'
+      - 'index.html'
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Wrangler
+        run: npm install -g wrangler
+
+      - name: Upload Build to R2
+        run: |
+          wrangler r2 object put all-lucky/index.html \
+            --file=index.html \
+            --remote \
+            --content-type=text/html
+
+          find Build -type f | while read file; do
+            key="${file#Build/}"
+
+            wrangler r2 object put "all-lucky/Build/$key" \
+              --file="$file" \
+              --remote
+          done
+
+          find TemplateData -type f | while read file; do
+            key="${file#TemplateData/}"
+
+            wrangler r2 object put "all-lucky/TemplateData/$key" \
+              --file="$file" \
+              --remote
+          done
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
