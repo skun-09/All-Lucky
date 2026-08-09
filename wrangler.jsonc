@@ -8,5 +8,12 @@
       "binding": "MY_BUCKET",
       "bucket_name": "all-lucky"
     }
-  ]
+  ],
+
+  "observability": {
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true
+    }
+  }
 }
