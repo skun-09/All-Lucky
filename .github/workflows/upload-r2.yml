@@ -32,6 +32,15 @@ jobs:
       - name: Install Wrangler
         run: npm install -g wrangler
 
+      - name: Check Cloudflare Token
+        run: |
+          if [ -z "$CLOUDFLARE_API_TOKEN" ]; then
+            echo "API TOKEN が渡されていません"
+            exit 1
+          else
+            echo "API TOKEN は渡されています"
+          fi
+
       - name: Upload index.html to R2
         run: |
           wrangler r2 object put all-lucky/index.html \
