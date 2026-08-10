@@ -5,8 +5,6 @@
 
   <meta charset="utf-8">
 
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-
   <title>運が全て。｜無料で遊べる運試しゲーム</title>
 
   <meta
@@ -24,16 +22,11 @@
     href="TemplateData/favicon.ico"
   >
 
-  <link
-    rel="stylesheet"
-    href="TemplateData/style.css"
-  >
-
 
   <style>
 
     /* =========================
-       基本
+       全体
        ========================= */
 
     * {
@@ -53,9 +46,8 @@
       background:
         linear-gradient(
           135deg,
-          #f4f7ff,
-          #e8eefc,
-          #dce6fa
+          #f5f8ff,
+          #e8efff
         );
 
       color: #222;
@@ -79,22 +71,22 @@
       width: 100%;
 
       padding:
-        50px 20px 40px;
+        45px 20px 35px;
 
       text-align: center;
 
       background:
         linear-gradient(
           135deg,
-          #435a92,
-          #6079b8
+          #526aa5,
+          #7892d0
         );
 
       color: white;
 
       box-shadow:
-        0 5px 25px
-        rgba(40, 60, 110, 0.18);
+        0 5px 20px
+        rgba(50, 70, 120, 0.18);
 
     }
 
@@ -104,26 +96,19 @@
 
       font-size: 52px;
 
-      font-weight: 800;
-
-      letter-spacing: 0.12em;
-
-      text-shadow:
-        0 3px 10px
-        rgba(0, 0, 0, 0.18);
+      letter-spacing:
+        0.12em;
 
     }
 
     .site-header p {
 
       margin:
-        15px 0 0;
+        12px 0 0;
 
       font-size: 18px;
 
-      opacity: 0.92;
-
-      letter-spacing: 0.08em;
+      opacity: 0.9;
 
     }
 
@@ -146,18 +131,20 @@
       align-items: center;
 
       background:
-        rgba(232, 237, 248, 0.75);
+        #e9effb;
 
     }
 
 
     /* =========================
-       ゲームの枠
+       ゲーム枠
        ========================= */
 
     #unity-container {
 
       position: relative;
+
+      display: block;
 
       width: 960px;
 
@@ -165,46 +152,48 @@
 
       margin: 0 auto;
 
-      flex: 0 0 auto;
-
-      overflow: hidden;
-
       background: #111;
 
       border:
-        6px solid
-        #ffffff;
+        7px solid white;
 
-      border-radius: 18px;
+      border-radius:
+        20px;
+
+      overflow: hidden;
 
       box-shadow:
-        0 18px 45px
-        rgba(45, 65, 120, 0.30);
+        0 20px 50px
+        rgba(40, 60, 110, 0.30);
 
     }
 
 
     /* =========================
-       Canvas
+       Unity Canvas
        ========================= */
 
     #unity-canvas {
 
-      display: block;
-
       position: absolute;
 
-      top: 0;
+      display: block;
 
       left: 0;
 
-      width: 100% !important;
+      top: 0;
 
-      height: 100% !important;
+      width: 100%;
+
+      height: 100%;
 
       margin: 0;
 
       padding: 0;
+
+      border: 0;
+
+      background: #000;
 
     }
 
@@ -217,6 +206,8 @@
 
       position: absolute;
 
+      z-index: 1000;
+
       left: 50%;
 
       top: 50%;
@@ -226,39 +217,24 @@
 
       width: 360px;
 
-      padding: 28px;
+      padding: 30px;
 
       background:
-        rgba(35, 45, 80, 0.96);
+        rgba(30, 40, 70, 0.96);
 
-      border-radius: 18px;
+      border-radius:
+        18px;
+
+      text-align: center;
 
       box-shadow:
         0 15px 40px
         rgba(0, 0, 0, 0.35);
 
-      text-align: center;
-
-      z-index: 100;
-
     }
 
 
-    #unity-logo {
-
-      display: none;
-
-    }
-
-
-    #unity-loading-bar::before {
-
-      content:
-        "運が全て。";
-
-      display: block;
-
-      margin-bottom: 8px;
+    #unity-loading-title {
 
       color: white;
 
@@ -266,26 +242,24 @@
 
       font-weight: bold;
 
-      letter-spacing: 0.12em;
+      letter-spacing:
+        0.12em;
+
+      margin-bottom:
+        8px;
 
     }
 
 
-    #unity-loading-bar::after {
-
-      content:
-        "LOADING";
-
-      display: block;
-
-      margin-bottom: 18px;
+    #unity-loading-percent {
 
       color:
-        rgba(255, 255, 255, 0.65);
+        rgba(255,255,255,0.8);
 
-      font-size: 11px;
+      font-size: 16px;
 
-      letter-spacing: 0.35em;
+      margin-bottom:
+        15px;
 
     }
 
@@ -296,12 +270,11 @@
 
       height: 12px;
 
-      padding: 2px;
-
       background:
-        rgba(255, 255, 255, 0.18);
+        rgba(255,255,255,0.2);
 
-      border-radius: 20px;
+      border-radius:
+        20px;
 
       overflow: hidden;
 
@@ -309,8 +282,6 @@
 
 
     #unity-progress-bar-full {
-
-      display: block;
 
       width: 0%;
 
@@ -320,10 +291,11 @@
         linear-gradient(
           90deg,
           #ffffff,
-          #bfcfff
+          #b9ccff
         );
 
-      border-radius: 20px;
+      border-radius:
+        20px;
 
       transition:
         width 0.1s linear;
@@ -345,38 +317,7 @@
 
       width: 100%;
 
-      z-index: 200;
-
-    }
-
-
-    /* =========================
-       フッター
-       ========================= */
-
-    #unity-footer {
-
-      position: absolute;
-
-      left: 0;
-
-      bottom: 0;
-
-      width: 100%;
-
-      height: 45px;
-
-      z-index: 50;
-
-      pointer-events: none;
-
-    }
-
-
-    #unity-logo-title-footer,
-    #unity-build-title {
-
-      display: none;
+      z-index: 2000;
 
     }
 
@@ -391,20 +332,31 @@
 
       right: 12px;
 
-      bottom: 10px;
+      bottom: 12px;
 
-      width: 38px;
+      z-index: 500;
 
-      height: 38px;
+      width: 40px;
 
-      border-radius: 10px;
+      height: 40px;
+
+      border-radius:
+        10px;
 
       background:
-        rgba(0, 0, 0, 0.55);
+        rgba(0,0,0,0.55);
 
       cursor: pointer;
 
-      pointer-events: auto;
+      color: white;
+
+      font-size: 24px;
+
+      text-align: center;
+
+      line-height: 40px;
+
+      user-select: none;
 
     }
 
@@ -412,19 +364,6 @@
     #unity-fullscreen-button::after {
 
       content: "⛶";
-
-      position: absolute;
-
-      left: 50%;
-
-      top: 50%;
-
-      transform:
-        translate(-50%, -50%);
-
-      color: white;
-
-      font-size: 22px;
 
     }
 
@@ -436,22 +375,29 @@
     .game-description {
 
       width:
-        min(900px, calc(100% - 40px));
+        min(
+          900px,
+          calc(100% - 40px)
+        );
 
       margin:
         50px auto;
 
-      padding: 40px;
+      padding:
+        40px;
 
-      background: white;
+      background:
+        white;
 
-      border-radius: 18px;
+      border-radius:
+        20px;
+
+      text-align:
+        center;
 
       box-shadow:
-        0 8px 30px
-        rgba(0, 0, 0, 0.1);
-
-      text-align: center;
+        0 10px 35px
+        rgba(0,0,0,0.10);
 
     }
 
@@ -461,9 +407,11 @@
       margin:
         0 0 25px;
 
-      font-size: 32px;
+      font-size:
+        32px;
 
-      color: #2d3e6b;
+      color:
+        #435a92;
 
     }
 
@@ -473,9 +421,11 @@
       margin:
         18px 0;
 
-      font-size: 18px;
+      font-size:
+        18px;
 
-      line-height: 2;
+      line-height:
+        2;
 
     }
 
@@ -485,15 +435,17 @@
       margin:
         35px 0 0;
 
-      font-size: 24px;
+      font-size:
+        24px;
 
-      color: #435a92;
+      color:
+        #526aa5;
 
     }
 
 
     /* =========================
-       960px以下
+       画面が小さい場合
        ========================= */
 
     @media screen and (max-width: 1000px) {
@@ -502,18 +454,12 @@
 
         width: 94vw;
 
-        height: auto;
-
-        aspect-ratio: 16 / 9;
+        height: calc(94vw * 9 / 16);
 
       }
 
     }
 
-
-    /* =========================
-       スマホ
-       ========================= */
 
     @media screen and (max-width: 700px) {
 
@@ -524,20 +470,19 @@
 
       }
 
-
       .site-header h1 {
 
-        font-size: 38px;
+        font-size:
+          38px;
 
       }
-
 
       .site-header p {
 
-        font-size: 15px;
+        font-size:
+          15px;
 
       }
-
 
       .game-area {
 
@@ -546,22 +491,22 @@
 
       }
 
-
       #unity-loading-bar {
 
-        width: 70%;
+        width:
+          70%;
 
-        padding: 20px;
-
-      }
-
-
-      #unity-loading-bar::before {
-
-        font-size: 22px;
+        padding:
+          20px;
 
       }
 
+      #unity-loading-title {
+
+        font-size:
+          22px;
+
+      }
 
       .game-description {
 
@@ -576,24 +521,24 @@
 
       }
 
-
       .game-description h2 {
 
-        font-size: 27px;
+        font-size:
+          27px;
 
       }
-
 
       .game-description p {
 
-        font-size: 16px;
+        font-size:
+          16px;
 
       }
 
-
       .game-description h3 {
 
-        font-size: 20px;
+        font-size:
+          20px;
 
       }
 
@@ -625,14 +570,14 @@
 
 
   <!-- =========================
-       ゲーム
+       Unityゲーム
        ========================= -->
 
   <main class="game-area">
 
+
     <div
-      id="unity-container"
-      class="unity-desktop">
+      id="unity-container">
 
 
       <canvas
@@ -649,7 +594,18 @@
         id="unity-loading-bar">
 
         <div
-          id="unity-logo">
+          id="unity-loading-title">
+
+          運が全て。
+
+        </div>
+
+
+        <div
+          id="unity-loading-percent">
+
+          0%
+
         </div>
 
 
@@ -665,39 +621,22 @@
       </div>
 
 
-      <!-- 警告 -->
+      <!-- Unity警告 -->
 
       <div
         id="unity-warning">
       </div>
 
 
-      <!-- フッター -->
+      <!-- フルスクリーン -->
 
       <div
-        id="unity-footer">
-
-        <div
-          id="unity-logo-title-footer">
-        </div>
-
-
-        <div
-          id="unity-fullscreen-button">
-        </div>
-
-
-        <div
-          id="unity-build-title">
-
-          運が全て。
-
-        </div>
-
+        id="unity-fullscreen-button">
       </div>
 
 
     </div>
+
 
   </main>
 
@@ -741,10 +680,11 @@
 
 
   <!-- =========================
-       Unity起動
+       Unity起動プログラム
        ========================= -->
 
   <script>
+
 
     var canvas =
       document.querySelector(
@@ -761,20 +701,11 @@
       type
     ) {
 
+
       var warningBanner =
         document.querySelector(
           "#unity-warning"
         );
-
-
-      function updateBannerVisibility() {
-
-        warningBanner.style.display =
-          warningBanner.children.length
-            ? "block"
-            : "none";
-
-      }
 
 
       var div =
@@ -793,49 +724,22 @@
 
 
       if (
-        type == "error"
+        type === "error"
       ) {
 
         div.style =
-          "background: red; padding: 10px;";
+          "background:red;color:white;padding:10px;";
 
       }
 
-      else {
+      else if (
+        type === "warning"
+      ) {
 
-        if (
-          type == "warning"
-        ) {
-
-          div.style =
-            "background: yellow; padding: 10px;";
-
-        }
-
-
-        setTimeout(
-          function () {
-
-            if (
-              div.parentNode
-            ) {
-
-              warningBanner.removeChild(
-                div
-              );
-
-            }
-
-            updateBannerVisibility();
-
-          },
-          5000
-        );
+        div.style =
+          "background:yellow;color:black;padding:10px;";
 
       }
-
-
-      updateBannerVisibility();
 
     }
 
@@ -903,11 +807,21 @@
       );
 
 
+    var progressText =
+      document.querySelector(
+        "#unity-loading-percent"
+      );
+
+
     loadingBar.style.display =
       "block";
 
 
     progressBar.style.width =
+      "0%";
+
+
+    progressText.textContent =
       "0%";
 
 
@@ -946,16 +860,24 @@
           ) {
 
 
+            var percent =
+              Math.round(
+                progress * 100
+              );
+
+
             console.log(
               "Unity loading:",
-              progress
+              percent + "%"
             );
 
 
             progressBar.style.width =
-              (
-                progress * 100
-              ) + "%";
+              percent + "%";
+
+
+            progressText.textContent =
+              percent + "%";
 
 
           }
@@ -978,18 +900,26 @@
               "100%";
 
 
+            progressText.textContent =
+              "100%";
+
+
             setTimeout(
               function () {
 
+
                 loadingBar.style.display =
                   "none";
+
 
               },
               300
             );
 
 
-            /* フルスクリーン */
+            /* =====================
+               フルスクリーン
+               ===================== */
 
             document
               .querySelector(
@@ -1019,8 +949,13 @@
 
 
             console.error(
+              "Unity error:",
               message
             );
+
+
+            progressText.textContent =
+              "読み込みエラー";
 
 
             alert(
@@ -1036,7 +971,7 @@
 
 
     /* =========================
-       Loaderエラー
+       Loader読み込み失敗
        ========================= */
 
     script.onerror =
@@ -1048,6 +983,10 @@
         );
 
 
+        progressText.textContent =
+          "Loader Error";
+
+
         alert(
           "Unity Loaderを読み込めませんでした。"
         );
@@ -1057,12 +996,13 @@
 
 
     /* =========================
-       Unity Loader実行
+       Unity起動
        ========================= */
 
     document.body.appendChild(
       script
     );
+
 
   </script>
 
