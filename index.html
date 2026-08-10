@@ -1,356 +1,549 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>運が全て。</title>
+  <title>運が全て。</title>
 
-    <link rel="shortcut icon" href="TemplateData/favicon.ico">
-    <link rel="stylesheet" href="TemplateData/style.css">
+  <link rel="shortcut icon" href="TemplateData/favicon.ico">
+  <link rel="stylesheet" href="TemplateData/style.css">
 
-    <style>
-      html,
-      body {
-        margin: 0;
-        padding: 0;
-        width: 100%;
-        min-height: 100%;
-        background:
-          radial-gradient(
-            circle at 50% 0%,
-            #dfe7ff 0%,
-            #b9c8f5 35%,
-            #91a5df 70%,
-            #748ac7 100%
-          );
-        font-family:
-          Arial,
-          "Yu Gothic",
-          "Meiryo",
-          sans-serif;
-      }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-      body {
-        min-height: 100vh;
-        overflow-x: hidden;
-        overflow-y: auto;
-        color: #1b2340;
-      }
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      min-height: 100%;
+    }
 
-      body::before {
-        content: "";
-        position: fixed;
-        width: 500px;
-        height: 500px;
-        left: -180px;
-        top: -180px;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.35);
-        filter: blur(70px);
-        pointer-events: none;
-      }
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      overflow-y: auto;
 
-      body::after {
-        content: "";
-        position: fixed;
-        width: 450px;
-        height: 450px;
-        right: -180px;
-        bottom: -180px;
-        border-radius: 50%;
-        background: rgba(150, 130, 255, 0.25);
-        filter: blur(80px);
-        pointer-events: none;
-      }
+      font-family:
+        Arial,
+        "Yu Gothic",
+        "Meiryo",
+        sans-serif;
+
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          #eef3ff 0%,
+          #d2dcfa 35%,
+          #aebde8 70%,
+          #91a4d8 100%
+        );
+
+      color: #1b2340;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+
+      width: 500px;
+      height: 500px;
+
+      left: -180px;
+      top: -180px;
+
+      border-radius: 50%;
+
+      background: rgba(255, 255, 255, 0.45);
+
+      filter: blur(80px);
+
+      pointer-events: none;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+
+      width: 500px;
+      height: 500px;
+
+      right: -200px;
+      bottom: -200px;
+
+      border-radius: 50%;
+
+      background: rgba(150, 130, 255, 0.22);
+
+      filter: blur(90px);
+
+      pointer-events: none;
+    }
+
+    /* =========================
+       ページ全体
+       ========================= */
+
+    #page {
+      position: relative;
+
+      z-index: 1;
+
+      width: 100%;
+      min-height: 100vh;
+
+      padding:
+        50px 20px 45px;
+
+      text-align: center;
+    }
+
+    /* =========================
+       タイトル
+       ========================= */
+
+    #page-title {
+      margin: 0;
+
+      color: #182142;
+
+      font-size: 48px;
+      font-weight: 800;
+
+      letter-spacing: 8px;
+
+      text-shadow:
+        0 3px 12px rgba(255, 255, 255, 0.8);
+    }
+
+    #page-subtitle {
+      margin-top: 10px;
+      margin-bottom: 30px;
+
+      color: rgba(27, 35, 64, 0.6);
+
+      font-size: 13px;
+
+      letter-spacing: 5px;
+    }
+
+    /* =========================
+       ゲームを中央に置く
+       ========================= */
+
+    #game-area {
+      width: 100%;
+
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* ゲーム画面の枠 */
+
+    #game-frame {
+      position: relative;
+
+      width: 984px;
+
+      padding: 12px;
+
+      background:
+        rgba(255, 255, 255, 0.78);
+
+      border:
+        1px solid rgba(255, 255, 255, 0.95);
+
+      border-radius: 22px;
+
+      box-shadow:
+        0 25px 60px rgba(50, 65, 120, 0.28),
+        0 5px 20px rgba(255, 255, 255, 0.45);
+
+      backdrop-filter: blur(10px);
+    }
+
+    /* =========================
+       Unity本体
+       ========================= */
+
+    #unity-container {
+      position: relative;
+
+      width: 960px;
+      height: 540px;
+
+      margin: 0 auto;
+
+      overflow: hidden;
+
+      border-radius: 12px;
+
+      background: #111;
+    }
+
+    #unity-canvas {
+      display: block;
+
+      width: 960px;
+      height: 540px;
+
+      border-radius: 12px;
+    }
+
+    /* =========================
+       ローディング
+       ========================= */
+
+    #unity-loading-bar {
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      transform:
+        translate(-50%, -50%);
+
+      width: 360px;
+
+      padding: 28px 30px;
+
+      text-align: center;
+
+      background:
+        rgba(20, 27, 50, 0.86);
+
+      border:
+        1px solid rgba(255, 255, 255, 0.2);
+
+      border-radius: 18px;
+
+      box-shadow:
+        0 20px 50px rgba(0, 0, 0, 0.35);
+
+      backdrop-filter: blur(10px);
+
+      z-index: 10;
+    }
+
+    #unity-loading-bar::before {
+      content: "運が全て。";
+
+      display: block;
+
+      margin-bottom: 7px;
+
+      color: white;
+
+      font-size: 29px;
+
+      font-weight: bold;
+
+      letter-spacing: 4px;
+    }
+
+    #unity-loading-bar::after {
+      content: "LOADING";
+
+      display: block;
+
+      margin-bottom: 20px;
+
+      color:
+        rgba(255, 255, 255, 0.55);
+
+      font-size: 11px;
+
+      letter-spacing: 5px;
+    }
+
+    #unity-logo {
+      display: none;
+    }
+
+    #unity-progress-bar-empty {
+      width: 100%;
+
+      height: 10px;
+
+      padding: 2px;
+
+      background:
+        rgba(255, 255, 255, 0.14);
+
+      border:
+        1px solid rgba(255, 255, 255, 0.1);
+
+      border-radius: 20px;
+
+      overflow: hidden;
+    }
+
+    #unity-progress-bar-full {
+      width: 0%;
+
+      height: 100%;
+
+      background:
+        linear-gradient(
+          90deg,
+          #ffffff,
+          #c5d1ff
+        );
+
+      border-radius: 20px;
+
+      box-shadow:
+        0 0 14px
+        rgba(210, 220, 255, 0.85);
+
+      transition:
+        width 0.15s linear;
+    }
+
+    /* =========================
+       Unity警告
+       ========================= */
+
+    #unity-warning {
+      position: absolute;
+
+      left: 0;
+      top: 0;
+
+      width: 100%;
+
+      z-index: 20;
+    }
+
+    /* =========================
+       Unityフッター
+       ========================= */
+
+    #unity-footer {
+      position: absolute;
+
+      left: 0;
+      bottom: 0;
+
+      width: 100%;
+      height: 45px;
+
+      z-index: 15;
+
+      pointer-events: none;
+    }
+
+    #unity-logo-title-footer {
+      display: none;
+    }
+
+    #unity-build-title {
+      display: none;
+    }
+
+    /* =========================
+       フルスクリーンボタン
+       ========================= */
+
+    #unity-fullscreen-button {
+      position: absolute;
+
+      right: 12px;
+      bottom: 10px;
+
+      width: 38px;
+      height: 38px;
+
+      border-radius: 10px;
+
+      background:
+        rgba(0, 0, 0, 0.55);
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.18);
+
+      cursor: pointer;
+
+      pointer-events: auto;
+
+      backdrop-filter: blur(5px);
+    }
+
+    #unity-fullscreen-button::after {
+      content: "⛶";
+
+      position: absolute;
+
+      left: 50%;
+      top: 50%;
+
+      transform:
+        translate(-50%, -50%);
+
+      color: white;
+
+      font-size: 22px;
+    }
+
+    #unity-fullscreen-button:hover {
+      background:
+        rgba(255, 255, 255, 0.2);
+    }
+
+    /* =========================
+       説明
+       ========================= */
+
+    #game-description {
+      width: min(760px, 90vw);
+
+      margin:
+        28px auto 0;
+
+      padding:
+        20px 28px;
+
+      background:
+        rgba(255, 255, 255, 0.52);
+
+      border:
+        1px solid
+        rgba(255, 255, 255, 0.7);
+
+      border-radius: 16px;
+
+      box-shadow:
+        0 10px 30px
+        rgba(50, 65, 120, 0.12);
+
+      backdrop-filter: blur(8px);
+    }
+
+    #game-description-title {
+      margin: 0 0 8px;
+
+      color: #202a4b;
+
+      font-size: 18px;
+
+      font-weight: bold;
+    }
+
+    #game-description-text {
+      margin: 0;
+
+      color:
+        rgba(27, 35, 64, 0.72);
+
+      font-size: 14px;
+
+      line-height: 1.8;
+    }
+
+    /* =========================
+       小さい画面
+       ========================= */
+
+    @media (max-width: 1000px) {
 
       #page {
-        position: relative;
-        z-index: 1;
-        width: 100%;
-        min-height: 100vh;
-        box-sizing: border-box;
-        padding: 55px 20px 45px;
-        text-align: center;
+        padding-top: 30px;
       }
 
       #page-title {
-        margin: 0;
-        color: #17203d;
-        font-size: 48px;
-        font-weight: 800;
-        letter-spacing: 8px;
-        text-shadow:
-          0 3px 10px rgba(255, 255, 255, 0.7);
-      }
-
-      #page-subtitle {
-        margin-top: 10px;
-        margin-bottom: 32px;
-        color: rgba(27, 35, 64, 0.65);
-        font-size: 14px;
-        letter-spacing: 4px;
+        font-size: 38px;
       }
 
       #game-frame {
-        position: relative;
-        display: inline-block;
-        padding: 12px;
-        background: rgba(255, 255, 255, 0.72);
-        border: 1px solid rgba(255, 255, 255, 0.9);
-        border-radius: 22px;
-        box-shadow:
-          0 25px 60px rgba(50, 65, 120, 0.28),
-          0 5px 20px rgba(255, 255, 255, 0.45);
-        backdrop-filter: blur(10px);
+        width: 94vw;
+
+        padding: 8px;
+
+        border-radius: 16px;
       }
 
       #unity-container {
-        position: relative;
-        z-index: 2;
-        margin: 0;
+        width: 100%;
+        height: auto;
+
+        aspect-ratio: 16 / 9;
       }
 
       #unity-canvas {
-        display: block;
-        width: 960px;
-        height: 540px;
-        border-radius: 12px;
-        box-shadow:
-          0 8px 25px rgba(0, 0, 0, 0.2);
+        width: 100%;
+        height: 100%;
       }
 
-      #unity-loading-bar {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 360px;
-        padding: 28px 32px;
-        box-sizing: border-box;
-        text-align: center;
-        z-index: 10;
+    }
 
-        background: rgba(20, 27, 50, 0.78);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 18px;
-        box-shadow:
-          0 20px 50px rgba(0, 0, 0, 0.3);
-        backdrop-filter: blur(10px);
-      }
+    @media (max-width: 500px) {
 
-      #unity-loading-bar::before {
-        content: "運が全て。";
-        display: block;
-        margin-bottom: 8px;
-        color: #ffffff;
+      #page-title {
         font-size: 30px;
-        font-weight: bold;
-        letter-spacing: 4px;
-      }
 
-      #unity-loading-bar::after {
-        content: "LOADING";
-        display: block;
-        margin-bottom: 20px;
-        color: rgba(255, 255, 255, 0.55);
-        font-size: 11px;
         letter-spacing: 5px;
       }
 
-      #unity-logo {
-        display: none;
+      #page-subtitle {
+        font-size: 10px;
+
+        letter-spacing: 2px;
       }
 
-      #unity-progress-bar-empty {
-        width: 100%;
-        height: 8px;
-        padding: 2px;
-        box-sizing: border-box;
-        background: rgba(255, 255, 255, 0.15);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        border-radius: 20px;
-        overflow: hidden;
+      #game-frame {
+        padding: 5px;
       }
 
-      #unity-progress-bar-full {
-        height: 100%;
-        min-width: 0;
-        width: 0%;
-        background: linear-gradient(
-          90deg,
-          #ffffff,
-          #c7d3ff
-        );
-        border-radius: 20px;
-        box-shadow:
-          0 0 12px rgba(210, 220, 255, 0.8);
-        transition: width 0.15s ease;
+      #unity-loading-bar {
+        width: 80%;
+
+        padding: 20px;
       }
 
-      #unity-warning {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        z-index: 20;
-      }
-
-      #unity-footer {
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 100%;
-        height: 42px;
-        z-index: 15;
-        pointer-events: none;
-      }
-
-      #unity-logo-title-footer {
-        display: none;
-      }
-
-      #unity-build-title {
-        display: none;
-      }
-
-      #unity-fullscreen-button {
-        position: absolute;
-        right: 12px;
-        bottom: 12px;
-        width: 38px;
-        height: 38px;
-        border-radius: 10px;
-        background: rgba(0, 0, 0, 0.55);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        cursor: pointer;
-        pointer-events: auto;
-        backdrop-filter: blur(5px);
-      }
-
-      #unity-fullscreen-button::after {
-        content: "⛶";
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        color: white;
-        font-size: 22px;
-      }
-
-      #unity-fullscreen-button:hover {
-        background: rgba(255, 255, 255, 0.18);
+      #unity-loading-bar::before {
+        font-size: 23px;
       }
 
       #game-description {
-        margin: 28px auto 0;
-        max-width: 760px;
-        padding: 20px 28px;
-        box-sizing: border-box;
-        background: rgba(255, 255, 255, 0.48);
-        border: 1px solid rgba(255, 255, 255, 0.65);
-        border-radius: 16px;
-        box-shadow:
-          0 10px 30px rgba(50, 65, 120, 0.12);
-        backdrop-filter: blur(8px);
+        padding:
+          16px 18px;
       }
 
-      #game-description-title {
-        margin: 0 0 8px;
-        color: #202a4b;
-        font-size: 18px;
-        font-weight: bold;
-      }
+    }
+  </style>
+</head>
 
-      #game-description-text {
-        margin: 0;
-        color: rgba(27, 35, 64, 0.72);
-        font-size: 14px;
-        line-height: 1.8;
-      }
+<body>
 
-      .unity-mobile {
-        position: fixed !important;
-        width: 100% !important;
-        height: 100% !important;
-        left: 0 !important;
-        top: 0 !important;
-        transform: none !important;
-        border-radius: 0 !important;
-      }
+  <div id="page">
 
-      .unity-mobile #unity-canvas {
-        width: 100% !important;
-        height: 100% !important;
-        border-radius: 0;
-      }
+    <!-- タイトル -->
 
-      @media (max-width: 1000px) {
-        #page {
-          padding-top: 30px;
-        }
+    <h1 id="page-title">
+      運が全て。
+    </h1>
 
-        #page-title {
-          font-size: 38px;
-        }
+    <div id="page-subtitle">
+      EVERYTHING DEPENDS ON LUCK.
+    </div>
 
-        #game-frame {
-          padding: 8px;
-          border-radius: 16px;
-        }
 
-        #unity-canvas {
-          width: 90vw;
-          height: calc(90vw * 0.5625);
-        }
-      }
+    <!-- ゲーム -->
 
-      @media (max-width: 500px) {
-        #page-title {
-          font-size: 30px;
-          letter-spacing: 5px;
-        }
-
-        #page-subtitle {
-          font-size: 11px;
-          letter-spacing: 2px;
-        }
-
-        #game-frame {
-          padding: 5px;
-        }
-
-        #unity-loading-bar {
-          width: 80vw;
-          padding: 22px;
-        }
-
-        #unity-loading-bar::before {
-          font-size: 24px;
-        }
-
-        #game-description {
-          padding: 16px 18px;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <div id="page">
-
-      <h1 id="page-title">
-        運が全て。
-      </h1>
-
-      <div id="page-subtitle">
-        EVERYTHING DEPENDS ON LUCK.
-      </div>
+    <div id="game-area">
 
       <div id="game-frame">
 
-        <div id="unity-container" class="unity-desktop">
+        <div
+          id="unity-container"
+          class="unity-desktop">
 
           <canvas
             id="unity-canvas"
@@ -359,201 +552,339 @@
             tabindex="-1">
           </canvas>
 
+
+          <!-- ローディング -->
+
           <div id="unity-loading-bar">
+
             <div id="unity-logo"></div>
 
             <div id="unity-progress-bar-empty">
-              <div id="unity-progress-bar-full"></div>
+
+              <div
+                id="unity-progress-bar-full">
+              </div>
+
             </div>
+
           </div>
+
+
+          <!-- 警告 -->
 
           <div id="unity-warning"></div>
 
-          <div id="unity-footer">
-            <div id="unity-logo-title-footer"></div>
 
-            <div id="unity-fullscreen-button"></div>
+          <!-- フッター -->
+
+          <div id="unity-footer">
+
+            <div
+              id="unity-logo-title-footer">
+            </div>
+
+            <div
+              id="unity-fullscreen-button">
+            </div>
 
             <div id="unity-build-title">
               運が全て。
             </div>
+
           </div>
 
         </div>
-      </div>
-
-      <div id="game-description">
-
-        <div id="game-description-title">
-          🎲 運だけで勝負しよう。
-        </div>
-
-        <p id="game-description-text">
-          「運が全て。」は、その名の通り運が勝敗を左右するミニゲームです。<br>
-          あなたの運を試してみよう！
-        </p>
 
       </div>
 
     </div>
 
-    <script>
-      var canvas =
-        document.querySelector("#unity-canvas");
 
-      function unityShowBanner(msg, type) {
-        var warningBanner =
-          document.querySelector("#unity-warning");
+    <!-- 説明 -->
 
-        function updateBannerVisibility() {
-          warningBanner.style.display =
-            warningBanner.children.length
-              ? "block"
-              : "none";
-        }
+    <div id="game-description">
 
-        var div =
-          document.createElement("div");
+      <div id="game-description-title">
+        🎲 運だけで勝負しよう。
+      </div>
 
-        div.innerHTML = msg;
+      <p id="game-description-text">
+        「運が全て。」は、その名の通り
+        運が勝敗を左右するミニゲームです。<br>
+        あなたの運を試してみよう！
+      </p>
 
-        warningBanner.appendChild(div);
+    </div>
 
-        if (type == "error") {
-          div.style =
-            "background: red; padding: 10px;";
-        } else {
-          if (type == "warning") {
-            div.style =
-              "background: yellow; padding: 10px;";
-          }
+  </div>
 
-          setTimeout(function () {
-            warningBanner.removeChild(div);
-            updateBannerVisibility();
-          }, 5000);
-        }
 
-        updateBannerVisibility();
+  <!-- =========================
+       Unity起動プログラム
+       ========================= -->
+
+  <script>
+
+    var canvas =
+      document.querySelector(
+        "#unity-canvas"
+      );
+
+
+    /* Unityの警告表示 */
+
+    function unityShowBanner(
+      msg,
+      type
+    ) {
+
+      var warningBanner =
+        document.querySelector(
+          "#unity-warning"
+        );
+
+
+      function updateBannerVisibility() {
+
+        warningBanner.style.display =
+          warningBanner.children.length
+            ? "block"
+            : "none";
+
       }
 
-      var buildUrl = "Build";
 
-      var loaderUrl =
-        buildUrl + "/ビルド.loader.js";
+      var div =
+        document.createElement(
+          "div"
+        );
 
-      var config = {
-        arguments: [],
 
-        dataUrl:
-          buildUrl + "/ビルド.data",
+      div.innerHTML = msg;
 
-        frameworkUrl:
-          buildUrl + "/ビルド.framework.js",
+      warningBanner.appendChild(div);
 
-        codeUrl:
-          buildUrl + "/ビルド.wasm",
 
-        streamingAssetsUrl:
-          "StreamingAssets",
+      if (type == "error") {
 
-        companyName:
-          "DefaultCompany",
-
-        productName:
-          "運が全て。",
-
-        productVersion:
-          "1.0",
-
-        showBanner:
-          unityShowBanner
-      };
-
-      if (
-        /iPhone|iPad|iPod|Android/i.test(
-          navigator.userAgent
-        )
-      ) {
-
-        var meta =
-          document.createElement("meta");
-
-        meta.name = "viewport";
-
-        meta.content =
-          "width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes";
-
-        document
-          .getElementsByTagName("head")[0]
-          .appendChild(meta);
-
-        document.querySelector(
-          "#unity-container"
-        ).className =
-          "unity-mobile";
-
-        canvas.className =
-          "unity-mobile";
+        div.style =
+          "background: red; padding: 10px;";
 
       } else {
 
-        canvas.style.width =
-          "960px";
+        if (type == "warning") {
 
-        canvas.style.height =
-          "540px";
+          div.style =
+            "background: yellow; padding: 10px;";
+
+        }
+
+
+        setTimeout(
+          function () {
+
+            warningBanner.removeChild(div);
+
+            updateBannerVisibility();
+
+          },
+          5000
+        );
+
       }
 
+
+      updateBannerVisibility();
+
+    }
+
+
+    /* =========================
+       Unity Build
+       ========================= */
+
+    var buildUrl = "Build";
+
+
+    var loaderUrl =
+      buildUrl +
+      "/ビルド.loader.js";
+
+
+    var config = {
+
+      arguments: [],
+
+      dataUrl:
+        buildUrl +
+        "/ビルド.data",
+
+      frameworkUrl:
+        buildUrl +
+        "/ビルド.framework.js",
+
+      codeUrl:
+        buildUrl +
+        "/ビルド.wasm",
+
+      streamingAssetsUrl:
+        "StreamingAssets",
+
+      companyName:
+        "DefaultCompany",
+
+      productName:
+        "運が全て。",
+
+      productVersion:
+        "1.0",
+
+      showBanner:
+        unityShowBanner
+
+    };
+
+
+    /* =========================
+       モバイル対応
+       ========================= */
+
+    if (
+      /iPhone|iPad|iPod|Android/i.test(
+        navigator.userAgent
+      )
+    ) {
+
+      var meta =
+        document.createElement(
+          "meta"
+        );
+
+
+      meta.name =
+        "viewport";
+
+
+      meta.content =
+        "width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes";
+
+
+      document
+        .getElementsByTagName(
+          "head"
+        )[0]
+        .appendChild(meta);
+
+
+      document.querySelector(
+        "#unity-container"
+      ).className =
+        "unity-mobile";
+
+
+      canvas.className =
+        "unity-mobile";
+
+    }
+
+
+    /* =========================
+       ローディング開始
+       ========================= */
+
+    var loadingBar =
       document.querySelector(
         "#unity-loading-bar"
-      ).style.display =
-        "block";
+      );
 
-      var script =
-        document.createElement("script");
 
-      script.src =
-        loaderUrl;
+    var progressBar =
+      document.querySelector(
+        "#unity-progress-bar-full"
+      );
 
-      script.onload = () => {
 
-        createUnityInstance(
-          canvas,
-          config,
-          (progress) => {
+    loadingBar.style.display =
+      "block";
 
-            document.querySelector(
-              "#unity-progress-bar-full"
-            ).style.width =
-              100 * progress + "%";
 
-          }
-        )
-        .then((unityInstance) => {
+    /* =========================
+       Unity Loader読み込み
+       ========================= */
 
-          document.querySelector(
-            "#unity-loading-bar"
-          ).style.display =
+    var script =
+      document.createElement(
+        "script"
+      );
+
+
+    script.src =
+      loaderUrl;
+
+
+    script.onload = function () {
+
+      createUnityInstance(
+        canvas,
+        config,
+
+        function (progress) {
+
+          /*
+           * Unityの読み込み進捗を
+           * 0～100%に変換
+           */
+
+          progressBar.style.width =
+            (progress * 100) + "%";
+
+        }
+
+      )
+      .then(
+        function (unityInstance) {
+
+          /*
+           * Unity起動完了
+           */
+
+          loadingBar.style.display =
             "none";
+
+
+          /*
+           * フルスクリーン
+           */
 
           document.querySelector(
             "#unity-fullscreen-button"
-          ).onclick = () => {
+          ).onclick =
+            function () {
 
-            unityInstance.SetFullscreen(1);
+              unityInstance.SetFullscreen(
+                1
+              );
 
-          };
+            };
 
-        })
-        .catch((message) => {
+        }
+      )
+      .catch(
+        function (message) {
 
           alert(message);
 
-        });
-      };
+        }
+      );
 
-      document.body.appendChild(script);
-    </script>
-  </body>
+    };
+
+
+    document.body.appendChild(
+      script
+    );
+
+  </script>
+
+</body>
 </html>
