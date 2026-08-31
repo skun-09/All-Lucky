@@ -16,8 +16,12 @@ export default {
       });
     }
 
+    // / → index.html
+    // /games/ → games/index.html
     if (key === "") {
       key = "index.html";
+    } else if (key.endsWith("/")) {
+      key += "index.html";
     }
 
     const object = await env.MY_BUCKET.get(key);
