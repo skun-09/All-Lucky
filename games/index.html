@@ -1,1 +1,158 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>S-Labs Games｜ゲーム一覧</title>
+  <meta
+    name="description"
+    content="S-Labsが制作・公開している無料ゲームの一覧です。"
+  >
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f6fb;
+      color: #222;
+      font-family:
+        "Yu Gothic",
+        "YuGothic",
+        "Hiragino Kaku Gothic ProN",
+        Meiryo,
+        sans-serif;
+      line-height: 1.7;
+    }
+
+    .header {
+      padding: 50px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #202b4a, #435a92);
+      color: white;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 42px;
+      letter-spacing: 0.08em;
+    }
+
+    .header p {
+      margin: 10px 0 0;
+      opacity: 0.9;
+    }
+
+    .content {
+      width: min(1000px, calc(100% - 30px));
+      margin: 40px auto;
+    }
+
+    .games {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .game-card {
+      padding: 25px;
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .game-card h2 {
+      margin-top: 0;
+      color: #435a92;
+    }
+
+    .game-card p {
+      color: #555;
+    }
+
+    .play-button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 22px;
+      border-radius: 10px;
+      background: #435a92;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .play-button:hover {
+      opacity: 0.85;
+    }
+
+    .back {
+      margin: 40px 0;
+      text-align: center;
+    }
+
+    .back a {
+      color: #435a92;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    .footer {
+      padding: 30px 20px;
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+    }
+
+    @media screen and (max-width: 700px) {
+      .header {
+        padding: 35px 15px;
+      }
+
+      .header h1 {
+        font-size: 32px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="header">
+    <h1>S-Labs Games</h1>
+    <p>無料で遊べるゲームを公開しています。</p>
+  </header>
+
+  <main class="content">
+
+    <div class="games">
+
+      <div class="game-card">
+        <h2>🎲 運が全て。</h2>
+
+        <p>
+          数字を選んで運試し！
+          すべてを決めるのは、あなたの運だけ。
+        </p>
+
+        <a class="play-button" href="/games/all-lucky/">
+          プレイする
+        </a>
+      </div>
+
+    </div>
+
+    <div class="back">
+      <a href="/">← S-Labsトップへ戻る</a>
+    </div>
+
+  </main>
+
+  <footer class="footer">
+    © 2026 S-Labs
+  </footer>
+
+</body>
+</html>
