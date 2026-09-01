@@ -11,7 +11,7 @@
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1386231837070404"
      crossorigin="anonymous"></script>
-  
+
   <meta
     name="description"
     content="数字を選んで運試し！すべてを決めるのは、あなたの運だけ。無料で遊べるシンプルな運試しゲーム「運が全て。」"
@@ -68,45 +68,41 @@
 
 
     /* =========================
-       タイトル
+       S-Labs ヘッダー
        ========================= */
 
-    .site-header {
+    .header {
 
       width: 100%;
 
       padding:
-        45px 20px 35px;
+        70px 20px;
 
       text-align: center;
 
       background:
         linear-gradient(
           135deg,
-          #526aa5,
-          #7892d0
+          #202b4a,
+          #435a92
         );
 
       color: white;
 
-      box-shadow:
-        0 5px 20px
-        rgba(50, 70, 120, 0.18);
-
     }
 
-    .site-header h1 {
+    .header h1 {
 
       margin: 0;
 
-      font-size: 52px;
+      font-size: 56px;
 
       letter-spacing:
-        0.12em;
+        0.08em;
 
     }
 
-    .site-header p {
+    .header p {
 
       margin:
         12px 0 0;
@@ -114,6 +110,59 @@
       font-size: 18px;
 
       opacity: 0.9;
+
+    }
+
+
+    /* =========================
+       ナビゲーション
+       ========================= */
+
+    .nav {
+
+      display: flex;
+
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      gap: 10px;
+
+      padding:
+        15px 20px;
+
+      background:
+        white;
+
+      box-shadow:
+        0 2px 10px
+        rgba(0, 0, 0, 0.08);
+
+    }
+
+    .nav a {
+
+      padding:
+        8px 18px;
+
+      color:
+        #435a92;
+
+      text-decoration:
+        none;
+
+      font-weight:
+        bold;
+
+      border-radius:
+        8px;
+
+    }
+
+    .nav a:hover {
+
+      background:
+        #eef1f8;
 
     }
 
@@ -450,6 +499,72 @@
 
 
     /* =========================
+       リンク
+       ========================= */
+
+    .game-description a {
+
+      color:
+        #435a92;
+
+      font-weight:
+        bold;
+
+    }
+
+
+    /* =========================
+       フッター
+       ========================= */
+
+    .footer {
+
+      margin-top:
+        60px;
+
+      padding:
+        30px 20px;
+
+      text-align:
+        center;
+
+      background:
+        #202b4a;
+
+      color:
+        white;
+
+      font-size:
+        14px;
+
+    }
+
+    .footer a {
+
+      color:
+        white;
+
+      text-decoration:
+        none;
+
+    }
+
+    .footer-links {
+
+      margin-bottom:
+        12px;
+
+    }
+
+    .footer-links a {
+
+      margin:
+        0 8px;
+
+    }
+
+
+    /* =========================
        画面が小さい場合
        ========================= */
 
@@ -457,9 +572,11 @@
 
       #unity-container {
 
-        width: 94vw;
+        width:
+          94vw;
 
-        height: calc(94vw * 9 / 16);
+        height:
+          calc(94vw * 9 / 16);
 
       }
 
@@ -468,24 +585,24 @@
 
     @media screen and (max-width: 700px) {
 
-      .site-header {
+      .header {
 
         padding:
-          35px 15px 28px;
+          50px 15px;
 
       }
 
-      .site-header h1 {
+      .header h1 {
 
         font-size:
-          38px;
+          42px;
 
       }
 
-      .site-header p {
+      .header p {
 
         font-size:
-          15px;
+          16px;
 
       }
 
@@ -558,10 +675,10 @@
 
 
   <!-- =========================
-       タイトル
+       S-Labs ヘッダー
        ========================= -->
 
-  <header class="site-header">
+  <header class="header">
 
     <h1>
       運が全て。
@@ -572,6 +689,27 @@
     </p>
 
   </header>
+
+
+  <!-- =========================
+       ナビゲーション
+       ========================= -->
+
+  <nav class="nav">
+
+    <a href="../../">
+      ホーム
+    </a>
+
+    <a href="../">
+      ゲーム
+    </a>
+
+    <a href="../../faq.html">
+      FAQ
+    </a>
+
+  </nav>
 
 
   <!-- =========================
@@ -680,9 +818,11 @@
       あなたは、どこまで幸運をつかめる？
     </h3>
 
+
     <h2>
       操作方法・遊び方
     </h2>
+
 
     <p>
       主にタップ・クリックで操作をします。<br>
@@ -692,24 +832,31 @@
       ランクは1～10までです。（正式実装！）
     </p>
 
+
     <h2>
       ミニゲーム１　「数当てゲーム」の遊び方
     </h2>
 
+
     <p>
-      数当てゲームは1~10の数を当てるゲームです。<br>
-      最初に自分が1~10の数を選び、「決定」ボタンを押します。<br>
-      その後、1~10の数が抽選され、もし自分の選んだ数と抽選された数が当たれば成功です。<br>
+      数当てゲームは1～10の数を当てるゲームです。<br>
+      最初に自分が1～10の数を選び、「決定」ボタンを押します。<br>
+      その後、1～10の数が抽選され、もし自分の選んだ数と抽選された数が当たれば成功です。<br>
       成功なら100LP、失敗なら5LPが与えられます。
     </p>
 
-    <h2>ゲーム内のポイントについて</h2>
+
+    <h2>
+      ゲーム内のポイントについて
+    </h2>
+
 
     <p>
       「運が全て。」は、無料で遊べるゲームです。
       ゲームをプレイするために、現金やクレジットカードなどによる
       支払いを行う必要はありません。
     </p>
+
 
     <p>
       ゲーム内で獲得できる「ラッキーポイント（LP）」は、
@@ -718,38 +865,48 @@
       現実世界で価値のあるものと交換することはできません。
     </p>
 
+
     <p>
       LPの購入、販売、譲渡および現金への払い戻しには対応していません。
     </p>
+
 
     <h2>
       対応機種
     </h2>
 
+
     <p>
       ・PC（Windows11）<br>
 
       以下の機種は場合によって使えない場合があります。<br>
+
       ・スマホ（iPhone、Android問わず）<br>
       ※フルスクリーンモードは使えません<br>
+
       ・タブレット（iPad、Android問わず）<br>
       ※動作チェックが行えていませんので、使えない場合があります。<br>
+
       いずれも無料で遊べます。
     </p>
+
 
     <h2>
       開発版（ベータ版）について
     </h2>
 
+
     <p>
       現在は開発版です。<br>
-      現在は開発版として公開しています。今後も機能の追加・改善を予定しています。<br>
+      今後も機能の追加・改善を予定しています。<br>
       （正式リリースまでお楽しみに！）
     </p>
+
 
     <h2>
       更新履歴
     </h2>
+
 
     <p>
       v β1.0 ベータ版リリース<br>
@@ -766,15 +923,18 @@
       ...<br>
       v1.0 正式リリース　ミニゲーム追加など 現在作成中！
     </p>
-    
+
+
     <h2>
       開発者について
     </h2>
+
 
     <p>
       Unityで主にゲーム制作をしています。<br>
       PythonやC++などもやっています。
     </p>
+
 
     <p>
       🎥 YouTube：
@@ -786,18 +946,65 @@
       </a>
     </p>
 
-    <a href="faq.html">よくある質問（FAQ）</a>
-    <a href="../../privacy.html">
-      プライバシーポリシー
-    </a>
 
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSc__zfKT9Xx8IQe9_SRPmrkyWVX0DEg__6vVmTOXD-AE69FVg/viewform?usp=dialog"
-    target="_blank"
-    rel="noopener noreferrer">
-    お問い合わせはこちら
-  </a>
-      
+    <p>
+      <a href="faq.html">
+        よくある質問（FAQ）
+      </a>
+    </p>
+
+
+    <p>
+      <a href="../../privacy.html">
+        プライバシーポリシー
+      </a>
+    </p>
+
+
+    <p>
+      <a
+        href="https://docs.google.com/forms/d/e/1FAIpQLSc__zfKT9Xx8IQe9_SRpmrkyWVX0DEg__6vVmTOXD-AE69FVg/viewform?usp=dialog"
+        target="_blank"
+        rel="noopener noreferrer">
+        お問い合わせはこちら
+      </a>
+    </p>
+
+
   </section>
+
+
+  <!-- =========================
+       フッター
+       ========================= -->
+
+  <footer class="footer">
+
+    <div class="footer-links">
+
+      <a href="../../">
+        ホーム
+      </a>
+
+      <a href="../">
+        ゲーム
+      </a>
+
+      <a href="../../faq.html">
+        FAQ
+      </a>
+
+      <a href="../../privacy.html">
+        プライバシーポリシー
+      </a>
+
+    </div>
+
+    <div>
+      © 2026 S-Labs
+    </div>
+
+  </footer>
 
 
   <!-- =========================
@@ -821,7 +1028,6 @@
       msg,
       type
     ) {
-
 
       var warningBanner =
         document.querySelector(
@@ -975,7 +1181,6 @@
 
           config,
 
-
           function (
             progress
           ) {
@@ -999,7 +1204,6 @@
 
             progressText.textContent =
               percent + "%";
-
 
           }
 
@@ -1028,10 +1232,8 @@
             setTimeout(
               function () {
 
-
                 loadingBar.style.display =
                   "none";
-
 
               },
               300
@@ -1055,9 +1257,7 @@
                       1
                     );
 
-
                 };
-
 
           }
         )
@@ -1083,10 +1283,8 @@
               message
             );
 
-
           }
         );
-
 
       };
 
@@ -1111,7 +1309,6 @@
         alert(
           "Unity Loaderを読み込めませんでした。"
         );
-
 
       };
 
