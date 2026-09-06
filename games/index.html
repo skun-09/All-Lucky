@@ -118,12 +118,18 @@
       border-radius:
         8px;
 
+      transition:
+        0.2s;
+
     }
 
     .nav a:hover {
 
       background:
         #eef1f8;
+
+      transform:
+        translateY(-2px);
 
     }
 
@@ -199,6 +205,21 @@
         0 6px 20px
         rgba(0, 0, 0, 0.08);
 
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+    }
+
+    .game-card:hover {
+
+      transform:
+        translateY(-6px);
+
+      box-shadow:
+        0 12px 30px
+        rgba(0, 0, 0, 0.12);
+
     }
 
     .game-card h2 {
@@ -252,12 +273,18 @@
       font-weight:
         bold;
 
+      transition:
+        0.2s;
+
     }
 
     .play-button:hover {
 
       opacity:
         0.85;
+
+      transform:
+        translateY(-2px);
 
     }
 
@@ -398,6 +425,10 @@
       ゲーム
     </a>
 
+    <a href="/factory/">
+      製作所
+    </a>
+
     <a href="/faq.html">
       FAQ
     </a>
@@ -420,7 +451,9 @@
     <div class="games">
 
 
-      <!-- 運が全て。 -->
+      <!-- =========================
+           運が全て。
+           ========================= -->
 
       <div class="game-card">
 
@@ -443,9 +476,9 @@
       </div>
 
 
-      <!--
-      新しいゲームを追加するときは
-      ここにカードを追加できます。
+      <!-- =========================
+           新しいゲームを追加するとき
+           =========================
 
       <div class="game-card">
 
@@ -465,6 +498,7 @@
         </a>
 
       </div>
+
       -->
 
 
@@ -482,8 +516,16 @@
 
     <div class="footer-links">
 
+      <a href="/">
+        ホーム
+      </a>
+
       <a href="/games/">
         ゲーム
+      </a>
+
+      <a href="/factory/">
+        製作所
       </a>
 
       <a href="/faq.html">
