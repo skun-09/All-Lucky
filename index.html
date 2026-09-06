@@ -32,6 +32,7 @@
       line-height: 1.7;
     }
 
+
     /* =========================
        ヘッダー
     ========================= */
@@ -54,6 +55,7 @@
       font-size: 18px;
       opacity: 0.9;
     }
+
 
     /* =========================
        ナビゲーション
@@ -83,6 +85,7 @@
       transform: translateY(-2px);
     }
 
+
     /* =========================
        メイン
     ========================= */
@@ -97,6 +100,7 @@
       color: #435a92;
       font-size: 30px;
     }
+
 
     /* =========================
        特設・ゲーム・製作所
@@ -148,6 +152,7 @@
       transform: translateY(-8px) scale(1.015);
     }
 
+
     /* =========================
        特設
     ========================= */
@@ -170,6 +175,7 @@
         0 18px 45px rgba(67, 90, 146, 0.45);
     }
 
+
     /* =========================
        ゲーム
     ========================= */
@@ -187,6 +193,7 @@
       box-shadow:
         0 18px 45px rgba(67, 90, 146, 0.35);
     }
+
 
     /* =========================
        製作所
@@ -209,6 +216,7 @@
       box-shadow:
         0 18px 45px rgba(67, 90, 146, 0.45);
     }
+
 
     /* =========================
        背景の丸
@@ -237,6 +245,7 @@
     .pickup-card:hover::before {
       transform: scale(1.5);
     }
+
 
     /* =========================
        製作所の光エフェクト
@@ -271,6 +280,7 @@
       left: 140%;
     }
 
+
     /* =========================
        アイコン
     ========================= */
@@ -286,12 +296,11 @@
         iconFloat 3s ease-in-out infinite;
     }
 
-    /* 製作所アイコンだけ少し違う動き */
-
     .factory-card .pickup-icon {
       animation:
         factoryIcon 3.5s ease-in-out infinite;
     }
+
 
     /* =========================
        タイトル
@@ -306,6 +315,7 @@
 
       font-size: 28px;
     }
+
 
     /* =========================
        説明
@@ -322,6 +332,7 @@
 
       opacity: 0.9;
     }
+
 
     /* =========================
        矢印
@@ -345,6 +356,7 @@
     .pickup-card:hover .pickup-arrow {
       transform: translateX(7px);
     }
+
 
     /* =========================
        アニメーション
@@ -418,8 +430,9 @@
 
     }
 
+
     /* =========================
-       ゲームカード
+       ゲーム・コラムカード
     ========================= */
 
     .cards {
@@ -454,6 +467,11 @@
       color: #555;
     }
 
+
+    /* =========================
+       ボタン
+    ========================= */
+
     .button {
       display: inline-block;
 
@@ -479,6 +497,79 @@
       transform: translateY(-2px);
     }
 
+
+    /* =========================
+       コラム
+    ========================= */
+
+    .column-home {
+      position: relative;
+
+      margin-top: 45px;
+
+      padding: 30px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffffff,
+          #f7f9ff
+        );
+
+      border-radius: 18px;
+
+      box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.08);
+
+      overflow: hidden;
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .column-home::before {
+      content: "📝";
+
+      position: absolute;
+
+      right: 25px;
+      top: 8px;
+
+      font-size: 90px;
+
+      opacity: 0.07;
+
+      transition:
+        transform 0.4s ease;
+    }
+
+    .column-home:hover {
+      transform: translateY(-6px);
+
+      box-shadow:
+        0 14px 35px rgba(67, 90, 146, 0.18);
+    }
+
+    .column-home:hover::before {
+      transform:
+        scale(1.15)
+        rotate(-6deg);
+    }
+
+    .column-home h2 {
+      margin-top: 0;
+
+      color: #435a92;
+
+      font-size: 30px;
+    }
+
+    .column-home p {
+      color: #555;
+    }
+
+
     /* =========================
        プロフィール
     ========================= */
@@ -486,7 +577,7 @@
     .profile-home {
       position: relative;
 
-      margin-top: 45px;
+      margin-top: 25px;
 
       padding: 30px;
 
@@ -550,6 +641,7 @@
       color: #555;
     }
 
+
     /* =========================
        S-Labsについて
     ========================= */
@@ -566,6 +658,7 @@
       box-shadow:
         0 6px 20px rgba(0, 0, 0, 0.08);
     }
+
 
     /* =========================
        フッター
@@ -599,6 +692,7 @@
       margin: 0 8px;
     }
 
+
     /* =========================
        スマホ
     ========================= */
@@ -614,6 +708,7 @@
       }
 
     }
+
 
     @media screen and (max-width: 700px) {
 
@@ -655,10 +750,12 @@
         min-height: 210px;
       }
 
+      .column-home,
       .profile-home {
         padding: 25px;
       }
 
+      .column-home h2,
       .profile-home h2 {
         font-size: 26px;
       }
@@ -706,6 +803,10 @@
       製作所
     </a>
 
+    <a href="/column/">
+      コラム
+    </a>
+
     <a href="/faq.html">
       FAQ
     </a>
@@ -734,9 +835,7 @@
       <div class="pickup-grid">
 
 
-        <!-- =========================
-             特設
-        ========================= -->
+        <!-- 特設 -->
 
         <a
           href="/games/all-lucky/"
@@ -763,9 +862,7 @@
         </a>
 
 
-        <!-- =========================
-             ゲーム
-        ========================= -->
+        <!-- ゲーム -->
 
         <a
           href="/games/"
@@ -792,9 +889,7 @@
         </a>
 
 
-        <!-- =========================
-             製作所
-        ========================= -->
+        <!-- 製作所 -->
 
         <a
           href="/factory/"
@@ -860,6 +955,31 @@
         </div>
 
       </div>
+
+    </section>
+
+
+    <!-- =========================
+         Column
+    ========================= -->
+
+    <section class="column-home">
+
+      <h2>
+        📝 コラム
+      </h2>
+
+      <p>
+        ゲーム制作やプログラミングなどについて、
+        いろいろ書いていきます。
+      </p>
+
+      <a
+        class="button"
+        href="/column/"
+      >
+        コラムを見る
+      </a>
 
     </section>
 
@@ -934,6 +1054,10 @@
 
       <a href="/factory/">
         製作所
+      </a>
+
+      <a href="/column/">
+        コラム
       </a>
 
       <a href="/faq.html">
