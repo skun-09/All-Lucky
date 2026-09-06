@@ -34,27 +34,32 @@ jobs:
             echo "API TOKEN は渡されています"
           fi
 
+      - name: Check files
+        run: |
+          echo "=== All-Lucky files ==="
+          find games/all-lucky -type f -print
+
       - name: Upload index.html to R2
         run: |
           wrangler r2 object put all-lucky/index.html \
-            --file=index.html \
+            --file=games/all-lucky/index.html \
             --remote \
             --content-type=text/html
 
       - name: Upload Build to R2
         run: |
-          find Build -type f | while read file; do
-            key="${file#Build/}"
-            wrangler r2 object put "all-lucky/Build/$key" \
+          find games/all-lucky/Build -type f | while read file; do
+            key="${file#games/all-lucky/}"
+            wrangler r2 object put "all-lucky/$key" \
               --file="$file" \
               --remote
           done
 
       - name: Upload TemplateData to R2
         run: |
-          find TemplateData -type f | while read file; do
-            key="${file#TemplateData/}"
-            wrangler r2 object put "all-lucky/TemplateData/$key" \
+          find games/all-lucky/TemplateData -type f | while read file; do
+            key="${file#games/all-lucky/}"
+            wrangler r2 object put "all-lucky/$key" \
               --file="$file" \
               --remote
           done
