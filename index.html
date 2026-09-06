@@ -99,7 +99,7 @@
     }
 
     /* =========================
-       特設・ゲーム
+       特設・ゲーム・製作所
     ========================= */
 
     .pickup {
@@ -115,18 +115,28 @@
 
     .pickup-grid {
       display: grid;
-      grid-template-columns: 1.4fr 1fr;
+
+      grid-template-columns:
+        1.4fr 1fr 1fr;
+
       gap: 22px;
     }
 
     .pickup-card {
       position: relative;
+
       display: block;
+
       min-height: 230px;
+
       padding: 32px;
+
       border-radius: 22px;
+
       color: white;
+
       text-decoration: none;
+
       overflow: hidden;
 
       transition:
@@ -138,7 +148,9 @@
       transform: translateY(-8px) scale(1.015);
     }
 
-    /* 特設 */
+    /* =========================
+       特設
+    ========================= */
 
     .special-card {
       background:
@@ -149,7 +161,8 @@
           #657fc0
         );
 
-      animation: specialGlow 4s ease-in-out infinite;
+      animation:
+        specialGlow 4s ease-in-out infinite;
     }
 
     .special-card:hover {
@@ -157,7 +170,9 @@
         0 18px 45px rgba(67, 90, 146, 0.45);
     }
 
-    /* ゲーム */
+    /* =========================
+       ゲーム
+    ========================= */
 
     .game-card {
       background:
@@ -173,7 +188,31 @@
         0 18px 45px rgba(67, 90, 146, 0.35);
     }
 
-    /* 背景の丸 */
+    /* =========================
+       製作所
+    ========================= */
+
+    .factory-card {
+      background:
+        linear-gradient(
+          135deg,
+          #28334f,
+          #4d639b,
+          #7189c5
+        );
+
+      animation:
+        factoryGlow 5s ease-in-out infinite;
+    }
+
+    .factory-card:hover {
+      box-shadow:
+        0 18px 45px rgba(67, 90, 146, 0.45);
+    }
+
+    /* =========================
+       背景の丸
+    ========================= */
 
     .pickup-card::before {
       content: "";
@@ -199,11 +238,47 @@
       transform: scale(1.5);
     }
 
-    /* アイコン */
+    /* =========================
+       製作所の光エフェクト
+    ========================= */
+
+    .factory-card::after {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: -120%;
+
+      width: 70%;
+      height: 100%;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.22),
+          transparent
+        );
+
+      transform: skewX(-20deg);
+
+      transition:
+        left 0.7s ease;
+    }
+
+    .factory-card:hover::after {
+      left: 140%;
+    }
+
+    /* =========================
+       アイコン
+    ========================= */
 
     .pickup-icon {
       position: relative;
-      z-index: 1;
+
+      z-index: 2;
 
       font-size: 52px;
 
@@ -211,22 +286,35 @@
         iconFloat 3s ease-in-out infinite;
     }
 
-    /* タイトル */
+    /* 製作所アイコンだけ少し違う動き */
+
+    .factory-card .pickup-icon {
+      animation:
+        factoryIcon 3.5s ease-in-out infinite;
+    }
+
+    /* =========================
+       タイトル
+    ========================= */
 
     .pickup-card h3 {
       position: relative;
-      z-index: 1;
+
+      z-index: 2;
 
       margin: 12px 0 8px;
 
       font-size: 28px;
     }
 
-    /* 説明 */
+    /* =========================
+       説明
+    ========================= */
 
     .pickup-card p {
       position: relative;
-      z-index: 1;
+
+      z-index: 2;
 
       margin: 0;
 
@@ -235,16 +323,27 @@
       opacity: 0.9;
     }
 
-    /* 矢印 */
+    /* =========================
+       矢印
+    ========================= */
 
     .pickup-arrow {
       position: relative;
-      z-index: 1;
+
+      z-index: 2;
 
       margin-top: 20px;
 
       font-size: 15px;
+
       font-weight: bold;
+
+      transition:
+        transform 0.3s ease;
+    }
+
+    .pickup-card:hover .pickup-arrow {
+      transform: translateX(7px);
     }
 
     /* =========================
@@ -263,6 +362,34 @@
 
     }
 
+    @keyframes factoryIcon {
+
+      0%, 100% {
+        transform:
+          translateY(0)
+          rotate(0deg);
+      }
+
+      25% {
+        transform:
+          translateY(-6px)
+          rotate(-6deg);
+      }
+
+      50% {
+        transform:
+          translateY(0)
+          rotate(6deg);
+      }
+
+      75% {
+        transform:
+          translateY(-4px)
+          rotate(-3deg);
+      }
+
+    }
+
     @keyframes specialGlow {
 
       0%, 100% {
@@ -277,12 +404,27 @@
 
     }
 
+    @keyframes factoryGlow {
+
+      0%, 100% {
+        box-shadow:
+          0 5px 20px rgba(32, 43, 74, 0.12);
+      }
+
+      50% {
+        box-shadow:
+          0 12px 32px rgba(67, 90, 146, 0.28);
+      }
+
+    }
+
     /* =========================
        ゲームカード
     ========================= */
 
     .cards {
       display: grid;
+
       grid-template-columns:
         repeat(auto-fit, minmax(260px, 1fr));
 
@@ -374,6 +516,7 @@
 
     .footer a {
       color: white;
+
       text-decoration: none;
     }
 
@@ -388,6 +531,18 @@
     /* =========================
        スマホ
     ========================= */
+
+    @media screen and (max-width: 850px) {
+
+      .pickup-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .special-card {
+        grid-column: 1 / -1;
+      }
+
+    }
 
     @media screen and (max-width: 700px) {
 
@@ -405,6 +560,7 @@
 
       .content {
         width: calc(100% - 24px);
+
         margin: 30px auto;
       }
 
@@ -418,6 +574,10 @@
 
       .pickup-grid {
         grid-template-columns: 1fr;
+      }
+
+      .special-card {
+        grid-column: auto;
       }
 
       .pickup-card {
@@ -480,7 +640,7 @@
 
 
     <!-- =========================
-         特設・ゲーム
+         特設・ゲーム・製作所
     ========================= -->
 
     <section class="pickup">
@@ -493,7 +653,9 @@
       <div class="pickup-grid">
 
 
-        <!-- 特設 -->
+        <!-- =========================
+             特設
+        ========================= -->
 
         <a
           href="/games/all-lucky/"
@@ -520,7 +682,9 @@
         </a>
 
 
-        <!-- ゲーム -->
+        <!-- =========================
+             ゲーム
+        ========================= -->
 
         <a
           href="/games/"
@@ -542,6 +706,35 @@
 
           <div class="pickup-arrow">
             ゲーム一覧を見る →
+          </div>
+
+        </a>
+
+
+        <!-- =========================
+             製作所
+        ========================= -->
+
+        <a
+          href="/factory/"
+          class="pickup-card factory-card"
+        >
+
+          <div class="pickup-icon">
+            🛠️
+          </div>
+
+          <h3>
+            製作所
+          </h3>
+
+          <p>
+            C++やPythonなどで制作した
+            プログラムや作品をまとめています。
+          </p>
+
+          <div class="pickup-arrow">
+            製作所を見る →
           </div>
 
         </a>
