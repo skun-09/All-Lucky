@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>S-Labs｜プロフィール</title>
+
+  <meta
+    name="description"
+    content="S-Labsを運営している制作者のプロフィールです。"
+  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f6fb;
+      color: #222;
+
+      font-family:
+        "Yu Gothic",
+        "YuGothic",
+        "Hiragino Kaku Gothic ProN",
+        Meiryo,
+        sans-serif;
+
+      line-height: 1.7;
+    }
+
+
+    /* =========================
+       ヘッダー
+    ========================= */
+
+    .header {
+      padding: 70px 20px;
+      text-align: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          #202b4a,
+          #435a92
+        );
+
+      color: white;
+    }
+
+    .header h1 {
+      margin: 0;
+
+      font-size: 56px;
+
+      letter-spacing: 0.08em;
+    }
+
+    .header p {
+      margin: 12px 0 0;
+
+      font-size: 18px;
+
+      opacity: 0.9;
+    }
+
+
+    /* =========================
+       ナビゲーション
+    ========================= */
+
+    .nav {
+      display: flex;
+
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      gap: 10px;
+
+      padding: 15px 20px;
+
+      background: white;
+
+      box-shadow:
+        0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav a {
+      padding: 8px 18px;
+
+      color: #435a92;
+
+      text-decoration: none;
+
+      font-weight: bold;
+
+      border-radius: 8px;
+
+      transition: 0.2s;
+    }
+
+    .nav a:hover {
+      background: #eef1f8;
+
+      transform:
+        translateY(-2px);
+    }
+
+
+    /* =========================
+       メイン
+    ========================= */
+
+    .content {
+      width:
+        min(900px, calc(100% - 30px));
+
+      margin:
+        45px auto;
+    }
+
+
+    /* =========================
+       プロフィールカード
+    ========================= */
+
+    .profile-card {
+      position: relative;
+
+      padding: 35px;
+
+      background: white;
+
+      border-radius: 22px;
+
+      box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.08);
+
+      overflow: hidden;
+
+      animation:
+        profileAppear 0.7s ease;
+    }
+
+
+    /* 背景の丸 */
+
+    .profile-card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 220px;
+      height: 220px;
+
+      right: -90px;
+      top: -90px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(67, 90, 146, 0.08);
+
+      transition:
+        transform 0.5s ease;
+    }
+
+    .profile-card:hover::before {
+      transform:
+        scale(1.3);
+    }
+
+
+    /* =========================
+       プロフィール上部
+    ========================= */
+
+    .profile-header {
+      position: relative;
+
+      z-index: 1;
+
+      display: flex;
+
+      align-items: center;
+
+      gap: 25px;
+
+      margin-bottom: 30px;
+    }
+
+
+    /* アイコン */
+
+    .profile-icon {
+      flex-shrink: 0;
+
+      width: 100px;
+      height: 100px;
+
+      display: flex;
+
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          135deg,
+          #435a92,
+          #7189c5
+        );
+
+      color: white;
+
+      font-size: 48px;
+
+      box-shadow:
+        0 8px 20px rgba(67, 90, 146, 0.25);
+
+      animation:
+        iconFloat 3s ease-in-out infinite;
+    }
+
+
+    .profile-name {
+      margin: 0;
+
+      color: #202b4a;
+
+      font-size: 32px;
+    }
+
+
+    .profile-label {
+      margin: 3px 0 0;
+
+      color: #7180a8;
+
+      font-size: 13px;
+
+      font-weight: bold;
+
+      letter-spacing: 0.12em;
+    }
+
+
+    /* =========================
+       セクション
+    ========================= */
+
+    .section {
+      position: relative;
+
+      z-index: 1;
+
+      margin-top: 35px;
+
+      padding-top: 30px;
+
+      border-top:
+        1px solid #e5e8f0;
+    }
+
+    .section h2 {
+      margin: 0 0 18px;
+
+      color: #435a92;
+
+      font-size: 27px;
+    }
+
+    .section p {
+      margin: 0 0 12px;
+
+      color: #555;
+    }
+
+
+    /* =========================
+       好きなこと・もの
+    ========================= */
+
+    .favorite-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 18px;
+    }
+
+    .favorite-card {
+      padding: 22px;
+
+      background: #f7f8fc;
+
+      border-radius: 16px;
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .favorite-card:hover {
+      transform:
+        translateY(-5px);
+
+      box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .favorite-card h3 {
+      margin: 0 0 8px;
+
+      color: #435a92;
+
+      font-size: 20px;
+    }
+
+    .favorite-card p {
+      margin: 0;
+
+      color: #666;
+    }
+
+
+    /* =========================
+       制作・プログラミング
+    ========================= */
+
+    .info-list {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 18px;
+    }
+
+    .info-card {
+      padding: 22px;
+
+      background: #f7f8fc;
+
+      border-radius: 16px;
+
+      transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .info-card:hover {
+      transform:
+        translateY(-5px);
+
+      box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .info-card h3 {
+      margin: 0 0 8px;
+
+      color: #435a92;
+
+      font-size: 20px;
+    }
+
+    .info-card p {
+      margin: 0;
+
+      color: #666;
+    }
+
+
+    /* =========================
+       開発環境
+    ========================= */
+
+    .environment-list {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 10px;
+    }
+
+    .environment {
+      padding: 8px 15px;
+
+      background: #eef1f8;
+
+      color: #435a92;
+
+      border-radius: 999px;
+
+      font-size: 14px;
+
+      font-weight: bold;
+
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .environment:hover {
+      transform:
+        translateY(-3px);
+
+      background: #e1e6f4;
+    }
+
+
+    /* =========================
+       今後やりたいこと
+    ========================= */
+
+    .future {
+      padding: 25px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f0f3fa,
+          #ffffff
+        );
+
+      border-radius: 18px;
+
+      border-left:
+        5px solid #435a92;
+    }
+
+    .future p {
+      margin: 0 0 10px;
+
+      color: #555;
+    }
+
+    .future p:last-child {
+      margin-bottom: 0;
+    }
+
+
+    /* =========================
+       S-Labs各ページへのリンク
+    ========================= */
+
+    .links {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 15px;
+    }
+
+    .link-card {
+      display: block;
+
+      padding: 18px 20px;
+
+      background: #f7f8fc;
+
+      border-radius: 14px;
+
+      color: #435a92;
+
+      text-decoration: none;
+
+      font-weight: bold;
+
+      transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .link-card:hover {
+      transform:
+        translateY(-4px);
+
+      background: #eef1f8;
+
+      box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .link-card span {
+      display: block;
+
+      margin-top: 3px;
+
+      color: #777;
+
+      font-size: 13px;
+
+      font-weight: normal;
+    }
+
+
+    /* =========================
+       アニメーション
+    ========================= */
+
+    @keyframes profileAppear {
+
+      from {
+        opacity: 0;
+
+        transform:
+          translateY(20px);
+      }
+
+      to {
+        opacity: 1;
+
+        transform:
+          translateY(0);
+      }
+
+    }
+
+
+    @keyframes iconFloat {
+
+      0%, 100% {
+        transform:
+          translateY(0);
+      }
+
+      50% {
+        transform:
+          translateY(-7px);
+      }
+
+    }
+
+
+    /* =========================
+       フッター
+    ========================= */
+
+    .footer {
+      margin-top: 60px;
+
+      padding: 30px 20px;
+
+      text-align: center;
+
+      background: #202b4a;
+
+      color: white;
+
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: white;
+
+      text-decoration: none;
+
+      margin: 0 8px;
+    }
+
+    .footer-links {
+      margin-bottom: 12px;
+    }
+
+
+    /* =========================
+       スマホ
+    ========================= */
+
+    @media screen and (max-width: 700px) {
+
+      .header {
+        padding: 50px 15px;
+      }
+
+      .header h1 {
+        font-size: 42px;
+      }
+
+      .header p {
+        font-size: 16px;
+      }
+
+      .content {
+        width:
+          calc(100% - 24px);
+
+        margin:
+          30px auto;
+      }
+
+      .profile-card {
+        padding: 25px;
+      }
+
+      .profile-header {
+        flex-direction: column;
+
+        text-align: center;
+      }
+
+      .profile-icon {
+        width: 85px;
+        height: 85px;
+
+        font-size: 40px;
+      }
+
+      .profile-name {
+        font-size: 27px;
+      }
+
+      .favorite-grid,
+      .info-list,
+      .links {
+        grid-template-columns: 1fr;
+      }
+
+      .section h2 {
+        font-size: 24px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       ヘッダー
+    ========================= -->
+
+  <header class="header">
+
+    <h1>
+      S-Labs
+    </h1>
+
+    <p>
+      プロフィール
+    </p>
+
+  </header>
+
+
+  <!-- =========================
+       ナビゲーション
+       ※プロフィールは入れない
+  ========================= -->
+
+  <nav class="nav">
+
+    <a href="/">
+      ホーム
+    </a>
+
+    <a href="/games/">
+      ゲーム
+    </a>
+
+    <a href="/factory/">
+      製作所
+    </a>
+
+    <a href="/faq.html">
+      FAQ
+    </a>
+
+  </nav>
+
+
+  <!-- =========================
+       メイン
+  ========================= -->
+
+  <main class="content">
+
+
+    <div class="profile-card">
+
+
+      <!-- =========================
+           名前
+      ========================= -->
+
+      <div class="profile-header">
+
+        <div class="profile-icon">
+          👤
+        </div>
+
+        <div>
+
+          <p class="profile-label">
+            S-Labs CREATOR
+          </p>
+
+          <h2 class="profile-name">
+            えす/skun
+          </h2>
+
+        </div>
+
+      </div>
+
+
+      <!-- =========================
+           プロフィール
+      ========================= -->
+
+      <section class="section">
+
+        <h2>
+          👤 プロフィール
+        </h2>
+
+        <p>
+          えすといいます。<br>
+          いろいろやってる人です。<br>
+          （ネタが切れた）<br>
+        </p>
+
+        <p>
+          ゲーム制作やプログラミングなど、
+          デジタルコンテンツの制作をしています。
+        </p>
+
+      </section>
+
+
+      <!-- =========================
+           好きなこと・もの
+      ========================= -->
+
+      <section class="section">
+
+        <h2>
+          ❤️ 好きなこと・もの
+        </h2>
+
+        <div class="favorite-grid">
+
+
+          <div class="favorite-card">
+
+            <h3>
+              🎮 好きなこと
+            </h3>
+
+            <p>
+              ヨーヨー、ゲーム
+            </p>
+
+          </div>
+
+
+          <div class="favorite-card">
+
+            <h3>
+              ⭐ 好きなもの
+            </h3>
+
+            <p>
+              お寿司
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           ゲーム制作
+      ========================= -->
+
+      <section class="section">
+
+        <h2>
+          🎮 ゲーム制作
+        </h2>
+
+        <div class="info-card">
+
+          <h3>
+            ゲームを作っています
+          </h3>
+
+          <p>
+            ここにゲーム制作について書きます。
+          </p>
+
+          <p>
+            制作したゲームはS-Labsの
+            「ゲーム」ページから見ることができます。
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           プログラミング
+      ========================= -->
+
+      <section class="section">
+
+        <h2>
+          💻 プログラミング
+        </h2>
+
+        <div class="info-list">
+
+
+          <div class="info-card">
+
+            <h3>
+              C++
+            </h3>
+
+            <p>
+              C++はまだ初めてかなり浅いです。<br>
+              ゲーム制作のために頑張ります！
+            </p>
+
+          </div>
+
+
+          <div class="info-card">
+
+            <h3>
+              Python
+            </h3>
+
+            <p>
+              実はPythonは思ったよりやってます。<br>
+              いろいろやった記憶がありますが忘れてたりします。
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           使用している開発環境
+      ========================= -->
+
+      <section class="section">
+
+        <h2>
+          🛠️ 使用している開発環境
+        </h2>
+
+        <div class="environment-list">
+
+          <span class="environment">
+            Unity
+          </span>
+
+          <span class="environment">
+            Visual Studio(C++, Unity開発)
+          </span>
+
+          <span class="environment">
+            Visual Studio Code(Python開発)
+          </span>
+
+          <span class="environment">
+            C++
+          </span>
+
+          <span class="environment">
+            Python
+          </span>
+
+          <span class="environment">
+            GitHub
+          </span>
+
+          <span class="environment">
+            Cloudflare
+          </span>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           今後やりたいこと
+      ========================= -->
+
+      <section class="section">
+
+        <h2>
+          🚀 今後やりたいこと
+        </h2>
+
+        <div class="future">
+
+          <p>
+            SDL3を使ったゲーム制作、<br>
+            ゲームエンジンの開発もしてみたいです。
+          </p>
+
+          <p>
+            新しいゲームを制作したり、
+            新しいプログラミング言語に挑戦したり、
+            S-Labsをもっと充実させていく予定です。
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- =========================
+           S-Labs各ページへのリンク
+      ========================= -->
+
+      <section class="section">
+
+        <h2>
+          🔗 S-Labs各ページへのリンク
+        </h2>
+
+        <div class="links">
+
+
+          <a
+            href="/"
+            class="link-card"
+          >
+
+            🏠 ホーム
+
+            <span>
+              S-Labsのトップページ
+            </span>
+
+          </a>
+
+
+          <a
+            href="/games/"
+            class="link-card"
+          >
+
+            🎮 ゲーム
+
+            <span>
+              制作したゲーム一覧
+            </span>
+
+          </a>
+
+
+          <a
+            href="/factory/"
+            class="link-card"
+          >
+
+            🛠️ 製作所
+
+            <span>
+              プログラム・制作物一覧
+            </span>
+
+          </a>
+
+
+          <a
+            href="/faq.html"
+            class="link-card"
+          >
+
+            ❓ FAQ
+
+            <span>
+              よくある質問
+            </span>
+
+          </a>
+
+
+        </div>
+
+      </section>
+
+
+    </div>
+
+  </main>
+
+
+  <!-- =========================
+       フッター
+    ========================= -->
+
+  <footer class="footer">
+
+    <div class="footer-links">
+
+      <a href="/">
+        ホーム
+      </a>
+
+      <a href="/games/">
+        ゲーム
+      </a>
+
+      <a href="/factory/">
+        製作所
+      </a>
+
+      <a href="/faq.html">
+        FAQ
+      </a>
+
+      <a href="/privacy.html">
+        プライバシーポリシー
+      </a>
+
+    </div>
+
+    <div>
+      © 2026 S-Labs
+    </div>
+
+  </footer>
+
+
+</body>
+
+</html>
