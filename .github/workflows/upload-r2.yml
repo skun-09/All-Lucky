@@ -41,6 +41,14 @@ jobs:
             --remote \
             --content-type=text/html
 
+      - name: Check R2 upload files
+        run: |
+          echo "=== Build ==="
+          find Build -type f -print
+
+          echo "=== TemplateData ==="
+          find TemplateData -type f -print
+
       - name: Upload Build to R2
         run: |
           find Build -type f | while read file; do
