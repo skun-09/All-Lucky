@@ -1,4 +1,4 @@
-name: Deploy Unity WebGL to R2
+name: Sync GitHub to R2
 
 on:
   push:
@@ -10,12 +10,14 @@ env:
   CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
 
 jobs:
-  deploy:
+  sync:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -34,32 +36,38 @@ jobs:
             echo "API TOKEN は渡されています"
           fi
 
-      - name: Check files
+      - name: Sync changed files to R2
         run: |
-          echo "=== All-Lucky files ==="
-          find games/all-lucky -type f -print
+          git diff --name-status HEAD~1 HEAD > changes.txt
 
-      - name: Upload All-Lucky index.html to R2
-        run: |
-          wrangler r2 object put all-lucky/games/all-lucky/index.html \
-            --file=games/all-lucky/index.html \
-            --remote \
-            --content-type=text/html
+          echo "=== Changes ==="
+          cat changes.txt
 
-      - name: Upload Build to R2
-        run: |
-          find games/all-lucky/Build -type f | while read file; do
-            key="${file#games/all-lucky/}"
-            wrangler r2 object put "all-lucky/games/all-lucky/$key" \
-              --file="$file" \
-              --remote
-          done
+          while IFS=$'\t' read -r status path; do
 
-      - name: Upload TemplateData to R2
+            # 削除
+            if [ "$status" = "D" ]; then
+              echo "Deleting: $path"
+
+              wrangler r2 object delete "all-lucky/$path" \
+                --remote
+
+            # 追加・変更
+            elif [ "$status" = "A" ] || [ "$status" = "M" ]; then
+              echo "Uploading: $path"
+
+              if [ -f "$path" ]; then
+                wrangler r2 object put "all-lucky/$path" \
+                  --file="$path" \
+                  --remote
+              fi
+
+            fi
+
+          done < changes.txt
+
+      - name: Sync completed
         run: |
-          find games/all-lucky/TemplateData -type f | while read file; do
-            key="${file#games/all-lucky/}"
-            wrangler r2 object put "all-lucky/games/all-lucky/$key" \
-              --file="$file" \
-              --remote
-          done
+          echo "================================"
+          echo "GitHub → R2 差分同期完了"
+          echo "================================"
