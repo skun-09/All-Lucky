@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>S-Labs 製作所｜プログラミング作品</title>
+
+    <meta name="description"
+          content="S-Labs製作所。C++やPythonなどのプログラミング言語を使って制作したゲーム、ツール、ソフトウェアを公開しています。">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                "Noto Sans JP",
+                sans-serif;
+
+            background: #f4f6fb;
+            color: #202b4a;
+        }
+
+        /* =========================
+           Header
+        ========================= */
+
+        header {
+            background: linear-gradient(135deg, #202b4a, #435a92);
+            color: white;
+            text-align: center;
+            padding: 70px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 56px;
+            letter-spacing: 0.08em;
+        }
+
+        header p {
+            margin: 15px 0 0;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        /* =========================
+           Navigation
+        ========================= */
+
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+
+            padding: 18px 20px;
+        }
+
+        nav a {
+            color: #202b4a;
+            text-decoration: none;
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+        nav a:hover {
+            opacity: 0.6;
+        }
+
+        /* =========================
+           Main
+        ========================= */
+
+        main {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        .intro {
+            background: white;
+            border-radius: 18px;
+
+            padding: 40px;
+            margin-bottom: 35px;
+
+            text-align: center;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .intro h2 {
+            margin-top: 0;
+            font-size: 32px;
+        }
+
+        .intro p {
+            line-height: 1.8;
+            color: #59647d;
+        }
+
+        /* =========================
+           Factory Cards
+        ========================= */
+
+        .factory-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 25px;
+        }
+
+        .factory-card {
+            position: relative;
+
+            background: white;
+            border-radius: 18px;
+
+            padding: 30px;
+
+            min-height: 360px;
+
+            overflow: hidden;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.06);
+
+            transition:
+                transform 0.25s,
+                box-shadow 0.25s;
+        }
+
+        .factory-card:hover {
+            transform: translateY(-8px);
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .factory-card h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+
+            font-size: 27px;
+        }
+
+        .factory-card p {
+            color: #65708a;
+            line-height: 1.7;
+        }
+
+        .language {
+            display: inline-block;
+
+            padding: 6px 12px;
+
+            border-radius: 999px;
+
+            background: #eef1f8;
+
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .works-button {
+            display: inline-block;
+
+            margin-top: 15px;
+
+            padding: 10px 18px;
+
+            border-radius: 10px;
+
+            background: #202b4a;
+            color: white;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            transition: 0.2s;
+        }
+
+        .works-button:hover {
+            transform: translateY(-2px);
+            opacity: 0.85;
+        }
+
+        /* =========================
+           C++ Animation
+        ========================= */
+
+        .cpp-animation {
+            height: 130px;
+
+            background: #101522;
+
+            border-radius: 14px;
+
+            padding: 18px;
+
+            overflow: hidden;
+
+            position: relative;
+
+            font-family: Consolas, monospace;
+            color: #d8e0f0;
+
+            font-size: 14px;
+
+            box-shadow:
+                inset 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .cpp-code {
+            position: absolute;
+
+            white-space: nowrap;
+
+            animation: codeMove 8s linear infinite;
+        }
+
+        .cpp-code:nth-child(2) {
+            top: 50px;
+            animation-duration: 11s;
+            animation-delay: -4s;
+        }
+
+        .cpp-code:nth-child(3) {
+            top: 82px;
+            animation-duration: 9s;
+            animation-delay: -2s;
+        }
+
+        @keyframes codeMove {
+            from {
+                transform: translateX(100%);
+            }
+
+            to {
+                transform: translateX(-160%);
+            }
+        }
+
+        /* =========================
+           Python Animation
+        ========================= */
+
+        .python-animation {
+            height: 130px;
+
+            border-radius: 14px;
+
+            background:
+                radial-gradient(
+                    circle at center,
+                    #eef1f8,
+                    #dfe4ef
+                );
+
+            position: relative;
+
+            overflow: hidden;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .python-symbol {
+            font-size: 55px;
+
+            animation:
+                pythonFloat 2.5s ease-in-out infinite;
+        }
+
+        .python-dot {
+            position: absolute;
+
+            width: 9px;
+            height: 9px;
+
+            border-radius: 50%;
+
+            background: #435a92;
+
+            animation:
+                dotFloat 3s ease-in-out infinite;
+        }
+
+        .python-dot:nth-child(2) {
+            left: 20%;
+            top: 25%;
+            animation-delay: -1s;
+        }
+
+        .python-dot:nth-child(3) {
+            left: 75%;
+            top: 65%;
+            animation-delay: -2s;
+        }
+
+        .python-dot:nth-child(4) {
+            left: 65%;
+            top: 20%;
+            animation-delay: -0.5s;
+        }
+
+        @keyframes pythonFloat {
+            0%, 100% {
+                transform: translateY(0) rotate(-3deg);
+            }
+
+            50% {
+                transform: translateY(-12px) rotate(3deg);
+            }
+        }
+
+        @keyframes dotFloat {
+            0%, 100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+
+            50% {
+                transform: translateY(-20px);
+                opacity: 1;
+            }
+        }
+
+        /* =========================
+           Other Animation
+        ========================= */
+
+        .other-animation {
+            height: 130px;
+
+            border-radius: 14px;
+
+            background: #eef1f8;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+        .gear {
+            font-size: 65px;
+
+            animation:
+                gearRotate 5s linear infinite;
+        }
+
+        @keyframes gearRotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* =========================
+           Coming Soon
+        ========================= */
+
+        .coming-soon {
+            margin-top: 35px;
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 30px;
+
+            text-align: center;
+
+            color: #65708a;
+
+            box-shadow:
+                0 5px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        /* =========================
+           Footer
+        ========================= */
+
+        footer {
+            margin-top: 80px;
+
+            background: #202b4a;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 35px 20px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+
+            margin: 0 10px;
+        }
+
+        footer a:hover {
+            opacity: 0.7;
+        }
+
+        footer p {
+            margin-top: 20px;
+
+            font-size: 13px;
+
+            opacity: 0.7;
+        }
+
+        /* =========================
+           Mobile
+        ========================= */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 50px 20px;
+            }
+
+            header h1 {
+                font-size: 42px;
+            }
+
+            .intro {
+                padding: 28px 20px;
+            }
+
+            .factory-card {
+                min-height: auto;
+            }
+
+            nav {
+                gap: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>S-Labs</h1>
+    <p>ゲームやデジタルコンテンツを制作しています。</p>
+</header>
+
+<nav>
+    <a href="/">ホーム</a>
+    <a href="/games/">ゲーム</a>
+    <a href="/factory/">製作所</a>
+    <a href="/faq.html">FAQ</a>
+</nav>
+
+<main>
+
+    <section class="intro">
+
+        <h2>💻 製作所</h2>
+
+        <p>
+            C++やPythonなどのプログラミング言語を使って
+            制作したゲーム・ツール・ソフトウェアを公開しています。
+        </p>
+
+        <p>
+            S-Labsの「作る」を集めた開発スペースです。
+        </p>
+
+    </section>
+
+
+    <section class="factory-grid">
+
+        <!-- C++ -->
+
+        <article class="factory-card">
+
+            <div class="cpp-animation">
+
+                <div class="cpp-code">
+                    #include &lt;iostream&gt;　int main() { Game.Run(); }
+                </div>
+
+                <div class="cpp-code">
+                    SDL_CreateWindow();　SDL_PollEvent(&amp;event);
+                </div>
+
+                <div class="cpp-code">
+                    return 0;　// S-Labs C++
+                </div>
+
+            </div>
+
+            <span class="language">
+                C++
+            </span>
+
+            <h3>🖥️ C++</h3>
+
+            <p>
+                C++やSDLを使って制作したゲームや
+                ソフトウェアを公開していきます。
+            </p>
+
+            <a class="works-button" href="/factory/cpp/">
+                C++作品を見る
+            </a>
+
+        </article>
+
+
+        <!-- Python -->
+
+        <article class="factory-card">
+
+            <div class="python-animation">
+
+                <div class="python-symbol">
+                    🐍
+                </div>
+
+                <div class="python-dot"></div>
+                <div class="python-dot"></div>
+                <div class="python-dot"></div>
+
+            </div>
+
+            <span class="language">
+                Python
+            </span>
+
+            <h3>🐍 Python</h3>
+
+            <p>
+                Pythonを使って制作したツールや
+                小さなプログラムなどを公開していきます。
+            </p>
+
+            <a class="works-button" href="/factory/python/">
+                Python作品を見る
+            </a>
+
+        </article>
+
+
+        <!-- Other -->
+
+        <article class="factory-card">
+
+            <div class="other-animation">
+
+                <div class="gear">
+                    ⚙️
+                </div>
+
+            </div>
+
+            <span class="language">
+                Other
+            </span>
+
+            <h3>🔧 その他</h3>
+
+            <p>
+                C++やPython以外の言語・技術を使った
+                制作物をここに追加していきます。
+            </p>
+
+            <a class="works-button" href="/factory/other/">
+                その他の作品を見る
+            </a>
+
+        </article>
+
+    </section>
+
+
+    <section class="coming-soon">
+
+        <h3>🚧 これから追加予定</h3>
+
+        <p>
+            C++・Pythonを中心に、これから少しずつ作品を追加していきます。
+        </p>
+
+    </section>
+
+</main>
+
+
+<footer>
+
+    <div>
+        <a href="/">ホーム</a>
+        <a href="/games/">ゲーム</a>
+        <a href="/factory/">製作所</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/privacy.html">プライバシーポリシー</a>
+    </div>
+
+    <p>
+        © 2026 S-Labs
+    </p>
+
+</footer>
+
+</body>
+</html>
