@@ -39,9 +39,9 @@ jobs:
           echo "=== All-Lucky files ==="
           find games/all-lucky -type f -print
 
-      - name: Upload index.html to R2
+      - name: Upload All-Lucky index.html to R2
         run: |
-          wrangler r2 object put all-lucky/index.html \
+          wrangler r2 object put all-lucky/games/all-lucky/index.html \
             --file=games/all-lucky/index.html \
             --remote \
             --content-type=text/html
@@ -50,7 +50,7 @@ jobs:
         run: |
           find games/all-lucky/Build -type f | while read file; do
             key="${file#games/all-lucky/}"
-            wrangler r2 object put "all-lucky/$key" \
+            wrangler r2 object put "all-lucky/games/all-lucky/$key" \
               --file="$file" \
               --remote
           done
@@ -59,7 +59,7 @@ jobs:
         run: |
           find games/all-lucky/TemplateData -type f | while read file; do
             key="${file#games/all-lucky/}"
-            wrangler r2 object put "all-lucky/$key" \
+            wrangler r2 object put "all-lucky/games/all-lucky/$key" \
               --file="$file" \
               --remote
           done
