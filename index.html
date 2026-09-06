@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -12,6 +14,7 @@
   >
 
   <style>
+
     * {
       box-sizing: border-box;
     }
@@ -29,7 +32,10 @@
       line-height: 1.7;
     }
 
-    /* ヘッダー */
+    /* =========================
+       ヘッダー
+    ========================= */
+
     .header {
       padding: 70px 20px;
       text-align: center;
@@ -49,7 +55,10 @@
       opacity: 0.9;
     }
 
-    /* ナビゲーション */
+    /* =========================
+       ナビゲーション
+    ========================= */
+
     .nav {
       display: flex;
       justify-content: center;
@@ -66,13 +75,18 @@
       text-decoration: none;
       font-weight: bold;
       border-radius: 8px;
+      transition: 0.2s;
     }
 
     .nav a:hover {
       background: #eef1f8;
+      transform: translateY(-2px);
     }
 
-    /* メイン */
+    /* =========================
+       メイン
+    ========================= */
+
     .content {
       width: min(1000px, calc(100% - 30px));
       margin: 45px auto;
@@ -84,23 +98,213 @@
       font-size: 30px;
     }
 
-    /* カード */
+    /* =========================
+       特設・ゲーム
+    ========================= */
+
+    .pickup {
+      margin-bottom: 50px;
+    }
+
+    .pickup-title {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #435a92;
+      font-size: 30px;
+    }
+
+    .pickup-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 22px;
+    }
+
+    .pickup-card {
+      position: relative;
+      display: block;
+      min-height: 230px;
+      padding: 32px;
+      border-radius: 22px;
+      color: white;
+      text-decoration: none;
+      overflow: hidden;
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .pickup-card:hover {
+      transform: translateY(-8px) scale(1.015);
+    }
+
+    /* 特設 */
+
+    .special-card {
+      background:
+        linear-gradient(
+          135deg,
+          #202b4a,
+          #435a92,
+          #657fc0
+        );
+
+      animation: specialGlow 4s ease-in-out infinite;
+    }
+
+    .special-card:hover {
+      box-shadow:
+        0 18px 45px rgba(67, 90, 146, 0.45);
+    }
+
+    /* ゲーム */
+
+    .game-card {
+      background:
+        linear-gradient(
+          135deg,
+          #35405f,
+          #566fa8
+        );
+    }
+
+    .game-card:hover {
+      box-shadow:
+        0 18px 45px rgba(67, 90, 146, 0.35);
+    }
+
+    /* 背景の丸 */
+
+    .pickup-card::before {
+      content: "";
+
+      position: absolute;
+
+      width: 190px;
+      height: 190px;
+
+      right: -70px;
+      top: -70px;
+
+      border-radius: 50%;
+
+      background:
+        rgba(255, 255, 255, 0.12);
+
+      transition:
+        transform 0.5s ease;
+    }
+
+    .pickup-card:hover::before {
+      transform: scale(1.5);
+    }
+
+    /* アイコン */
+
+    .pickup-icon {
+      position: relative;
+      z-index: 1;
+
+      font-size: 52px;
+
+      animation:
+        iconFloat 3s ease-in-out infinite;
+    }
+
+    /* タイトル */
+
+    .pickup-card h3 {
+      position: relative;
+      z-index: 1;
+
+      margin: 12px 0 8px;
+
+      font-size: 28px;
+    }
+
+    /* 説明 */
+
+    .pickup-card p {
+      position: relative;
+      z-index: 1;
+
+      margin: 0;
+
+      line-height: 1.7;
+
+      opacity: 0.9;
+    }
+
+    /* 矢印 */
+
+    .pickup-arrow {
+      position: relative;
+      z-index: 1;
+
+      margin-top: 20px;
+
+      font-size: 15px;
+      font-weight: bold;
+    }
+
+    /* =========================
+       アニメーション
+    ========================= */
+
+    @keyframes iconFloat {
+
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-8px);
+      }
+
+    }
+
+    @keyframes specialGlow {
+
+      0%, 100% {
+        box-shadow:
+          0 5px 20px rgba(32, 43, 74, 0.15);
+      }
+
+      50% {
+        box-shadow:
+          0 12px 35px rgba(67, 90, 146, 0.35);
+      }
+
+    }
+
+    /* =========================
+       ゲームカード
+    ========================= */
+
     .cards {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns:
+        repeat(auto-fit, minmax(260px, 1fr));
+
       gap: 20px;
     }
 
     .card {
       padding: 28px;
+
       background: white;
+
       border-radius: 18px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+
+      box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.08);
     }
 
     .card h3 {
       margin-top: 0;
+
       color: #435a92;
+
       font-size: 24px;
     }
 
@@ -110,35 +314,61 @@
 
     .button {
       display: inline-block;
+
       margin-top: 10px;
+
       padding: 10px 22px;
+
       background: #435a92;
+
       color: white;
+
       border-radius: 10px;
+
       text-decoration: none;
+
       font-weight: bold;
+
+      transition: 0.2s;
     }
 
     .button:hover {
       opacity: 0.85;
+      transform: translateY(-2px);
     }
 
-    /* S-Labsについて */
+    /* =========================
+       S-Labsについて
+    ========================= */
+
     .about {
       margin-top: 45px;
+
       padding: 30px;
+
       background: white;
+
       border-radius: 18px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+
+      box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.08);
     }
 
-    /* フッター */
+    /* =========================
+       フッター
+    ========================= */
+
     .footer {
       margin-top: 60px;
+
       padding: 30px 20px;
+
       text-align: center;
+
       background: #202b4a;
+
       color: white;
+
       font-size: 14px;
     }
 
@@ -155,8 +385,12 @@
       margin: 0 8px;
     }
 
-    /* スマホ */
+    /* =========================
+       スマホ
+    ========================= */
+
     @media screen and (max-width: 700px) {
+
       .header {
         padding: 50px 15px;
       }
@@ -177,48 +411,194 @@
       .section-title {
         font-size: 26px;
       }
+
+      .pickup-title {
+        font-size: 26px;
+      }
+
+      .pickup-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .pickup-card {
+        min-height: 210px;
+      }
+
     }
+
   </style>
+
 </head>
 
 <body>
 
+  <!-- =========================
+       ヘッダー
+  ========================= -->
+
   <header class="header">
+
     <h1>S-Labs</h1>
-    <p>ゲームやデジタルコンテンツを制作しています。</p>
+
+    <p>
+      ゲームやデジタルコンテンツを制作しています。
+    </p>
+
   </header>
 
+
+  <!-- =========================
+       ナビゲーション
+  ========================= -->
+
   <nav class="nav">
-    <a href="/">ホーム</a>
-    <a href="/games/">ゲーム</a>
-    <a href="/faq.html">FAQ</a>
+
+    <a href="/">
+      ホーム
+    </a>
+
+    <a href="/games/">
+      ゲーム
+    </a>
+
+    <a href="/factory/">
+      製作所
+    </a>
+
+    <a href="/faq.html">
+      FAQ
+    </a>
+
   </nav>
+
+
+  <!-- =========================
+       メイン
+  ========================= -->
 
   <main class="content">
 
-    <h2 class="section-title">🎮 Games</h2>
 
-    <div class="cards">
+    <!-- =========================
+         特設・ゲーム
+    ========================= -->
 
-      <div class="card">
-        <h3>🎲 運が全て。</h3>
+    <section class="pickup">
 
-        <p>
-          数字を選んで運試し！
-          すべてを決めるのは、あなたの運だけ。
-        </p>
+      <h2 class="pickup-title">
+        ✨ S-Labs PICK UP
+      </h2>
 
-        <a class="button" href="/games/all-lucky/">
-          今すぐ遊ぶ
+
+      <div class="pickup-grid">
+
+
+        <!-- 特設 -->
+
+        <a
+          href="/games/all-lucky/"
+          class="pickup-card special-card"
+        >
+
+          <div class="pickup-icon">
+            🎲
+          </div>
+
+          <h3>
+            特設｜運が全て。
+          </h3>
+
+          <p>
+            運だけで勝負するミニゲーム。
+            あなたの運を試してみよう！
+          </p>
+
+          <div class="pickup-arrow">
+            今すぐ遊ぶ →
+          </div>
+
         </a>
+
+
+        <!-- ゲーム -->
+
+        <a
+          href="/games/"
+          class="pickup-card game-card"
+        >
+
+          <div class="pickup-icon">
+            🎮
+          </div>
+
+          <h3>
+            ゲーム
+          </h3>
+
+          <p>
+            S-Labsで制作した
+            ゲームをまとめています。
+          </p>
+
+          <div class="pickup-arrow">
+            ゲーム一覧を見る →
+          </div>
+
+        </a>
+
+
       </div>
 
-    </div>
+    </section>
 
+
+    <!-- =========================
+         Games
+    ========================= -->
+
+    <section>
+
+      <h2 class="section-title">
+        🎮 Games
+      </h2>
+
+
+      <div class="cards">
+
+        <div class="card">
+
+          <h3>
+            🎲 運が全て。
+          </h3>
+
+          <p>
+            数字を選んで運試し！
+            すべてを決めるのは、あなたの運だけ。
+          </p>
+
+          <a
+            class="button"
+            href="/games/all-lucky/"
+          >
+            今すぐ遊ぶ
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         S-Labsについて
+    ========================= -->
 
     <div class="about">
 
-      <h2 class="section-title">S-Labsについて</h2>
+      <h2 class="section-title">
+        S-Labsについて
+      </h2>
 
       <p>
         S-Labsでは、ゲームをはじめとした
@@ -232,14 +612,38 @@
 
     </div>
 
+
   </main>
+
+
+  <!-- =========================
+       フッター
+  ========================= -->
 
   <footer class="footer">
 
     <div class="footer-links">
-      <a href="/games/">ゲーム</a>
-      <a href="/faq.html">FAQ</a>
-      <a href="/privacy.html">プライバシーポリシー</a>
+
+      <a href="/">
+        ホーム
+      </a>
+
+      <a href="/games/">
+        ゲーム
+      </a>
+
+      <a href="/factory/">
+        製作所
+      </a>
+
+      <a href="/faq.html">
+        FAQ
+      </a>
+
+      <a href="/privacy.html">
+        プライバシーポリシー
+      </a>
+
     </div>
 
     <div>
@@ -249,4 +653,5 @@
   </footer>
 
 </body>
+
 </html>
