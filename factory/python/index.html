@@ -3,1043 +3,689 @@
 
 <head>
 
-  <meta charset="utf-8">
+    <meta charset="UTF-8">
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>S-Labs Python｜製作所</title>
+    <title>S-Labs Python｜製作所</title>
 
-  <meta
-    name="description"
-    content="S-LabsのPython作品一覧。Pythonを使用して制作したプログラムなどを紹介しています。"
-  >
+    <meta
+        name="description"
+        content="S-LabsのPython作品一覧。Pythonを使って制作したツールやプログラムを紹介しています。"
+    >
 
-  <style>
+    <style>
 
-    * {
-      box-sizing: border-box;
-    }
+        * {
+            box-sizing: border-box;
+        }
 
-    body {
-      margin: 0;
-      background: #f4f6fb;
-      color: #222;
-      font-family:
-        "Yu Gothic",
-        "YuGothic",
-        "Hiragino Kaku Gothic ProN",
-        Meiryo,
-        sans-serif;
-      line-height: 1.7;
-    }
+        body {
+            margin: 0;
 
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                "Noto Sans JP",
+                sans-serif;
 
-    /* =========================
-       Header
-    ========================= */
+            background: #f4f6fb;
 
-    .header {
-      position: relative;
-      overflow: hidden;
+            color: #202b4a;
+        }
 
-      padding: 75px 20px;
+        /* =========================
+           Header
+        ========================= */
 
-      text-align: center;
+        header {
+            background:
+                linear-gradient(
+                    135deg,
+                    #202b4a,
+                    #435a92
+                );
 
-      background:
-        linear-gradient(
-          135deg,
-          #202b4a,
-          #435a92
-        );
+            color: white;
 
-      color: white;
-    }
+            text-align: center;
 
-    .header h1 {
-      position: relative;
-      z-index: 2;
+            padding:
+                70px 20px;
+        }
 
-      margin: 0;
+        header h1 {
+            margin: 0;
 
-      font-size: 56px;
-      letter-spacing: 0.08em;
-    }
+            font-size: 56px;
 
-    .header p {
-      position: relative;
-      z-index: 2;
+            letter-spacing:
+                0.08em;
+        }
 
-      margin: 12px 0 0;
+        header p {
+            margin:
+                15px 0 0;
 
-      font-size: 18px;
+            font-size: 16px;
 
-      opacity: 0.9;
-    }
+            opacity: 0.9;
+        }
 
+        /* =========================
+           Navigation
+        ========================= */
 
-    /* =========================
-       Python Code Animation
-    ========================= */
+        nav {
+            background: white;
 
-    .code-bg {
-      position: absolute;
+            box-shadow:
+                0 2px 10px
+                rgba(0, 0, 0, 0.08);
 
-      top: 0;
-      left: 0;
+            display: flex;
 
-      width: 100%;
-      height: 100%;
+            justify-content: center;
 
-      overflow: hidden;
+            flex-wrap: wrap;
 
-      pointer-events: none;
+            gap: 30px;
 
-      opacity: 0.12;
-    }
+            padding:
+                18px 20px;
+        }
 
-    .code-line {
-      position: absolute;
+        nav a {
+            color: #202b4a;
 
-      white-space: nowrap;
+            text-decoration: none;
 
-      font-family:
-        Consolas,
-        "Courier New",
-        monospace;
+            font-weight: bold;
 
-      font-size: 18px;
+            transition:
+                0.2s;
+        }
 
-      color: white;
+        nav a:hover {
+            opacity: 0.6;
+        }
 
-      animation:
-        codeMove 16s linear infinite;
-    }
+        /* =========================
+           Main
+        ========================= */
 
-    .code-line:nth-child(1) {
-      top: 15%;
-      animation-duration: 18s;
-    }
+        main {
+            max-width:
+                1000px;
 
-    .code-line:nth-child(2) {
-      top: 35%;
-      animation-duration: 22s;
-      animation-delay: -5s;
-    }
+            margin:
+                50px auto;
 
-    .code-line:nth-child(3) {
-      top: 55%;
-      animation-duration: 19s;
-      animation-delay: -10s;
-    }
+            padding:
+                0 20px;
+        }
 
-    .code-line:nth-child(4) {
-      top: 75%;
-      animation-duration: 24s;
-      animation-delay: -7s;
-    }
+        /* =========================
+           Hero
+        ========================= */
 
-    @keyframes codeMove {
+        .hero {
+            background: white;
 
-      0% {
-        transform:
-          translateX(100%);
-      }
+            border-radius:
+                20px;
 
-      100% {
-        transform:
-          translateX(-120%);
-      }
+            padding:
+                45px 30px;
 
-    }
+            margin-bottom:
+                35px;
 
+            text-align:
+                center;
 
-    /* =========================
-       Navigation
-    ========================= */
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.06);
+        }
 
-    .nav {
-      display: flex;
+        .python-icon {
+            font-size:
+                60px;
 
-      justify-content: center;
+            margin-bottom:
+                10px;
+        }
 
-      flex-wrap: wrap;
+        .hero h2 {
+            margin:
+                0 0 12px;
 
-      gap: 10px;
+            font-size:
+                34px;
+        }
 
-      padding: 15px 20px;
+        .hero p {
+            margin: 0;
 
-      background: white;
+            color:
+                #65708a;
 
-      box-shadow:
-        0 2px 10px
-        rgba(0, 0, 0, 0.08);
-    }
+            line-height:
+                1.8;
+        }
 
-    .nav a {
-      padding:
-        8px 18px;
+        /* =========================
+           Works
+        ========================= */
 
-      color:
-        #435a92;
+        .works-grid {
+            display: grid;
 
-      text-decoration:
-        none;
+            grid-template-columns:
+                repeat(
+                    auto-fit,
+                    minmax(
+                        280px,
+                        1fr
+                    )
+                );
 
-      font-weight:
-        bold;
+            gap:
+                25px;
+        }
 
-      border-radius:
-        8px;
+        .work-card {
+            background:
+                white;
 
-      transition:
-        0.2s;
-    }
+            border-radius:
+                18px;
 
-    .nav a:hover {
-      background:
-        #eef1f8;
+            padding:
+                30px;
 
-      transform:
-        translateY(-2px);
-    }
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.06);
 
+            transition:
+                transform 0.25s,
+                box-shadow 0.25s;
+        }
 
-    /* =========================
-       Main
-    ========================= */
+        .work-card:hover {
+            transform:
+                translateY(-8px);
 
-    .content {
+            box-shadow:
+                0 15px 35px
+                rgba(0, 0, 0, 0.12);
+        }
 
-      width:
-        min(
-          1000px,
-          calc(100% - 30px)
-        );
+        .work-icon {
+            font-size:
+                45px;
 
-      margin:
-        45px auto;
-    }
+            margin-bottom:
+                15px;
+        }
 
+        .sample-label {
+            display:
+                inline-block;
 
-    /* =========================
-       Python Hero
-    ========================= */
+            margin-bottom:
+                10px;
 
-    .language-hero {
+            padding:
+                4px 10px;
 
-      position:
-        relative;
+            background:
+                #435a92;
 
-      overflow:
-        hidden;
+            color:
+                white;
 
-      margin-bottom:
-        45px;
+            border-radius:
+                6px;
 
-      padding:
-        45px 35px;
+            font-size:
+                11px;
 
-      background:
-        white;
+            font-weight:
+                bold;
 
-      border-radius:
-        22px;
+            letter-spacing:
+                0.08em;
+        }
 
-      box-shadow:
-        0 8px 28px
-        rgba(0, 0, 0, 0.08);
+        .work-card h3 {
+            margin:
+                5px 0 12px;
 
-      text-align:
-        center;
-    }
+            font-size:
+                25px;
+        }
 
-    .language-icon {
+        .work-card p {
+            color:
+                #65708a;
 
-      display:
-        inline-flex;
+            line-height:
+                1.7;
+        }
 
-      align-items:
-        center;
+        /* =========================
+           Tags
+        ========================= */
 
-      justify-content:
-        center;
+        .tags {
+            margin-top:
+                18px;
+        }
 
-      width:
-        100px;
+        .tag {
+            display:
+                inline-block;
 
-      height:
-        100px;
+            margin:
+                4px 4px 0 0;
 
-      margin-bottom:
-        15px;
+            padding:
+                5px 10px;
 
-      border-radius:
-        25px;
+            background:
+                #eef1f8;
 
-      background:
-        linear-gradient(
-          135deg,
-          #202b4a,
-          #435a92
-        );
+            border-radius:
+                999px;
 
-      color:
-        white;
+            font-size:
+                12px;
 
-      font-size:
-        50px;
+            font-weight:
+                bold;
+        }
 
-      box-shadow:
-        0 10px 30px
-        rgba(67, 90, 146, 0.30);
+        /* =========================
+           Sample Notice
+        ========================= */
 
-      animation:
-        pythonFloat 3s ease-in-out infinite;
-    }
+        .sample-note {
+            margin-top:
+                20px;
 
-    @keyframes pythonFloat {
+            padding:
+                12px 15px;
 
-      0%,
-      100% {
-        transform:
-          translateY(0)
-          rotate(0deg);
-      }
+            background:
+                #f4f6fb;
 
-      50% {
-        transform:
-          translateY(-8px)
-          rotate(4deg);
-      }
+            border-radius:
+                10px;
 
-    }
+            color:
+                #65708a;
 
-    .language-hero h2 {
+            font-size:
+                12px;
 
-      margin:
-        5px 0 8px;
+            line-height:
+                1.6;
+        }
 
-      color:
-        #435a92;
+        /* =========================
+           Information
+        ========================= */
 
-      font-size:
-        34px;
-    }
+        .info {
+            margin-top:
+                35px;
 
-    .language-hero p {
+            background:
+                white;
 
-      margin:
-        0;
+            border-radius:
+                18px;
 
-      color:
-        #666;
+            padding:
+                30px;
 
-      font-size:
-        17px;
-    }
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.06);
+        }
 
+        .info h3 {
+            margin-top:
+                0;
 
-    /* =========================
-       Section Title
-    ========================= */
+            font-size:
+                24px;
+        }
 
-    .section-title {
+        .info p {
+            color:
+                #65708a;
 
-      margin-bottom:
-        22px;
+            line-height:
+                1.8;
+        }
 
-      color:
-        #435a92;
+        /* =========================
+           Back Button
+        ========================= */
 
-      font-size:
-        30px;
-    }
+        .back {
+            text-align:
+                center;
 
+            margin-top:
+                40px;
+        }
 
-    /* =========================
-       Works
-    ========================= */
+        .back a {
+            display:
+                inline-block;
 
-    .works {
+            padding:
+                12px 22px;
 
-      display:
-        grid;
+            border-radius:
+                10px;
 
-      grid-template-columns:
-        repeat(
-          auto-fit,
-          minmax(
-            280px,
-            1fr
-          )
-        );
+            background:
+                #202b4a;
 
-      gap:
-        22px;
-    }
+            color:
+                white;
 
+            text-decoration:
+                none;
 
-    /* =========================
-       Work Card
-    ========================= */
+            font-weight:
+                bold;
 
-    .work-card {
+            transition:
+                0.2s;
+        }
 
-      position:
-        relative;
+        .back a:hover {
+            transform:
+                translateY(-2px);
 
-      overflow:
-        hidden;
+            opacity:
+                0.85;
+        }
 
-      padding:
-        30px;
+        /* =========================
+           Footer
+        ========================= */
 
-      background:
-        white;
+        footer {
+            margin-top:
+                80px;
 
-      border-radius:
-        18px;
+            background:
+                #202b4a;
 
-      box-shadow:
-        0 6px 20px
-        rgba(0, 0, 0, 0.08);
+            color:
+                white;
 
-      transition:
-        transform 0.3s ease,
-        box-shadow 0.3s ease;
-    }
+            text-align:
+                center;
 
-    .work-card:hover {
+            padding:
+                35px 20px;
+        }
 
-      transform:
-        translateY(-8px);
+        footer a {
+            color:
+                white;
 
-      box-shadow:
-        0 15px 35px
-        rgba(67, 90, 146, 0.18);
-    }
+            text-decoration:
+                none;
 
-    .work-card::before {
+            margin:
+                0 10px;
+        }
 
-      content:
-        "";
+        footer a:hover {
+            opacity:
+                0.7;
+        }
 
-      position:
-        absolute;
+        footer p {
+            margin-top:
+                20px;
 
-      top:
-        0;
+            font-size:
+                13px;
 
-      left:
-        0;
+            opacity:
+                0.7;
+        }
 
-      width:
-        100%;
+        /* =========================
+           Mobile
+        ========================= */
 
-      height:
-        5px;
+        @media (max-width: 600px) {
 
-      background:
-        linear-gradient(
-          90deg,
-          #202b4a,
-          #435a92,
-          #7188c0
-        );
-    }
+            header {
+                padding:
+                    50px 20px;
+            }
 
+            header h1 {
+                font-size:
+                    42px;
+            }
 
-    /* =========================
-       Work Icon
-    ========================= */
+            .hero {
+                padding:
+                    35px 20px;
+            }
 
-    .work-icon {
+            .work-card {
+                padding:
+                    25px;
+            }
 
-      display:
-        inline-block;
+            nav {
+                gap:
+                    18px;
+            }
 
-      font-size:
-        45px;
+        }
 
-      margin-bottom:
-        8px;
-
-      animation:
-        workFloat 3s ease-in-out infinite;
-    }
-
-    @keyframes workFloat {
-
-      0%,
-      100% {
-        transform:
-          translateY(0);
-      }
-
-      50% {
-        transform:
-          translateY(-5px);
-      }
-
-    }
-
-
-    /* =========================
-       Title
-    ========================= */
-
-    .work-card h3 {
-
-      margin:
-        5px 0 10px;
-
-      color:
-        #435a92;
-
-      font-size:
-        24px;
-    }
-
-    .work-card p {
-
-      margin:
-        0 0 18px;
-
-      color:
-        #555;
-    }
-
-
-    /* =========================
-       Tags
-    ========================= */
-
-    .tags {
-
-      display:
-        flex;
-
-      flex-wrap:
-        wrap;
-
-      gap:
-        7px;
-
-      margin-bottom:
-        18px;
-    }
-
-    .tag {
-
-      padding:
-        4px 10px;
-
-      background:
-        #eef1f8;
-
-      color:
-        #435a92;
-
-      border-radius:
-        20px;
-
-      font-size:
-        13px;
-
-      font-weight:
-        bold;
-    }
-
-
-    /* =========================
-       Sample Label
-    ========================= */
-
-    .sample-label {
-
-      display:
-        inline-block;
-
-      margin-bottom:
-        12px;
-
-      padding:
-        5px 12px;
-
-      background:
-        #e8edf8;
-
-      color:
-        #435a92;
-
-      border-radius:
-        20px;
-
-      font-size:
-        13px;
-
-      font-weight:
-        bold;
-    }
-
-    .sample-note {
-
-      margin-top:
-        15px;
-
-      padding:
-        12px 15px;
-
-      background:
-        #f4f6fb;
-
-      border-radius:
-        10px;
-
-      color:
-        #777;
-
-      font-size:
-        14px;
-    }
-
-
-    /* =========================
-       Information
-    ========================= */
-
-    .info {
-
-      margin-top:
-        45px;
-
-      padding:
-        30px;
-
-      background:
-        white;
-
-      border-radius:
-        18px;
-
-      box-shadow:
-        0 6px 20px
-        rgba(0, 0, 0, 0.08);
-    }
-
-    .info h2 {
-
-      margin-top:
-        0;
-
-      color:
-        #435a92;
-
-      font-size:
-        27px;
-    }
-
-    .info p {
-
-      color:
-        #555;
-    }
-
-
-    /* =========================
-       Back
-    ========================= */
-
-    .back-area {
-
-      margin-top:
-        35px;
-
-      text-align:
-        center;
-    }
-
-    .back-button {
-
-      display:
-        inline-block;
-
-      padding:
-        12px 25px;
-
-      background:
-        #202b4a;
-
-      color:
-        white;
-
-      border-radius:
-        10px;
-
-      text-decoration:
-        none;
-
-      font-weight:
-        bold;
-
-      transition:
-        0.2s;
-    }
-
-    .back-button:hover {
-
-      background:
-        #435a92;
-
-      transform:
-        translateY(-2px);
-    }
-
-
-    /* =========================
-       Footer
-    ========================= */
-
-    .footer {
-
-      margin-top:
-        60px;
-
-      padding:
-        30px 20px;
-
-      text-align:
-        center;
-
-      background:
-        #202b4a;
-
-      color:
-        white;
-
-      font-size:
-        14px;
-    }
-
-    .footer a {
-
-      color:
-        white;
-
-      text-decoration:
-        none;
-
-      transition:
-        0.2s;
-    }
-
-    .footer a:hover {
-
-      opacity:
-        0.7;
-    }
-
-    .footer-links {
-
-      margin-bottom:
-        12px;
-    }
-
-    .footer-links a {
-
-      margin:
-        0 8px;
-    }
-
-
-    /* =========================
-       Mobile
-    ========================= */
-
-    @media screen and (max-width: 700px) {
-
-      .header {
-        padding:
-          50px 15px;
-      }
-
-      .header h1 {
-        font-size:
-          42px;
-      }
-
-      .header p {
-        font-size:
-          16px;
-      }
-
-      .content {
-        width:
-          calc(100% - 24px);
-
-        margin:
-          30px auto;
-      }
-
-      .language-hero {
-        padding:
-          35px 20px;
-      }
-
-      .language-icon {
-        width:
-          80px;
-
-        height:
-          80px;
-
-        font-size:
-          40px;
-      }
-
-      .language-hero h2 {
-        font-size:
-          28px;
-      }
-
-      .section-title {
-        font-size:
-          26px;
-      }
-
-      .work-card {
-        padding:
-          25px;
-      }
-
-    }
-
-  </style>
+    </style>
 
 </head>
 
-
 <body>
 
-
-  <!-- Header -->
-
-  <header class="header">
-
-    <div class="code-bg">
-
-      <div class="code-line">
-        print("Hello, S-Labs!")
-      </div>
-
-      <div class="code-line">
-        for i in range(10): print(i)
-      </div>
-
-      <div class="code-line">
-        import pygame
-      </div>
-
-      <div class="code-line">
-        def main(): return True
-      </div>
-
-    </div>
+<header>
 
     <h1>
-      S-Labs
+        S-Labs
     </h1>
 
     <p>
-      Python｜製作所
+        ゲームやデジタルコンテンツを制作しています。
     </p>
 
-  </header>
+</header>
 
-
-  <!-- Navigation -->
-
-  <nav class="nav">
+<nav>
 
     <a href="/">
-      ホーム
+        ホーム
     </a>
 
     <a href="/games/">
-      ゲーム
+        ゲーム
     </a>
 
     <a href="/factory/">
-      製作所
+        製作所
+    </a>
+
+    <a href="/column/">
+        コラム
     </a>
 
     <a href="/faq.html">
-      FAQ
+        FAQ
     </a>
 
-  </nav>
+</nav>
 
+<main>
 
-  <!-- Main -->
+    <!-- Hero -->
 
-  <main class="content">
+    <section class="hero">
 
+        <div class="python-icon">
+            🐍
+        </div>
 
-    <!-- Python Hero -->
+        <h2>
+            Python Works
+        </h2>
 
-    <section class="language-hero">
-
-      <div class="language-icon">
-        🐍
-      </div>
-
-      <h2>
-        Python Works
-      </h2>
-
-      <p>
-        Pythonを使って制作したプログラムなどを紹介します。
-      </p>
+        <p>
+            Pythonを使って制作したツールや
+            プログラムを紹介します。
+        </p>
 
     </section>
-
 
     <!-- Works -->
 
-    <h2 class="section-title">
-      💻 作ったもの
-    </h2>
+    <section class="works-grid">
 
+        <article class="work-card">
 
-    <section class="works">
+            <div class="work-icon">
+                🐍
+            </div>
 
+            <span class="sample-label">
+                SAMPLE
+            </span>
 
-      <!-- Sample -->
+            <h3>
+                Pythonプログラム（サンプル）
+            </h3>
 
-      <article class="work-card">
+            <p>
+                Pythonを使って制作したツールや
+                小さなプログラムなどを、
+                このようなカード形式で掲載していく予定です。
+            </p>
 
-        <div class="work-icon">
-          🐍
-        </div>
+            <div class="tags">
 
-        <div class="sample-label">
-          SAMPLE
-        </div>
+                <span class="tag">
+                    Python
+                </span>
 
-        <h3>
-          Pythonプログラム（サンプル）
-        </h3>
+                <span class="tag">
+                    プログラミング
+                </span>
 
-        <p>
-          Pythonを使って制作したプログラムを
-          このようなカード形式で掲載していく予定です。
-        </p>
+                <span class="tag">
+                    PC
+                </span>
 
-        <div class="tags">
+            </div>
 
-          <span class="tag">
-            Python
-          </span>
+            <div class="sample-note">
+                ※このカードは掲載イメージのサンプルです。
+                実際の作品ではありません。
+            </div>
 
-          <span class="tag">
-            プログラミング
-          </span>
-
-          <span class="tag">
-            PC
-          </span>
-
-        </div>
-
-        <div class="sample-note">
-          ※このカードは掲載イメージのサンプルです。
-          実際の作品ではありません。
-        </div>
-
-      </article>
-
+        </article>
 
     </section>
-
 
     <!-- Information -->
 
     <section class="info">
 
-      <h2>
-        🛠️ Pythonについて
-      </h2>
+        <h3>
+            🐍 Pythonについて
+        </h3>
 
-      <p>
-        Pythonは、シンプルで読みやすい文法が特徴の
-        プログラミング言語です。
-        ゲーム制作、ツール制作、データ処理など、
-        幅広い用途で利用されています。
-      </p>
+        <p>
+            Pythonは、シンプルで読みやすい文法が特徴の
+            プログラミング言語です。
+        </p>
 
-      <p>
-        S-Labsでは、Pythonを使ったプログラム制作や
-        ゲーム開発などにも取り組んでいます。
-      </p>
+        <p>
+            S-Labsでは、Pythonを使ったプログラムや
+            ツールなどの制作にも挑戦していきます。
+        </p>
+
+        <p>
+            ゲーム制作だけでなく、
+            便利なツールや小さな実験的プログラムなども
+            ここに追加していく予定です。
+        </p>
 
     </section>
 
-
     <!-- Back -->
 
-    <div class="back-area">
+    <div class="back">
 
-      <a
-        class="back-button"
-        href="/factory/"
-      >
-        ← 製作所に戻る
-      </a>
+        <a href="/factory/">
+            ← 製作所に戻る
+        </a>
 
     </div>
 
+</main>
 
-  </main>
-
-
-  <!-- Footer -->
-
-  <footer class="footer">
-
-    <div class="footer-links">
-
-      <a href="/">
-        ホーム
-      </a>
-
-      <a href="/games/">
-        ゲーム
-      </a>
-
-      <a href="/factory/">
-        製作所
-      </a>
-
-      <a href="/faq.html">
-        FAQ
-      </a>
-
-      <a href="/privacy.html">
-        プライバシーポリシー
-      </a>
-
-    </div>
+<footer>
 
     <div>
-      © 2026 S-Labs
+
+        <a href="/">
+            ホーム
+        </a>
+
+        <a href="/games/">
+            ゲーム
+        </a>
+
+        <a href="/factory/">
+            製作所
+        </a>
+
+        <a href="/column/">
+            コラム
+        </a>
+
+        <a href="/faq.html">
+            FAQ
+        </a>
+
+        <a href="/privacy.html">
+            プライバシーポリシー
+        </a>
+
     </div>
 
-  </footer>
+    <p>
+        © 2026 S-Labs
+    </p>
 
+</footer>
 
 </body>
 
