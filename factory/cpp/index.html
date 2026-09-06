@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <title>S-Labs C++｜製作所</title>
+
+  <meta
+    name="description"
+    content="S-LabsのC++作品一覧。C++やSDL3などを使用して制作したゲーム・プログラムを紹介しています。"
+  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+
+      background: #f4f6fb;
+
+      color: #222;
+
+      font-family:
+        "Yu Gothic",
+        "YuGothic",
+        "Hiragino Kaku Gothic ProN",
+        Meiryo,
+        sans-serif;
+
+      line-height: 1.7;
+    }
+
+
+    /* =========================
+       Header
+    ========================= */
+
+    .header {
+      position: relative;
+
+      overflow: hidden;
+
+      padding: 75px 20px;
+
+      text-align: center;
+
+      background:
+        linear-gradient(
+          135deg,
+          #202b4a,
+          #435a92
+        );
+
+      color: white;
+    }
+
+    .header h1 {
+      position: relative;
+
+      z-index: 2;
+
+      margin: 0;
+
+      font-size: 56px;
+
+      letter-spacing: 0.08em;
+    }
+
+    .header p {
+      position: relative;
+
+      z-index: 2;
+
+      margin: 12px 0 0;
+
+      font-size: 18px;
+
+      opacity: 0.9;
+    }
+
+
+    /* =========================
+       Code Animation
+    ========================= */
+
+    .code-bg {
+      position: absolute;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      overflow: hidden;
+
+      pointer-events: none;
+
+      opacity: 0.12;
+    }
+
+    .code-line {
+      position: absolute;
+
+      white-space: nowrap;
+
+      font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+
+      font-size: 18px;
+
+      color: white;
+
+      animation:
+        codeMove 16s linear infinite;
+    }
+
+    .code-line:nth-child(1) {
+      top: 15%;
+
+      animation-duration:
+        18s;
+    }
+
+    .code-line:nth-child(2) {
+      top: 35%;
+
+      animation-duration:
+        22s;
+
+      animation-delay:
+        -5s;
+    }
+
+    .code-line:nth-child(3) {
+      top: 55%;
+
+      animation-duration:
+        19s;
+
+      animation-delay:
+        -10s;
+    }
+
+    .code-line:nth-child(4) {
+      top: 75%;
+
+      animation-duration:
+        24s;
+
+      animation-delay:
+        -7s;
+    }
+
+    @keyframes codeMove {
+
+      0% {
+        transform:
+          translateX(100%);
+      }
+
+      100% {
+        transform:
+          translateX(-120%);
+      }
+
+    }
+
+
+    /* =========================
+       Navigation
+    ========================= */
+
+    .nav {
+      display: flex;
+
+      justify-content: center;
+
+      flex-wrap: wrap;
+
+      gap: 10px;
+
+      padding: 15px 20px;
+
+      background: white;
+
+      box-shadow:
+        0 2px 10px
+        rgba(0, 0, 0, 0.08);
+    }
+
+    .nav a {
+      padding:
+        8px 18px;
+
+      color:
+        #435a92;
+
+      text-decoration:
+        none;
+
+      font-weight:
+        bold;
+
+      border-radius:
+        8px;
+
+      transition:
+        0.2s;
+    }
+
+    .nav a:hover {
+      background:
+        #eef1f8;
+
+      transform:
+        translateY(-2px);
+    }
+
+
+    /* =========================
+       Main
+    ========================= */
+
+    .content {
+
+      width:
+        min(
+          1000px,
+          calc(100% - 30px)
+        );
+
+      margin:
+        45px auto;
+    }
+
+
+    /* =========================
+       Language Hero
+    ========================= */
+
+    .language-hero {
+
+      position:
+        relative;
+
+      overflow:
+        hidden;
+
+      margin-bottom:
+        45px;
+
+      padding:
+        45px 35px;
+
+      background:
+        white;
+
+      border-radius:
+        22px;
+
+      box-shadow:
+        0 8px 28px
+        rgba(0, 0, 0, 0.08);
+
+      text-align:
+        center;
+    }
+
+    .language-icon {
+
+      display:
+        inline-flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      width:
+        100px;
+
+      height:
+        100px;
+
+      margin-bottom:
+        15px;
+
+      border-radius:
+        25px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #202b4a,
+          #435a92
+        );
+
+      color:
+        white;
+
+      font-family:
+        Consolas,
+        monospace;
+
+      font-size:
+        38px;
+
+      font-weight:
+        bold;
+
+      box-shadow:
+        0 10px 30px
+        rgba(67, 90, 146, 0.30);
+
+      animation:
+        iconPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes iconPulse {
+
+      0%,
+      100% {
+
+        transform:
+          translateY(0)
+          rotate(0deg);
+      }
+
+      50% {
+
+        transform:
+          translateY(-7px)
+          rotate(2deg);
+      }
+
+    }
+
+    .language-hero h2 {
+
+      margin:
+        5px 0 8px;
+
+      color:
+        #435a92;
+
+      font-size:
+        34px;
+    }
+
+    .language-hero p {
+
+      margin:
+        0;
+
+      color:
+        #666;
+
+      font-size:
+        17px;
+    }
+
+
+    /* =========================
+       Section Title
+    ========================= */
+
+    .section-title {
+
+      margin-bottom:
+        22px;
+
+      color:
+        #435a92;
+
+      font-size:
+        30px;
+    }
+
+
+    /* =========================
+       Works
+    ========================= */
+
+    .works {
+
+      display:
+        grid;
+
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(
+            280px,
+            1fr
+          )
+        );
+
+      gap:
+        22px;
+    }
+
+
+    /* =========================
+       Work Card
+    ========================= */
+
+    .work-card {
+
+      position:
+        relative;
+
+      overflow:
+        hidden;
+
+      padding:
+        30px;
+
+      background:
+        white;
+
+      border-radius:
+        18px;
+
+      box-shadow:
+        0 6px 20px
+        rgba(0, 0, 0, 0.08);
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .work-card:hover {
+
+      transform:
+        translateY(-8px);
+
+      box-shadow:
+        0 15px 35px
+        rgba(67, 90, 146, 0.18);
+    }
+
+    .work-card::before {
+
+      content:
+        "";
+
+      position:
+        absolute;
+
+      top:
+        0;
+
+      left:
+        0;
+
+      width:
+        100%;
+
+      height:
+        5px;
+
+      background:
+        linear-gradient(
+          90deg,
+          #202b4a,
+          #435a92,
+          #7188c0
+        );
+    }
+
+
+    /* =========================
+       Work Icon
+    ========================= */
+
+    .work-icon {
+
+      font-size:
+        45px;
+
+      margin-bottom:
+        8px;
+
+      display:
+        inline-block;
+
+      animation:
+        workFloat 3s ease-in-out infinite;
+    }
+
+    @keyframes workFloat {
+
+      0%,
+      100% {
+
+        transform:
+          translateY(0);
+      }
+
+      50% {
+
+        transform:
+          translateY(-5px);
+      }
+
+    }
+
+
+    /* =========================
+       Work Title
+    ========================= */
+
+    .work-card h3 {
+
+      margin:
+        5px 0 10px;
+
+      color:
+        #435a92;
+
+      font-size:
+        24px;
+    }
+
+    .work-card p {
+
+      margin:
+        0 0 18px;
+
+      color:
+        #555;
+    }
+
+
+    /* =========================
+       Tags
+    ========================= */
+
+    .tags {
+
+      display:
+        flex;
+
+      flex-wrap:
+        wrap;
+
+      gap:
+        7px;
+
+      margin-bottom:
+        18px;
+    }
+
+    .tag {
+
+      padding:
+        4px 10px;
+
+      background:
+        #eef1f8;
+
+      color:
+        #435a92;
+
+      border-radius:
+        20px;
+
+      font-size:
+        13px;
+
+      font-weight:
+        bold;
+    }
+
+
+    /* =========================
+       Sample Label
+    ========================= */
+
+    .sample-label {
+
+      display:
+        inline-block;
+
+      margin-bottom:
+        12px;
+
+      padding:
+        5px 12px;
+
+      background:
+        #e8edf8;
+
+      color:
+        #435a92;
+
+      border-radius:
+        20px;
+
+      font-size:
+        13px;
+
+      font-weight:
+        bold;
+    }
+
+
+    .sample-note {
+
+      margin-top:
+        15px;
+
+      padding:
+        12px 15px;
+
+      background:
+        #f4f6fb;
+
+      border-radius:
+        10px;
+
+      color:
+        #777;
+
+      font-size:
+        14px;
+    }
+
+
+    /* =========================
+       Information
+    ========================= */
+
+    .info {
+
+      margin-top:
+        45px;
+
+      padding:
+        30px;
+
+      background:
+        white;
+
+      border-radius:
+        18px;
+
+      box-shadow:
+        0 6px 20px
+        rgba(0, 0, 0, 0.08);
+    }
+
+    .info h2 {
+
+      margin-top:
+        0;
+
+      color:
+        #435a92;
+
+      font-size:
+        27px;
+    }
+
+    .info p {
+
+      color:
+        #555;
+    }
+
+
+    /* =========================
+       Back Button
+    ========================= */
+
+    .back-area {
+
+      margin-top:
+        35px;
+
+      text-align:
+        center;
+    }
+
+    .back-button {
+
+      display:
+        inline-block;
+
+      padding:
+        12px 25px;
+
+      background:
+        #202b4a;
+
+      color:
+        white;
+
+      border-radius:
+        10px;
+
+      text-decoration:
+        none;
+
+      font-weight:
+        bold;
+
+      transition:
+        0.2s;
+    }
+
+    .back-button:hover {
+
+      background:
+        #435a92;
+
+      transform:
+        translateY(-2px);
+    }
+
+
+    /* =========================
+       Footer
+    ========================= */
+
+    .footer {
+
+      margin-top:
+        60px;
+
+      padding:
+        30px 20px;
+
+      text-align:
+        center;
+
+      background:
+        #202b4a;
+
+      color:
+        white;
+
+      font-size:
+        14px;
+    }
+
+    .footer a {
+
+      color:
+        white;
+
+      text-decoration:
+        none;
+
+      transition:
+        0.2s;
+    }
+
+    .footer a:hover {
+
+      opacity:
+        0.7;
+    }
+
+    .footer-links {
+
+      margin-bottom:
+        12px;
+    }
+
+    .footer-links a {
+
+      margin:
+        0 8px;
+    }
+
+
+    /* =========================
+       Mobile
+    ========================= */
+
+    @media screen and (max-width: 700px) {
+
+      .header {
+
+        padding:
+          50px 15px;
+      }
+
+      .header h1 {
+
+        font-size:
+          42px;
+      }
+
+      .header p {
+
+        font-size:
+          16px;
+      }
+
+      .content {
+
+        width:
+          calc(100% - 24px);
+
+        margin:
+          30px auto;
+      }
+
+      .language-hero {
+
+        padding:
+          35px 20px;
+      }
+
+      .language-icon {
+
+        width:
+          80px;
+
+        height:
+          80px;
+
+        font-size:
+          30px;
+      }
+
+      .language-hero h2 {
+
+        font-size:
+          28px;
+      }
+
+      .section-title {
+
+        font-size:
+          26px;
+      }
+
+      .work-card {
+
+        padding:
+          25px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       Header
+  ========================= -->
+
+  <header class="header">
+
+    <div class="code-bg">
+
+      <div class="code-line">
+        #include &lt;iostream&gt;　int main() { return 0; }
+      </div>
+
+      <div class="code-line">
+        std::cout &lt;&lt; "Hello, S-Labs!";
+      </div>
+
+      <div class="code-line">
+        SDL_Init(SDL_INIT_VIDEO);
+      </div>
+
+      <div class="code-line">
+        while (running) { SDL_PollEvent(&amp;event); }
+      </div>
+
+    </div>
+
+
+    <h1>
+      S-Labs
+    </h1>
+
+    <p>
+      C++｜製作所
+    </p>
+
+  </header>
+
+
+  <!-- =========================
+       Navigation
+  ========================= -->
+
+  <nav class="nav">
+
+    <a href="/">
+      ホーム
+    </a>
+
+    <a href="/games/">
+      ゲーム
+    </a>
+
+    <a href="/factory/">
+      製作所
+    </a>
+
+    <a href="/faq.html">
+      FAQ
+    </a>
+
+  </nav>
+
+
+  <!-- =========================
+       Main
+  ========================= -->
+
+  <main class="content">
+
+
+    <!-- =========================
+         C++ Hero
+    ========================= -->
+
+    <section class="language-hero">
+
+      <div class="language-icon">
+        C++
+      </div>
+
+      <h2>
+        C++ Works
+      </h2>
+
+      <p>
+        C++を使って制作したゲーム・プログラムを紹介します。
+      </p>
+
+    </section>
+
+
+    <!-- =========================
+         Works
+    ========================= -->
+
+    <h2 class="section-title">
+      💻 作ったもの
+    </h2>
+
+
+    <section class="works">
+
+
+      <!-- =========================
+           Sample Card
+      ========================= -->
+
+      <article class="work-card">
+
+        <div class="work-icon">
+          🎮
+        </div>
+
+        <div class="sample-label">
+          SAMPLE
+        </div>
+
+        <h3>
+          C++ゲーム（サンプル）
+        </h3>
+
+        <p>
+          C++とSDL3などを使って制作したゲームを
+          このようなカード形式で掲載していく予定です。
+        </p>
+
+
+        <!-- Tags -->
+
+        <div class="tags">
+
+          <span class="tag">
+            C++
+          </span>
+
+          <span class="tag">
+            SDL3
+          </span>
+
+          <span class="tag">
+            ゲーム開発
+          </span>
+
+          <span class="tag">
+            PC
+          </span>
+
+        </div>
+
+
+        <div class="sample-note">
+          ※このカードは掲載イメージのサンプルです。
+          実際の作品ではありません。
+        </div>
+
+      </article>
+
+
+    </section>
+
+
+    <!-- =========================
+         C++ Information
+    ========================= -->
+
+    <section class="info">
+
+      <h2>
+        🛠️ C++について
+      </h2>
+
+      <p>
+        C++は高速な処理が得意なプログラミング言語です。
+        S-Labsでは、ゲーム開発やプログラミングの学習などに
+        C++を使用しています。
+      </p>
+
+      <p>
+        特にゲーム開発ではSDL3などのライブラリを利用し、
+        ウィンドウ・入力・ゲームループなどの仕組みを
+        実際に作りながら学んでいます。
+      </p>
+
+    </section>
+
+
+    <!-- =========================
+         Back
+    ========================= -->
+
+    <div class="back-area">
+
+      <a
+        class="back-button"
+        href="/factory/"
+      >
+        ← 製作所に戻る
+      </a>
+
+    </div>
+
+
+  </main>
+
+
+  <!-- =========================
+       Footer
+  ========================= -->
+
+  <footer class="footer">
+
+    <div class="footer-links">
+
+      <a href="/">
+        ホーム
+      </a>
+
+      <a href="/games/">
+        ゲーム
+      </a>
+
+      <a href="/factory/">
+        製作所
+      </a>
+
+      <a href="/faq.html">
+        FAQ
+      </a>
+
+      <a href="/privacy.html">
+        プライバシーポリシー
+      </a>
+
+    </div>
+
+    <div>
+      © 2026 S-Labs
+    </div>
+
+  </footer>
+
+
+</body>
+
+</html>
