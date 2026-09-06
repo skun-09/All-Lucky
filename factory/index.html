@@ -7,11 +7,11 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>S-Labs 製作所｜プログラミング作品</title>
+    <title>S-Labs Python｜製作所</title>
 
     <meta
         name="description"
-        content="S-Labs製作所。C++やPythonなどのプログラミング言語を使って制作したゲーム、ツール、ソフトウェアを公開しています。"
+        content="S-LabsのPython作品一覧。Pythonを使って制作したツールやプログラムを紹介しています。"
     >
 
     <style>
@@ -126,14 +126,18 @@
                 0 20px;
         }
 
-        .intro {
+        /* =========================
+           Hero
+        ========================= */
+
+        .hero {
             background: white;
 
             border-radius:
-                18px;
+                20px;
 
             padding:
-                40px;
+                45px 30px;
 
             margin-bottom:
                 35px;
@@ -146,27 +150,37 @@
                 rgba(0, 0, 0, 0.06);
         }
 
-        .intro h2 {
-            margin-top:
-                0;
-
+        .python-icon {
             font-size:
-                32px;
+                60px;
+
+            margin-bottom:
+                10px;
         }
 
-        .intro p {
-            line-height:
-                1.8;
+        .hero h2 {
+            margin:
+                0 0 12px;
+
+            font-size:
+                34px;
+        }
+
+        .hero p {
+            margin: 0;
 
             color:
-                #59647d;
+                #65708a;
+
+            line-height:
+                1.8;
         }
 
         /* =========================
-           Factory Cards
+           Works
         ========================= */
 
-        .factory-grid {
+        .works-grid {
             display: grid;
 
             grid-template-columns:
@@ -182,10 +196,7 @@
                 25px;
         }
 
-        .factory-card {
-            position:
-                relative;
-
+        .work-card {
             background:
                 white;
 
@@ -194,12 +205,6 @@
 
             padding:
                 30px;
-
-            min-height:
-                360px;
-
-            overflow:
-                hidden;
 
             box-shadow:
                 0 5px 20px
@@ -210,7 +215,7 @@
                 box-shadow 0.25s;
         }
 
-        .factory-card:hover {
+        .work-card:hover {
             transform:
                 translateY(-8px);
 
@@ -219,18 +224,52 @@
                 rgba(0, 0, 0, 0.12);
         }
 
-        .factory-card h3 {
-            margin-top:
-                20px;
+        .work-icon {
+            font-size:
+                45px;
+
+            margin-bottom:
+                15px;
+        }
+
+        .sample-label {
+            display:
+                inline-block;
 
             margin-bottom:
                 10px;
 
+            padding:
+                4px 10px;
+
+            background:
+                #435a92;
+
+            color:
+                white;
+
+            border-radius:
+                6px;
+
             font-size:
-                27px;
+                11px;
+
+            font-weight:
+                bold;
+
+            letter-spacing:
+                0.08em;
         }
 
-        .factory-card p {
+        .work-card h3 {
+            margin:
+                5px 0 12px;
+
+            font-size:
+                25px;
+        }
+
+        .work-card p {
             color:
                 #65708a;
 
@@ -238,35 +277,121 @@
                 1.7;
         }
 
-        .language {
+        /* =========================
+           Tags
+        ========================= */
+
+        .tags {
+            margin-top:
+                18px;
+        }
+
+        .tag {
             display:
                 inline-block;
 
-            padding:
-                6px 12px;
+            margin:
+                4px 4px 0 0;
 
-            border-radius:
-                999px;
+            padding:
+                5px 10px;
 
             background:
                 #eef1f8;
 
+            border-radius:
+                999px;
+
             font-size:
-                13px;
+                12px;
 
             font-weight:
                 bold;
         }
 
-        .works-button {
+        /* =========================
+           Sample Notice
+        ========================= */
+
+        .sample-note {
+            margin-top:
+                20px;
+
+            padding:
+                12px 15px;
+
+            background:
+                #f4f6fb;
+
+            border-radius:
+                10px;
+
+            color:
+                #65708a;
+
+            font-size:
+                12px;
+
+            line-height:
+                1.6;
+        }
+
+        /* =========================
+           Information
+        ========================= */
+
+        .info {
+            margin-top:
+                35px;
+
+            background:
+                white;
+
+            border-radius:
+                18px;
+
+            padding:
+                30px;
+
+            box-shadow:
+                0 5px 20px
+                rgba(0, 0, 0, 0.06);
+        }
+
+        .info h3 {
+            margin-top:
+                0;
+
+            font-size:
+                24px;
+        }
+
+        .info p {
+            color:
+                #65708a;
+
+            line-height:
+                1.8;
+        }
+
+        /* =========================
+           Back Button
+        ========================= */
+
+        .back {
+            text-align:
+                center;
+
+            margin-top:
+                40px;
+        }
+
+        .back a {
             display:
                 inline-block;
 
-            margin-top:
-                15px;
-
             padding:
-                10px 18px;
+                12px 22px;
 
             border-radius:
                 10px;
@@ -287,314 +412,12 @@
                 0.2s;
         }
 
-        .works-button:hover {
+        .back a:hover {
             transform:
                 translateY(-2px);
 
             opacity:
                 0.85;
-        }
-
-        /* =========================
-           C++ Animation
-        ========================= */
-
-        .cpp-animation {
-            height:
-                130px;
-
-            background:
-                #101522;
-
-            border-radius:
-                14px;
-
-            padding:
-                18px;
-
-            overflow:
-                hidden;
-
-            position:
-                relative;
-
-            font-family:
-                Consolas,
-                monospace;
-
-            color:
-                #d8e0f0;
-
-            font-size:
-                14px;
-
-            box-shadow:
-                inset 0 0 20px
-                rgba(0, 0, 0, 0.3);
-        }
-
-        .cpp-code {
-            position:
-                absolute;
-
-            white-space:
-                nowrap;
-
-            animation:
-                codeMove 8s linear infinite;
-        }
-
-        .cpp-code:nth-child(2) {
-            top:
-                50px;
-
-            animation-duration:
-                11s;
-
-            animation-delay:
-                -4s;
-        }
-
-        .cpp-code:nth-child(3) {
-            top:
-                82px;
-
-            animation-duration:
-                9s;
-
-            animation-delay:
-                -2s;
-        }
-
-        @keyframes codeMove {
-
-            from {
-                transform:
-                    translateX(100%);
-            }
-
-            to {
-                transform:
-                    translateX(-160%);
-            }
-
-        }
-
-        /* =========================
-           Python Animation
-        ========================= */
-
-        .python-animation {
-            height:
-                130px;
-
-            border-radius:
-                14px;
-
-            background:
-                radial-gradient(
-                    circle at center,
-                    #eef1f8,
-                    #dfe4ef
-                );
-
-            position:
-                relative;
-
-            overflow:
-                hidden;
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                center;
-        }
-
-        .python-symbol {
-            font-size:
-                55px;
-
-            animation:
-                pythonFloat
-                2.5s
-                ease-in-out
-                infinite;
-        }
-
-        .python-dot {
-            position:
-                absolute;
-
-            width:
-                9px;
-
-            height:
-                9px;
-
-            border-radius:
-                50%;
-
-            background:
-                #435a92;
-
-            animation:
-                dotFloat
-                3s
-                ease-in-out
-                infinite;
-        }
-
-        .python-dot:nth-child(2) {
-            left:
-                20%;
-
-            top:
-                25%;
-
-            animation-delay:
-                -1s;
-        }
-
-        .python-dot:nth-child(3) {
-            left:
-                75%;
-
-            top:
-                65%;
-
-            animation-delay:
-                -2s;
-        }
-
-        .python-dot:nth-child(4) {
-            left:
-                65%;
-
-            top:
-                20%;
-
-            animation-delay:
-                -0.5s;
-        }
-
-        @keyframes pythonFloat {
-
-            0%, 100% {
-                transform:
-                    translateY(0)
-                    rotate(-3deg);
-            }
-
-            50% {
-                transform:
-                    translateY(-12px)
-                    rotate(3deg);
-            }
-
-        }
-
-        @keyframes dotFloat {
-
-            0%, 100% {
-                transform:
-                    translateY(0);
-
-                opacity:
-                    0.4;
-            }
-
-            50% {
-                transform:
-                    translateY(-20px);
-
-                opacity:
-                    1;
-            }
-
-        }
-
-        /* =========================
-           Other Animation
-        ========================= */
-
-        .other-animation {
-            height:
-                130px;
-
-            border-radius:
-                14px;
-
-            background:
-                #eef1f8;
-
-            display:
-                flex;
-
-            align-items:
-                center;
-
-            justify-content:
-                center;
-
-            overflow:
-                hidden;
-        }
-
-        .gear {
-            font-size:
-                65px;
-
-            animation:
-                gearRotate
-                5s
-                linear
-                infinite;
-        }
-
-        @keyframes gearRotate {
-
-            from {
-                transform:
-                    rotate(0deg);
-            }
-
-            to {
-                transform:
-                    rotate(360deg);
-            }
-
-        }
-
-        /* =========================
-           Coming Soon
-        ========================= */
-
-        .coming-soon {
-            margin-top:
-                35px;
-
-            background:
-                white;
-
-            border-radius:
-                18px;
-
-            padding:
-                30px;
-
-            text-align:
-                center;
-
-            color:
-                #65708a;
-
-            box-shadow:
-                0 5px 20px
-                rgba(0, 0, 0, 0.06);
         }
 
         /* =========================
@@ -661,14 +484,14 @@
                     42px;
             }
 
-            .intro {
+            .hero {
                 padding:
-                    28px 20px;
+                    35px 20px;
             }
 
-            .factory-card {
-                min-height:
-                    auto;
+            .work-card {
+                padding:
+                    25px;
             }
 
             nav {
@@ -722,154 +545,109 @@
 
 <main>
 
-    <section class="intro">
+    <!-- Hero -->
+
+    <section class="hero">
+
+        <div class="python-icon">
+            🐍
+        </div>
 
         <h2>
-            💻 製作所
+            Python Works
         </h2>
 
         <p>
-            C++やPythonなどのプログラミング言語を使って
-            制作したゲーム・ツール・ソフトウェアを公開しています。
-        </p>
-
-        <p>
-            S-Labsの「作る」を集めた開発スペースです。
+            Pythonを使って制作したツールや
+            プログラムを紹介します。
         </p>
 
     </section>
 
-    <section class="factory-grid">
+    <!-- Works -->
 
-        <!-- C++ -->
+    <section class="works-grid">
 
-        <article class="factory-card">
+        <article class="work-card">
 
-            <div class="cpp-animation">
-
-                <div class="cpp-code">
-                    #include &lt;iostream&gt;　int main() { Game.Run(); }
-                </div>
-
-                <div class="cpp-code">
-                    SDL_CreateWindow();　SDL_PollEvent(&amp;event);
-                </div>
-
-                <div class="cpp-code">
-                    return 0;　// S-Labs C++
-                </div>
-
+            <div class="work-icon">
+                🐍
             </div>
 
-            <span class="language">
-                C++
+            <span class="sample-label">
+                SAMPLE
             </span>
 
             <h3>
-                🖥️ C++
-            </h3>
-
-            <p>
-                C++やSDLを使って制作したゲームや
-                ソフトウェアを公開していきます。
-            </p>
-
-            <a
-                class="works-button"
-                href="/factory/cpp/"
-            >
-                C++作品を見る
-            </a>
-
-        </article>
-
-        <!-- Python -->
-
-        <article class="factory-card">
-
-            <div class="python-animation">
-
-                <div class="python-symbol">
-                    🐍
-                </div>
-
-                <div class="python-dot"></div>
-
-                <div class="python-dot"></div>
-
-                <div class="python-dot"></div>
-
-            </div>
-
-            <span class="language">
-                Python
-            </span>
-
-            <h3>
-                🐍 Python
+                Pythonプログラム（サンプル）
             </h3>
 
             <p>
                 Pythonを使って制作したツールや
-                小さなプログラムなどを公開していきます。
+                小さなプログラムなどを、
+                このようなカード形式で掲載していく予定です。
             </p>
 
-            <a
-                class="works-button"
-                href="/factory/python/"
-            >
-                Python作品を見る
-            </a>
+            <div class="tags">
 
-        </article>
+                <span class="tag">
+                    Python
+                </span>
 
-        <!-- Other -->
+                <span class="tag">
+                    プログラミング
+                </span>
 
-        <article class="factory-card">
-
-            <div class="other-animation">
-
-                <div class="gear">
-                    ⚙️
-                </div>
+                <span class="tag">
+                    PC
+                </span>
 
             </div>
 
-            <span class="language">
-                Other
-            </span>
-
-            <h3>
-                🔧 その他
-            </h3>
-
-            <p>
-                C++やPython以外の言語・技術を使った
-                制作物をここに追加していきます。
-            </p>
-
-            <a
-                class="works-button"
-                href="/factory/other/"
-            >
-                その他の作品を見る
-            </a>
+            <div class="sample-note">
+                ※このカードは掲載イメージのサンプルです。
+                実際の作品ではありません。
+            </div>
 
         </article>
 
     </section>
 
-    <section class="coming-soon">
+    <!-- Information -->
+
+    <section class="info">
 
         <h3>
-            🚧 これから追加予定
+            🐍 Pythonについて
         </h3>
 
         <p>
-            C++・Pythonを中心に、これから少しずつ作品を追加していきます。
+            Pythonは、シンプルで読みやすい文法が特徴の
+            プログラミング言語です。
+        </p>
+
+        <p>
+            S-Labsでは、Pythonを使ったプログラムや
+            ツールなどの制作にも挑戦していきます。
+        </p>
+
+        <p>
+            ゲーム制作だけでなく、
+            便利なツールや小さな実験的プログラムなども
+            ここに追加していく予定です。
         </p>
 
     </section>
+
+    <!-- Back -->
+
+    <div class="back">
+
+        <a href="/factory/">
+            ← 製作所に戻る
+        </a>
+
+    </div>
 
 </main>
 
