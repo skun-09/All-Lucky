@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>コラム | S-Labs</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        "Noto Sans JP",
+        sans-serif;
+      background: #f4f6fb;
+      color: #333;
+    }
+
+    /* =========================
+       Header
+    ========================= */
+
+    header {
+      background: linear-gradient(135deg, #202b4a, #435a92);
+      color: white;
+      text-align: center;
+      padding: 70px 20px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 56px;
+      letter-spacing: 0.08em;
+    }
+
+    header p {
+      margin: 15px 0 0;
+      font-size: 16px;
+      opacity: 0.9;
+    }
+
+    /* =========================
+       Navigation
+    ========================= */
+
+    nav {
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 20px;
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      color: #435a92;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px 16px;
+      border-radius: 8px;
+      transition: background 0.2s ease;
+    }
+
+    nav a:hover {
+      background: #eef1f8;
+    }
+
+    /* =========================
+       Main
+    ========================= */
+
+    main {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 55px 20px 70px;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .page-title h2 {
+      margin: 0;
+      color: #435a92;
+      font-size: 38px;
+    }
+
+    .page-title p {
+      margin-top: 14px;
+      color: #666;
+      line-height: 1.8;
+    }
+
+    /* =========================
+       Articles
+    ========================= */
+
+    .articles {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 25px;
+    }
+
+    .article-card {
+      position: relative;
+      display: block;
+      padding: 30px;
+      background: white;
+      border-radius: 18px;
+      text-decoration: none;
+      color: #333;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      overflow: hidden;
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .article-card::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 5px;
+      background: linear-gradient(90deg, #435a92, #7087c0);
+    }
+
+    .article-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 14px 35px rgba(67, 90, 146, 0.18);
+    }
+
+    .article-icon {
+      font-size: 46px;
+      margin-bottom: 15px;
+    }
+
+    .sample-label {
+      display: inline-block;
+      margin-bottom: 10px;
+      padding: 4px 10px;
+      background: #435a92;
+      color: white;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 0.08em;
+    }
+
+    .article-date {
+      display: block;
+      color: #888;
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .article-card h3 {
+      margin: 0 0 12px;
+      color: #435a92;
+      font-size: 24px;
+    }
+
+    .article-card p {
+      margin: 0;
+      color: #666;
+      line-height: 1.8;
+    }
+
+    /* =========================
+       Tags
+    ========================= */
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 20px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 5px 10px;
+      background: #eef1f8;
+      color: #435a92;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .article-arrow {
+      margin-top: 22px;
+      color: #435a92;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    /* =========================
+       Back Button
+    ========================= */
+
+    .back {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 13px 24px;
+      background: #435a92;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: bold;
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .button:hover {
+      background: #344875;
+      transform: translateY(-2px);
+    }
+
+    /* =========================
+       Footer
+    ========================= */
+
+    footer {
+      background: #202b4a;
+      color: white;
+      text-align: center;
+      padding: 35px 20px;
+    }
+
+    footer p {
+      margin: 0 0 15px;
+      font-size: 14px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+
+    .footer-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 13px;
+      opacity: 0.85;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+
+    /* =========================
+       Responsive
+    ========================= */
+
+    @media (max-width: 700px) {
+
+      header {
+        padding: 50px 15px;
+      }
+
+      header h1 {
+        font-size: 42px;
+      }
+
+      nav {
+        flex-wrap: wrap;
+      }
+
+      nav a {
+        padding: 8px 11px;
+        font-size: 14px;
+      }
+
+      main {
+        padding: 40px 15px 60px;
+      }
+
+      .page-title h2 {
+        font-size: 32px;
+      }
+
+      .articles {
+        grid-template-columns: 1fr;
+      }
+
+      .article-card {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>S-Labs</h1>
+    <p>コラム・記事</p>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="/">ホーム</a>
+    <a href="/games/">ゲーム</a>
+    <a href="/factory/">製作所</a>
+    <a href="/column/">コラム</a>
+    <a href="/faq.html">FAQ</a>
+  </nav>
+
+  <!-- Main -->
+  <main>
+
+    <div class="page-title">
+      <h2>📝 コラム</h2>
+
+      <p>
+        ゲーム制作やプログラミングなどについて、<br>
+        いろいろ書いていきます。
+      </p>
+    </div>
+
+
+    <!-- Article List -->
+    <section class="articles">
+
+      <!-- Sample Article -->
+      <a
+        href="/column/cpp-start/"
+        class="article-card"
+      >
+
+        <div class="article-icon">
+          💻
+        </div>
+
+        <div class="sample-label">
+          SAMPLE
+        </div>
+
+        <span class="article-date">
+          2026.09.06
+        </span>
+
+        <h3>
+          C++を始めてみた
+        </h3>
+
+        <p>
+          C++を始めた理由や、
+          実際にゲーム制作をしてみて感じたことなどを書いてみました。
+        </p>
+
+        <div class="tags">
+          <span class="tag">C++</span>
+          <span class="tag">SDL3</span>
+          <span class="tag">ゲーム制作</span>
+        </div>
+
+        <div class="article-arrow">
+          サンプル記事を読む →
+        </div>
+
+      </a>
+
+    </section>
+
+
+    <!-- Back -->
+    <div class="back">
+      <a href="/" class="button">
+        S-Labsホームへ戻る
+      </a>
+    </div>
+
+  </main>
+
+
+  <!-- Footer -->
+  <footer>
+
+    <p>
+      © 2026 S-Labs
+    </p>
+
+    <div class="footer-links">
+      <a href="/">ホーム</a>
+      <a href="/games/">ゲーム</a>
+      <a href="/factory/">製作所</a>
+      <a href="/column/">コラム</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/privacy.html">プライバシーポリシー</a>
+    </div>
+
+  </footer>
+
+</body>
+</html>
