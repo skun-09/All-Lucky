@@ -480,6 +480,77 @@
     }
 
     /* =========================
+       プロフィール
+    ========================= */
+
+    .profile-home {
+      position: relative;
+
+      margin-top: 45px;
+
+      padding: 30px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffffff,
+          #f7f9ff
+        );
+
+      border-radius: 18px;
+
+      box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.08);
+
+      overflow: hidden;
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .profile-home::before {
+      content: "👤";
+
+      position: absolute;
+
+      right: 25px;
+      top: 10px;
+
+      font-size: 90px;
+
+      opacity: 0.07;
+
+      transition:
+        transform 0.4s ease;
+    }
+
+    .profile-home:hover {
+      transform: translateY(-6px);
+
+      box-shadow:
+        0 14px 35px rgba(67, 90, 146, 0.18);
+    }
+
+    .profile-home:hover::before {
+      transform:
+        scale(1.15)
+        rotate(6deg);
+    }
+
+    .profile-home h2 {
+      margin-top: 0;
+
+      color: #435a92;
+
+      font-size: 30px;
+    }
+
+    .profile-home p {
+      color: #555;
+    }
+
+    /* =========================
        S-Labsについて
     ========================= */
 
@@ -584,13 +655,23 @@
         min-height: 210px;
       }
 
+      .profile-home {
+        padding: 25px;
+      }
+
+      .profile-home h2 {
+        font-size: 26px;
+      }
+
     }
 
   </style>
 
 </head>
 
+
 <body>
+
 
   <!-- =========================
        ヘッダー
@@ -784,6 +865,32 @@
 
 
     <!-- =========================
+         Profile
+    ========================= -->
+
+    <section class="profile-home">
+
+      <h2>
+        👤 プロフィール
+      </h2>
+
+      <p>
+        えすといいます。<br>
+        いろいろやってる人です。<br>
+        （ネタが切れた）
+      </p>
+
+      <a
+        class="button"
+        href="/profile/"
+      >
+        プロフィールを見る
+      </a>
+
+    </section>
+
+
+    <!-- =========================
          S-Labsについて
     ========================= -->
 
@@ -844,6 +951,7 @@
     </div>
 
   </footer>
+
 
 </body>
 
