@@ -7,10 +7,16 @@
 
   <title>運が全て。｜無料で遊べる運試しゲーム</title>
 
-  <meta name="google-adsense-account" content="ca-pub-1386231837070404">
+  <meta
+    name="google-adsense-account"
+    content="ca-pub-1386231837070404"
+  >
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1386231837070404"
-     crossorigin="anonymous"></script>
+  <script
+    async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1386231837070404"
+    crossorigin="anonymous">
+  </script>
 
   <meta
     name="description"
@@ -51,8 +57,8 @@
       background:
         linear-gradient(
           135deg,
-          #f5f8ff,
-          #e8efff
+          #f4f6fb,
+          #e8edf8
         );
 
       color: #222;
@@ -63,6 +69,8 @@
         "Hiragino Kaku Gothic ProN",
         Meiryo,
         sans-serif;
+
+      line-height: 1.7;
 
     }
 
@@ -157,12 +165,18 @@
       border-radius:
         8px;
 
+      transition:
+        0.2s;
+
     }
 
     .nav a:hover {
 
       background:
         #eef1f8;
+
+      transform:
+        translateY(-2px);
 
     }
 
@@ -191,7 +205,7 @@
 
 
     /* =========================
-       ゲーム枠
+       Unityゲーム枠
        ========================= */
 
     #unity-container {
@@ -287,7 +301,6 @@
 
     }
 
-
     #unity-loading-title {
 
       color: white;
@@ -304,7 +317,6 @@
 
     }
 
-
     #unity-loading-percent {
 
       color:
@@ -316,7 +328,6 @@
         15px;
 
     }
-
 
     #unity-progress-bar-empty {
 
@@ -333,7 +344,6 @@
       overflow: hidden;
 
     }
-
 
     #unity-progress-bar-full {
 
@@ -412,8 +422,20 @@
 
       user-select: none;
 
+      transition:
+        0.2s;
+
     }
 
+    #unity-fullscreen-button:hover {
+
+      background:
+        rgba(67, 90, 146, 0.85);
+
+      transform:
+        scale(1.08);
+
+    }
 
     #unity-fullscreen-button::after {
 
@@ -455,7 +477,6 @@
 
     }
 
-
     .game-description h2 {
 
       margin:
@@ -469,7 +490,6 @@
 
     }
 
-
     .game-description p {
 
       margin:
@@ -482,7 +502,6 @@
         2;
 
     }
-
 
     .game-description h3 {
 
@@ -509,6 +528,16 @@
 
       font-weight:
         bold;
+
+      transition:
+        0.2s;
+
+    }
+
+    .game-description a:hover {
+
+      opacity:
+        0.7;
 
     }
 
@@ -546,6 +575,16 @@
 
       text-decoration:
         none;
+
+      transition:
+        0.2s;
+
+    }
+
+    .footer a:hover {
+
+      opacity:
+        0.7;
 
     }
 
@@ -705,6 +744,10 @@
       ゲーム
     </a>
 
+    <a href="../../factory/">
+      製作所
+    </a>
+
     <a href="../../faq.html">
       FAQ
     </a>
@@ -718,10 +761,10 @@
 
   <main class="game-area">
 
+    <div id="unity-container">
 
-    <div
-      id="unity-container">
 
+      <!-- Unity Canvas -->
 
       <canvas
         id="unity-canvas"
@@ -733,30 +776,19 @@
 
       <!-- ローディング -->
 
-      <div
-        id="unity-loading-bar">
+      <div id="unity-loading-bar">
 
-        <div
-          id="unity-loading-title">
-
+        <div id="unity-loading-title">
           運が全て。
-
         </div>
 
-
-        <div
-          id="unity-loading-percent">
-
+        <div id="unity-loading-percent">
           0%
-
         </div>
 
+        <div id="unity-progress-bar-empty">
 
-        <div
-          id="unity-progress-bar-empty">
-
-          <div
-            id="unity-progress-bar-full">
+          <div id="unity-progress-bar-full">
           </div>
 
         </div>
@@ -766,20 +798,17 @@
 
       <!-- Unity警告 -->
 
-      <div
-        id="unity-warning">
+      <div id="unity-warning">
       </div>
 
 
       <!-- フルスクリーン -->
 
-      <div
-        id="unity-fullscreen-button">
+      <div id="unity-fullscreen-button">
       </div>
 
 
     </div>
-
 
   </main>
 
@@ -788,8 +817,7 @@
        説明
        ========================= -->
 
-  <section
-    class="game-description">
+  <section class="game-description">
 
 
     <h2>
@@ -845,6 +873,7 @@
       成功なら100LP、失敗なら5LPが与えられます。
     </p>
 
+
     <h2>
       ミニゲーム２　「ランダムタイピング」の遊び方
     </h2>
@@ -856,6 +885,7 @@
       お題の文字を打てるまで行います。<br>
       最大260LP、最小5LP与えられます。
     </p>
+
 
     <h2>
       ゲーム内のポイントについて
@@ -908,9 +938,8 @@
 
 
     <p>
-      現在は開発版です。<br>
-      今後も機能の追加・改善を予定しています。<br>
-      （正式リリースまでお楽しみに！）
+      現在は正式リリース版です。<br>
+      今後も機能の追加・改善を予定しています。
     </p>
 
 
@@ -932,7 +961,7 @@
       <br>
       v β1.9 ミニゲームのUI改善<br>
       ...<br>
-      v1.0 正式リリース　ミニゲーム追加など 現在作成中！
+      v1.0 正式リリース　ミニゲーム追加など
     </p>
 
 
@@ -948,37 +977,50 @@
 
 
     <p>
+
       🎥 YouTube：
+
       <a
         href="https://www.youtube.com/@skun_o96"
         target="_blank"
         rel="noopener noreferrer">
+
         えす|skun
+
       </a>
+
     </p>
 
 
     <p>
-      <a href="faq.html">
+
+      <a href="../../faq.html">
         よくある質問（FAQ）
       </a>
+
     </p>
 
 
     <p>
+
       <a href="../../privacy.html">
         プライバシーポリシー
       </a>
+
     </p>
 
 
     <p>
+
       <a
         href="https://docs.google.com/forms/d/e/1FAIpQLSc__zfKT9Xx8IQe9_SRpmrkyWVX0DEg__6vVmTOXD-AE69FVg/viewform?usp=dialog"
         target="_blank"
         rel="noopener noreferrer">
+
         お問い合わせはこちら
+
       </a>
+
     </p>
 
 
@@ -1001,6 +1043,10 @@
         ゲーム
       </a>
 
+      <a href="../../factory/">
+        製作所
+      </a>
+
       <a href="../../faq.html">
         FAQ
       </a>
@@ -1010,6 +1056,7 @@
       </a>
 
     </div>
+
 
     <div>
       © 2026 S-Labs
@@ -1023,7 +1070,6 @@
        ========================= -->
 
   <script>
-
 
     var canvas =
       document.querySelector(
