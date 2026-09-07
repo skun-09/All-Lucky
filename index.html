@@ -166,8 +166,7 @@
           #657fc0
         );
 
-      animation:
-        specialGlow 4s ease-in-out infinite;
+      animation: specialGlow 4s ease-in-out infinite;
     }
 
     .special-card:hover {
@@ -661,6 +660,78 @@
 
 
     /* =========================
+       お問い合わせ
+    ========================= */
+
+    .contact-home {
+      position: relative;
+
+      margin-top: 25px;
+
+      padding: 30px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #ffffff,
+          #f7f9ff
+        );
+
+      border-radius: 18px;
+
+      box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.08);
+
+      overflow: hidden;
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+    }
+
+    .contact-home::before {
+      content: "📩";
+
+      position: absolute;
+
+      right: 25px;
+      top: 10px;
+
+      font-size: 90px;
+
+      opacity: 0.07;
+
+      transition:
+        transform 0.4s ease;
+    }
+
+    .contact-home:hover {
+      transform: translateY(-6px);
+
+      box-shadow:
+        0 14px 35px rgba(67, 90, 146, 0.18);
+    }
+
+    .contact-home:hover::before {
+      transform:
+        scale(1.15)
+        rotate(-6deg);
+    }
+
+    .contact-home h2 {
+      margin-top: 0;
+
+      color: #435a92;
+
+      font-size: 30px;
+    }
+
+    .contact-home p {
+      color: #555;
+    }
+
+
+    /* =========================
        フッター
     ========================= */
 
@@ -751,12 +822,14 @@
       }
 
       .column-home,
-      .profile-home {
+      .profile-home,
+      .contact-home {
         padding: 25px;
       }
 
       .column-home h2,
-      .profile-home h2 {
+      .profile-home h2,
+      .contact-home h2 {
         font-size: 26px;
       }
 
@@ -1031,6 +1104,32 @@
       </p>
 
     </div>
+
+
+    <!-- =========================
+         お問い合わせ
+    ========================= -->
+
+    <section class="contact-home">
+
+      <h2>
+        📩 お問い合わせ
+      </h2>
+
+      <p>
+        S-Labsや制作物についてのお問い合わせはこちらから。
+      </p>
+
+      <a
+        class="button"
+        href="https://forms.gle/mTgWRYbFHBmsbvo49"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        お問い合わせフォーム
+      </a>
+
+    </section>
 
 
   </main>
