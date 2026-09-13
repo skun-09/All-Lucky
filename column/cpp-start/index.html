@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>S-Labs｜サンプルコラム</title>
+
+  <meta
+    name="description"
+    content="S-Labsのサンプルコラムページです。"
+  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f6fb;
+      color: #222;
+      font-family:
+        "Yu Gothic",
+        "YuGothic",
+        "Hiragino Kaku Gothic ProN",
+        Meiryo,
+        sans-serif;
+      line-height: 1.8;
+    }
+
+
+    /* =========================
+       ヘッダー
+    ========================= */
+
+    .header {
+      padding: 60px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #202b4a, #435a92);
+      color: white;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 48px;
+      letter-spacing: 0.08em;
+    }
+
+    .header p {
+      margin: 10px 0 0;
+      font-size: 17px;
+      opacity: 0.9;
+    }
+
+
+    /* =========================
+       ナビゲーション
+    ========================= */
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 20px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav a {
+      padding: 8px 18px;
+      color: #435a92;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: 0.2s;
+    }
+
+    .nav a:hover {
+      background: #eef1f8;
+      transform: translateY(-2px);
+    }
+
+
+    /* =========================
+       メイン
+    ========================= */
+
+    .content {
+      width: min(900px, calc(100% - 30px));
+      margin: 45px auto;
+    }
+
+    .article {
+      padding: 40px;
+      background: white;
+      border-radius: 20px;
+      box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .sample-label {
+      display: inline-block;
+      margin-bottom: 15px;
+      padding: 5px 12px;
+      background: #435a92;
+      color: white;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 0.08em;
+    }
+
+    .article h2 {
+      margin-top: 0;
+      color: #435a92;
+      font-size: 32px;
+    }
+
+    .article h3 {
+      margin-top: 35px;
+      color: #435a92;
+      font-size: 23px;
+    }
+
+    .article p {
+      color: #555;
+    }
+
+
+    /* =========================
+       フッター
+    ========================= */
+
+    .footer {
+      margin-top: 60px;
+      padding: 30px 20px;
+      text-align: center;
+      background: #202b4a;
+      color: white;
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .footer-links {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      margin: 0 8px;
+    }
+
+
+    /* =========================
+       スマホ
+    ========================= */
+
+    @media screen and (max-width: 700px) {
+
+      .header {
+        padding: 45px 15px;
+      }
+
+      .header h1 {
+        font-size: 38px;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+      }
+
+      .content {
+        width: calc(100% - 24px);
+        margin: 30px auto;
+      }
+
+      .article {
+        padding: 25px;
+      }
+
+      .article h2 {
+        font-size: 27px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       ヘッダー
+  ========================= -->
+
+  <header class="header">
+
+    <h1>S-Labs</h1>
+
+    <p>
+      S-Labsのコラム・記事
+    </p>
+
+  </header>
+
+
+  <!-- =========================
+       ナビゲーション
+  ========================= -->
+
+  <nav class="nav">
+
+    <a href="/column/">
+      コラム一覧
+    </a>
+
+    <a href="/">
+      ホーム
+    </a>
+
+  </nav>
+
+
+  <!-- =========================
+       メイン
+  ========================= -->
+
+  <main class="content">
+
+    <article class="article">
+
+      <span class="sample-label">
+        SAMPLE
+      </span>
+
+      <h2>
+        サンプルコラム
+      </h2>
+
+      <p>
+        ここにコラム本文が入ります。
+      </p>
+
+      <h3>
+        サンプル見出し
+      </h3>
+
+      <p>
+        これはサンプル用の文章です。
+        実際のコラムでは、ゲーム制作やプログラミングなどについての記事を掲載します。
+      </p>
+
+      <h3>
+        サンプル見出し 2
+      </h3>
+
+      <p>
+        S-Labsでは、これからさまざまな記事を公開していく予定です。
+      </p>
+
+    </article>
+
+  </main>
+
+
+  <!-- =========================
+       フッター
+  ========================= -->
+
+  <footer class="footer">
+
+    <div class="footer-links">
+
+      <a href="/column/">
+        コラム一覧
+      </a>
+
+      <a href="/">
+        ホーム
+      </a>
+
+      <a href="/privacy.html">
+        プライバシーポリシー
+      </a>
+
+    </div>
+
+    <div>
+      © 2026 S-Labs
+    </div>
+
+  </footer>
+
+
+</body>
+
+</html>
