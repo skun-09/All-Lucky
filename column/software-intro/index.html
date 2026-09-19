@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ページタイトル：ブラウザのタブに表示されます -->
+  <!-- ここに記事のタイトルを書いてください -->
+  <title>S-Labs｜記事タイトル</title>
+
+  <!-- ページの説明：検索結果などに表示される説明です -->
+  <!-- この記事の内容を短く説明してください -->
+  <meta
+    name="description"
+    content="ここに記事の説明を書いてください。"
+  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f6fb;
+      color: #222;
+      font-family:
+        "Yu Gothic",
+        "YuGothic",
+        "Hiragino Kaku Gothic ProN",
+        Meiryo,
+        sans-serif;
+      line-height: 1.8;
+    }
+
+
+    /* =========================
+       ヘッダー
+    ========================= */
+
+    .header {
+      padding: 60px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #202b4a, #435a92);
+      color: white;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 48px;
+      letter-spacing: 0.08em;
+    }
+
+    .header p {
+      margin: 10px 0 0;
+      font-size: 17px;
+      opacity: 0.9;
+    }
+
+
+    /* =========================
+       ナビゲーション
+    ========================= */
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 20px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav a {
+      padding: 8px 18px;
+      color: #435a92;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: 0.2s;
+    }
+
+    .nav a:hover {
+      background: #eef1f8;
+      transform: translateY(-2px);
+    }
+
+
+    /* =========================
+       メイン
+    ========================= */
+
+    .content {
+      width: min(900px, calc(100% - 30px));
+      margin: 45px auto;
+    }
+
+    .article {
+      padding: 40px;
+      background: white;
+      border-radius: 20px;
+      box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+
+    /* =========================
+       日付
+    ========================= */
+
+    .article-date {
+      display: block;
+      margin-bottom: 8px;
+      color: #888;
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       記事タイトル・見出し
+    ========================= */
+
+    .article h2 {
+      margin-top: 0;
+      color: #435a92;
+      font-size: 32px;
+    }
+
+    .article h3 {
+      margin-top: 35px;
+      color: #435a92;
+      font-size: 23px;
+    }
+
+    .article p {
+      color: #555;
+    }
+
+
+    /* =========================
+       コード表示
+       
+       ※コードを載せない記事なら
+       この部分は使わなくてもOKです。
+    ========================= */
+
+    .code-block {
+      position: relative;
+      margin: 25px 0;
+      padding: 45px 20px 20px;
+      background: #1e2433;
+      color: #f8f8f2;
+      border-radius: 12px;
+      overflow-x: auto;
+      box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .code-block::before {
+      content: "C++";
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 7px 14px;
+      background: #435a92;
+      color: white;
+      border-radius: 12px 0 8px 0;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .code-block pre {
+      margin: 0;
+    }
+
+    .code-block code {
+      font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+      font-size: 14px;
+      line-height: 1.7;
+      white-space: pre;
+    }
+
+
+    /* =========================
+       フッター
+    ========================= */
+
+    .footer {
+      margin-top: 60px;
+      padding: 30px 20px;
+      text-align: center;
+      background: #202b4a;
+      color: white;
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .footer-links {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      margin: 0 8px;
+    }
+
+
+    /* =========================
+       スマホ
+    ========================= */
+
+    @media screen and (max-width: 700px) {
+
+      .header {
+        padding: 45px 15px;
+      }
+
+      .header h1 {
+        font-size: 38px;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+      }
+
+      .content {
+        width: calc(100% - 24px);
+        margin: 30px auto;
+      }
+
+      .article {
+        padding: 25px;
+      }
+
+      .article h2 {
+        font-size: 27px;
+      }
+
+      .code-block {
+        padding: 45px 15px 15px;
+      }
+
+      .code-block code {
+        font-size: 13px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       ヘッダー
+    ========================= -->
+
+  <header class="header">
+
+    <h1>S-Labs</h1>
+
+    <p>
+      S-Labsのコラム・記事
+    </p>
+
+  </header>
+
+
+  <!-- =========================
+       ナビゲーション
+    ========================= -->
+
+  <nav class="nav">
+
+    <a href="/column/">
+      コラム一覧
+    </a>
+
+    <a href="/">
+      ホーム
+    </a>
+
+  </nav>
+
+
+  <!-- =========================
+       メイン
+    ========================= -->
+
+  <main class="content">
+
+    <article class="article">
+
+
+      <!-- =========================
+           記事の日付
+           
+           例：
+           2026.09.14
+           
+           ※自分で日付を書き換えてください。
+      ========================= -->
+
+      <span class="article-date">
+        2026.09.19
+      </span>
+
+
+      <!-- =========================
+           記事タイトル
+           
+           この記事のタイトルを書いてください。
+      ========================= -->
+
+      <h2>
+        自分の使っているソフトはなに？
+      </h2>
+
+
+      <!-- =========================
+           導入文
+           
+           記事の最初に、
+           「この記事では何を書くのか」
+           を簡単に書いてください。
+      ========================= -->
+
+      <p>
+        今回は現在使用しているソフト、ツールなどを紹介します。
+      </p>
+
+
+      <!-- =========================
+           見出し
+           
+           記事の内容を区切るときに使います。
+           
+           見出しを増やしたい場合は、
+           <h3> と <p> のセットを追加してください。
+      ========================= -->
+
+      <h3>
+        一覧
+      </h3>
+
+
+      <!-- =========================
+           本文
+           
+           普通の文章は <p> の中に書きます。
+           
+           長い文章になった場合は、
+           <p> を複数に分けてください。
+      ========================= -->
+
+      <p>
+        現在使っているソフトの一覧です。マイナーなソフトもあるかもしれません。<br>
+        ・Visual Studio<br>
+        ・VSCode<br>
+        ・Unity<br>
+        ・Github Desktop<br>
+        ・Github<br>
+        ・Cloudflare<br>
+        ・Tiled<br>
+        ざっとこんな感じです。多分もっとあるかも、、、？
+      </p>
+
+      <!-- =========================
+           見出しを追加する場合
+      ========================= -->
+
+      <h3>
+        1.Visual Studio
+      </h3>
+
+      <p>
+        おそらく一番使っているソフトです。コードを書く人は大体入れてるソフトです。
+        自分は特にC++を書くときやUnityのコーディングで使用します。
+        このソフトの良いところはなんといっても書きやすさ。
+        文字を入力するとスマホの予測変換のように自動で単語を教えてくれます。また選択すると単語を自動で打ってくれるため、
+        効率が上がったような気もします。
+      </p>
+
+      <p>
+        ですがこんな便利なソフトにもちゃんとデメリットはあります。
+        それは「重さ」です。（物理的な重さではないですよ？）
+        比較になりますがVSCodeのようにサクサク動きはしません。
+        なので軽いコーディングでは不向きかもしれません。
+        大きめなプロジェクトで真価を発揮してくれます。
+      </p>
+
+      <h3>
+        2.VSCode(Visual Studio Code)
+      </h3>
+
+      <p>
+        第二のコーディングソフトです。大体このソフトも入れると思います。
+        自分は主にPythonで使用します。先ほど言ったように軽いので
+        サクサク動きます。また、拡張機能のおかげで自由度が超高いです。
+        最近はあまり使ってませんが、このブログを書くためにもう一度使ってます。
+      </p>
+
+      <p>
+        拡張機能で便利な反面、環境構築が難しいのも特徴です。
+        自分はC++をVSCodeでやろうと思って地獄を見た人です。
+        Pythonなどでは楽なのでお勧めしますが、C++などでは大変なためあまりお勧めはしません。
+        「それでもやりたい！」という方は覚悟して臨みましょう。
+      </p>
+
+      <h3>
+        3.Unity
+      </h3>
+
+      <p>
+        ゲーム制作界隈で知らない方はいないと思うほど有名なゲームエンジンです。
+        自分もよく使ってます。自由度の高さのおかげで「とりまUnityで作るか」ができる最強ソフトと勝手に思ってます。
+        ゲームを作りたい方にはとてもいいのではないしょうか。
+      </p>
+
+      <p>
+        と初心者向けに言っているように見えますが実はとんでもないトラップがあります。
+        それは、、、、、最初の一歩が難しいことです。どういうこと？と思った方は
+        料理を思い浮かべてください。「簡単な料理」といったのに包丁で具材を切る工程があったり（これはそこまで難しくないかも）
+        挙句の果てには適量という不正確の極みがあったりするような感じです。（例えが下手なのは許してください）
+        結局何が言いたいかというと「思ってたのと違う」ということです。
+        ワクワクしながら開いたら英語のよくわかんない文字や形がたくさんあり最初は「？？？」となるのです。
+        ですがUnityは解説動画も多いため安心してください。
+      </p>
+
+      <h3>
+        4.Github Desktop / Github
+      </h3>
+
+      <p>
+        いわゆるセーブデータの保管庫です。
+        ここにファイルやデータを入れておくことでいつでも引き出せたり巻き戻したりできるツールです。
+        これに関してはデメリットが思い浮ばないほど最強です。
+        Githubアカウントは他サイトと連携できるものが多いため便利です。
+      </p>
+
+      <h3>
+        5.Cloudflare
+      </h3>
+
+      <p>
+        このサイトの管理をこのサイトで行っています。使いやすく日本語もあるため（ちょっと怪しいけど）もしサイト運営をしたい方にはお勧めなのではないでしょうか。
+        ストレージも無料で一部使えるためお勧めです。デメリットは、、、思いつく限りはないかな？強いて言うなら最初の操作は難しいと思います。ですがすぐ慣れると思います。
+      </p>
+
+      <h3>
+        6.Tiled
+      </h3>
+
+      <p>
+        「運が全て。」のマップ作成で使用しました。直感的な操作で分かりやすく、出来具合もとてもいい優れものです。
+        かなりマイナーなソフトで使う場面もかなり限られていますが「マップ作成をしたい！」という方には合うのではないでしょうか。
+      </p>
+
+      <!-- =========================
+           さらに記事を書く場合
+           
+           <h3> → 見出し
+           <p>  → 本文
+           
+           を繰り返してください。
+      ========================= -->
+
+
+      <!-- =========================
+           おわりに
+           
+           記事の最後にまとめや感想などを書きます。
+           必須ではありません。
+      ========================= -->
+
+      <h3>
+        おわりに
+      </h3>
+
+      <p>
+        最後まで読んでくれてありがとうございました！ぜひほかの記事も見てください！
+      </p>
+
+
+    </article>
+
+  </main>
+
+
+  <!-- =========================
+       フッター
+    ========================= -->
+
+  <footer class="footer">
+
+    <div class="footer-links">
+
+      <a href="/column/">
+        コラム一覧
+      </a>
+
+      <a href="/">
+        ホーム
+      </a>
+
+      <a href="/privacy.html">
+        プライバシーポリシー
+      </a>
+
+    </div>
+
+    <div>
+      © 2026 S-Labs
+    </div>
+
+  </footer>
+
+
+</body>
+
+</html>
