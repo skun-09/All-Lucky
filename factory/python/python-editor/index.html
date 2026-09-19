@@ -1,435 +1,589 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>S-Labs Python Playground</title>
-
-    <meta name="description"
-        content="S-Labs Python Playground。ブラウザ上でPythonコードを書いて実行できます。">
-
-    <!-- Pyodide -->
-    <script src="https://cdn.jsdelivr.net/pyodide/v314.0.7/full/pyodide.js"></script>
-
-    <style>
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            margin: 0;
-            font-family:
-                -apple-system,
-                BlinkMacSystemFont,
-                "Segoe UI",
-                "Noto Sans JP",
-                sans-serif;
-
-            background: #f4f6fb;
-            color: #202b4a;
-        }
-
-        /* ヘッダー */
-
-        header {
-            background: linear-gradient(135deg, #202b4a, #435a92);
-            color: white;
-            text-align: center;
-            padding: 60px 20px;
-        }
-
-        header h1 {
-            margin: 0;
-            font-size: 52px;
-            letter-spacing: 0.08em;
-        }
-
-        header p {
-            margin: 12px 0 0;
-            font-size: 18px;
-        }
-
-        /* ナビ */
-
-        nav {
-            background: white;
-
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-
-            gap: 25px;
-
-            padding: 16px 20px;
-
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-        }
-
-        nav a {
-            color: #435a92;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        nav a:hover {
-            opacity: 0.7;
-        }
-
-        /* メイン */
-
-        main {
-            width: 100%;
-            max-width: 1100px;
-
-            margin: 0 auto;
-
-            padding: 50px 20px;
-        }
-
-        .title {
-            text-align: center;
-            margin-bottom: 35px;
-        }
-
-        .title h2 {
-            margin: 0;
-            font-size: 32px;
-        }
-
-        .title p {
-            color: #666;
-        }
-
-        /* エディタ */
-
-        .editor-card {
-            background: white;
-
-            border-radius: 20px;
-
-            padding: 25px;
-
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-        }
-
-        .editor-title {
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
-
-        #code {
-            width: 100%;
-            min-height: 350px;
-
-            resize: vertical;
-
-            padding: 18px;
-
-            border: none;
-            border-radius: 12px;
-
-            background: #1e2433;
-            color: #f8f8f2;
-
-            font-family: Consolas, "Courier New", monospace;
-            font-size: 15px;
-            line-height: 1.6;
-
-            outline: none;
-        }
-
-        /* 実行ボタン */
-
-        .run-area {
-            margin-top: 20px;
-
-            display: flex;
-            align-items: center;
-            gap: 15px;
-
-            flex-wrap: wrap;
-        }
-
-        #runButton {
-            border: none;
-
-            padding: 12px 25px;
-
-            border-radius: 10px;
-
-            background: #435a92;
-            color: white;
-
-            font-size: 16px;
-            font-weight: bold;
-
-            cursor: pointer;
-        }
-
-        #runButton:hover {
-            opacity: 0.85;
-        }
-
-        #runButton:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        #status {
-            color: #666;
-            font-size: 14px;
-        }
-
-        /* 出力 */
-
-        .output {
-            margin-top: 25px;
-        }
-
-        .output-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        #output {
-            min-height: 180px;
-
-            padding: 18px;
-
-            border-radius: 12px;
-
-            background: #1e2433;
-            color: #f8f8f2;
-
-            font-family: Consolas, "Courier New", monospace;
-
-            white-space: pre-wrap;
-
-            overflow-x: auto;
-        }
-
-        /* フッター */
-
-        footer {
-            background: #202b4a;
-            color: white;
-
-            text-align: center;
-
-            padding: 25px 20px;
-
-            margin-top: 40px;
-
-            font-size: 14px;
-        }
-
-        footer a {
-            color: white;
-            text-decoration: none;
-
-            margin: 0 8px;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* スマホ */
-
-        @media (max-width: 600px) {
-
-            header {
-                padding: 45px 20px;
-            }
-
-            header h1 {
-                font-size: 38px;
-            }
-
-            nav {
-                gap: 15px;
-            }
-
-            main {
-                padding: 35px 15px;
-            }
-
-            .editor-card {
-                padding: 18px;
-            }
-
-            #code {
-                min-height: 280px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>S-Labs｜Python Editor</title>
+<meta name="description" content="ブラウザ上でPythonコードを書いて実行できるPython Editorです。">
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: "Segoe UI", "Noto Sans JP", sans-serif;
+    background: #f4f6fb;
+    color: #202b4a;
+}
+
+/* =========================
+   Header
+========================= */
+
+header {
+    background: linear-gradient(135deg, #202b4a, #435a92);
+    color: white;
+    text-align: center;
+    padding: 70px 20px;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 56px;
+    letter-spacing: 0.08em;
+}
+
+header p {
+    margin: 15px 0 0;
+    font-size: 18px;
+}
+
+/* =========================
+   Navigation
+========================= */
+
+nav {
+    background: white;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 18px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+nav a {
+    color: #435a92;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #202b4a;
+}
+
+/* =========================
+   Main
+========================= */
+
+main {
+    max-width: 1000px;
+    margin: 50px auto;
+    padding: 0 20px;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.hero h2 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    color: #555;
+}
+
+/* =========================
+   Editor Card
+========================= */
+
+.editor-card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.editor-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.file-name {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.status {
+    font-size: 14px;
+    color: #777;
+}
+
+/* Monaco Editor */
+
+#editor {
+    width: 100%;
+    height: 500px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #d9deea;
+}
+
+/* =========================
+   Run Button
+========================= */
+
+.run-area {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 15px;
+}
+
+#runButton {
+    border: none;
+    background: #435a92;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+#runButton:hover:not(:disabled) {
+    background: #202b4a;
+}
+
+#runButton:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+}
+
+/* =========================
+   Output
+========================= */
+
+.output-title {
+    margin-top: 25px;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+#output {
+    background: #202b4a;
+    color: white;
+    border-radius: 12px;
+    padding: 18px;
+    min-height: 120px;
+    white-space: pre-wrap;
+    font-family: Consolas, monospace;
+    overflow-x: auto;
+}
+
+/* =========================
+   Information
+========================= */
+
+.info-card {
+    background: white;
+    margin-top: 30px;
+    padding: 25px;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+}
+
+.info-card h2 {
+    margin-top: 0;
+}
+
+.info-card p {
+    line-height: 1.8;
+}
+
+/* =========================
+   Back Button
+========================= */
+
+.back-area {
+    text-align: center;
+    margin-top: 35px;
+}
+
+.back-button {
+    display: inline-block;
+    background: #435a92;
+    color: white;
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.back-button:hover {
+    background: #202b4a;
+}
+
+/* =========================
+   Footer
+========================= */
+
+footer {
+    background: #202b4a;
+    color: white;
+    text-align: center;
+    padding: 35px 20px;
+    margin-top: 60px;
+}
+
+footer a {
+    color: white;
+    text-decoration: none;
+    margin: 0 8px;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+   Mobile
+========================= */
+
+@media (max-width: 700px) {
+
+    header {
+        padding: 50px 20px;
+    }
+
+    header h1 {
+        font-size: 42px;
+    }
+
+    nav {
+        gap: 15px;
+    }
+
+    .hero h2 {
+        font-size: 30px;
+    }
+
+    .editor-card {
+        padding: 15px;
+    }
+
+    #editor {
+        height: 450px;
+    }
+
+}
+
+</style>
 </head>
 
 <body>
 
-    <header>
-        <h1>S-Labs</h1>
-        <p>Python Editor</p>
-    </header>
+<header>
+    <h1>S-Labs</h1>
+    <p>Python Editor</p>
+</header>
 
-    <nav>
+<nav>
+    <a href="/">ホーム</a>
+    <a href="/games/">ゲーム</a>
+    <a href="/factory/">製作所</a>
+    <a href="/column/">コラム</a>
+    <a href="/faq.html">FAQ</a>
+</nav>
+
+<main>
+
+    <section class="hero">
+        <h2>🐍 Python Editor</h2>
+        <p>
+            ブラウザ上でPythonコードを書いて、そのまま実行できます。
+        </p>
+    </section>
+
+    <section class="editor-card">
+
+        <div class="editor-header">
+            <div class="file-name">📄 main.py</div>
+            <div class="status" id="status">
+                Pythonを読み込んでいます...
+            </div>
+        </div>
+
+        <div id="editor"></div>
+
+        <div class="run-area">
+            <button id="runButton" disabled>
+                ▶ 実行
+            </button>
+        </div>
+
+        <div class="output-title">
+            📤 出力
+        </div>
+
+        <div id="output">
+            Pythonを読み込んでいます...
+        </div>
+
+    </section>
+
+    <section class="info-card">
+
+        <h2>💡 使い方</h2>
+
+        <p>
+            このエディタでは、ブラウザ上でPythonコードを書いて実行できます。
+        </p>
+
+        <p>
+            最初から入っているコードにもコメントで簡単な説明があります。
+            コードを書き換えて、いろいろ試してみてください！
+        </p>
+        
+        <p>
+            <strong>▶ 実行</strong> ボタンを押すか、
+            <strong>Ctrl + Enter</strong> でコードを実行できます。
+        </p>
+
+        <h2>開発について</h2>
+
+        <p>
+            このエディタは「誰でも気軽にプログラミングを」という目的で開発されました。
+            ぜひプログラミングを体験してみてください。<br>
+            ※このエディタの作成にあたって生成AIを使用しています。
+        </p>
+        
+    </section>
+
+    <div class="back-area">
+        <a href="/factory/python/" class="back-button">
+            ← Python作品一覧へ
+        </a>
+    </div>
+
+</main>
+
+<footer>
+
+    <div>
         <a href="/">ホーム</a>
         <a href="/games/">ゲーム</a>
         <a href="/factory/">製作所</a>
         <a href="/column/">コラム</a>
         <a href="/faq.html">FAQ</a>
-    </nav>
+        <a href="/privacy.html">プライバシーポリシー</a>
+    </div>
 
-    <main>
+    <p>© 2026 S-Labs</p>
 
-        <div class="title">
-            <h2>🐍 Python Editor</h2>
-            <p>ブラウザ上でPythonを書いて実行できます。</p>
-        </div>
+</footer>
 
-        <div class="editor-card">
+<!-- Monaco Editor -->
 
-            <div class="editor-title">
-                Pythonコード
-            </div>
+<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.55.1/min/vs/loader.js"></script>
 
-            <textarea id="code">print("Hello, S-Labs!")
+<script>
+
+let editor;
+let pyodide;
+
+/* =========================
+   Monaco Editor
+========================= */
+
+require.config({
+    paths: {
+        vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.55.1/min/vs"
+    }
+});
+
+require(["vs/editor/editor.main"], function () {
+
+    editor = monaco.editor.create(
+        document.getElementById("editor"),
+        {
+            value: `# ================================
+# 🐍 Python Editor 使い方
+# ================================
+#
+# ここにPythonコードを書いてください。
+#
+# 「▶ 実行」ボタン、または
+# Ctrl + Enter でコードを実行できます。
+#
+# 実行結果は下の「📤 出力」に表示されます。
+#
+# まずは print() を使ってみましょう！
+# 例：
+# print("Hello, S-Labs!")
+#
+# ================================
+
+print("Hello, S-Labs!")
 
 name = "えす"
 
-print("こんにちは、" + name + "さん！")</textarea>
+print("こんにちは、" + name + "さん！")
+`,
+            language: "python",
+            theme: "vs-dark",
 
-            <div class="run-area">
+            automaticLayout: true,
 
-                <button id="runButton" disabled>
-                    ⏳ Pythonを読み込み中...
-                </button>
+            fontSize: 15,
 
-                <span id="status">
-                    初期化しています...
-                </span>
+            tabSize: 4,
+            insertSpaces: true,
 
-            </div>
+            minimap: {
+                enabled: false
+            },
 
-            <div class="output">
+            wordWrap: "off",
 
-                <div class="output-title">
-                    出力
-                </div>
+            autoIndent: "full",
 
-                <div id="output"></div>
+            bracketPairColorization: {
+                enabled: true
+            },
 
-            </div>
+            lineNumbers: "on",
+            folding: true,
 
-        </div>
+            suggestOnTriggerCharacters: true,
 
-    </main>
-
-    <footer>
-
-        <div>
-            <a href="/">ホーム</a>
-            <a href="/games/">ゲーム</a>
-            <a href="/factory/">製作所</a>
-            <a href="/column/">コラム</a>
-            <a href="/faq.html">FAQ</a>
-            <a href="/privacy.html">プライバシーポリシー</a>
-        </div>
-
-        <p>© 2026 S-Labs</p>
-
-    </footer>
-
-
-    <script>
-
-        const code = document.getElementById("code");
-        const output = document.getElementById("output");
-        const runButton = document.getElementById("runButton");
-        const status = document.getElementById("status");
-
-        let pyodide = null;
-
-
-        // Pyodideを読み込む
-        async function initializePython() {
-
-            try {
-
-                status.textContent = "Pythonを読み込んでいます...";
-
-                pyodide = await loadPyodide();
-
-                status.textContent = "Pythonの準備完了！";
-
-                runButton.disabled = false;
-                runButton.textContent = "▶ 実行";
-
-            } catch (error) {
-
-                status.textContent = "Pythonの読み込みに失敗しました。";
-
-                output.textContent = error;
-
-                console.error(error);
-
+            /* ★ 1行目とエディタ枠の間に余白 */
+            padding: {
+                top: 15,
+                bottom: 15
             }
-
         }
+    );
 
+    /* Ctrl + Enter */
 
-        // Pythonを実行
-        async function runPython() {
-
-            if (!pyodide) {
-                return;
-            }
-
-            output.textContent = "";
-
-            runButton.disabled = true;
-            runButton.textContent = "⏳ 実行中...";
-
-            try {
-
-                // print()などの出力を取得
-                pyodide.setStdout({
-                    batched: (text) => {
-                        output.textContent += text;
-                    }
-                });
-
-                pyodide.setStderr({
-                    batched: (text) => {
-                        output.textContent += text;
-                    }
-                });
-
-                await pyodide.runPythonAsync(code.value);
-
-            } catch (error) {
-
-                output.textContent += "\n" + error;
-
-            } finally {
-
-                runButton.disabled = false;
-                runButton.textContent = "▶ 実行";
-
-            }
-
+    editor.addCommand(
+        monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter,
+        function () {
+            runPython();
         }
+    );
 
+});
 
-        runButton.addEventListener("click", runPython);
+/* =========================
+   Pyodide
+========================= */
 
+async function loadPython() {
 
-        initializePython();
+    const status = document.getElementById("status");
+    const output = document.getElementById("output");
+    const runButton = document.getElementById("runButton");
 
-    </script>
+    try {
+
+        status.textContent = "Pythonを読み込んでいます...";
+
+        const script = document.createElement("script");
+
+        script.src =
+            "https://cdn.jsdelivr.net/pyodide/v0.27.1/full/pyodide.js";
+
+        document.head.appendChild(script);
+
+        await new Promise((resolve, reject) => {
+
+            script.onload = resolve;
+            script.onerror = reject;
+
+        });
+
+        pyodide = await loadPyodide();
+
+        pyodide.setStdout({
+            batched: function (text) {
+
+                output.textContent += text;
+
+            }
+        });
+
+        pyodide.setStderr({
+            batched: function (text) {
+
+                output.textContent += text;
+
+            }
+        });
+
+        status.textContent = "Python準備完了！";
+
+        output.textContent =
+            "Pythonの準備が完了しました。\nコードを実行できます。";
+
+        runButton.disabled = false;
+
+    } catch (error) {
+
+        status.textContent = "読み込みエラー";
+
+        output.textContent =
+            "Pythonの読み込みに失敗しました。\n\n" +
+            error;
+
+    }
+
+}
+
+/* =========================
+   Python実行
+========================= */
+
+async function runPython() {
+
+    if (!pyodide || !editor) {
+        return;
+    }
+
+    const output = document.getElementById("output");
+
+    output.textContent = "";
+
+    try {
+
+        await pyodide.runPythonAsync(
+            editor.getValue()
+        );
+
+    } catch (error) {
+
+        output.textContent =
+            error.toString();
+
+    }
+
+}
+
+/* =========================
+   Run Button
+========================= */
+
+document
+    .getElementById("runButton")
+    .addEventListener("click", runPython);
+
+/* =========================
+   Python読み込み開始
+========================= */
+
+loadPython();
+
+</script>
 
 </body>
-
 </html>
