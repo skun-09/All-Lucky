@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>S-Labs Python Playground</title>
+
+    <meta name="description"
+        content="S-Labs Python Playground。ブラウザ上でPythonコードを書いて実行できます。">
+
+    <!-- Pyodide -->
+    <script src="https://cdn.jsdelivr.net/pyodide/v314.0.7/full/pyodide.js"></script>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                "Noto Sans JP",
+                sans-serif;
+
+            background: #f4f6fb;
+            color: #202b4a;
+        }
+
+        /* ヘッダー */
+
+        header {
+            background: linear-gradient(135deg, #202b4a, #435a92);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 52px;
+            letter-spacing: 0.08em;
+        }
+
+        header p {
+            margin: 12px 0 0;
+            font-size: 18px;
+        }
+
+        /* ナビ */
+
+        nav {
+            background: white;
+
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+
+            gap: 25px;
+
+            padding: 16px 20px;
+
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        nav a {
+            color: #435a92;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            opacity: 0.7;
+        }
+
+        /* メイン */
+
+        main {
+            width: 100%;
+            max-width: 1100px;
+
+            margin: 0 auto;
+
+            padding: 50px 20px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .title h2 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .title p {
+            color: #666;
+        }
+
+        /* エディタ */
+
+        .editor-card {
+            background: white;
+
+            border-radius: 20px;
+
+            padding: 25px;
+
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .editor-title {
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        #code {
+            width: 100%;
+            min-height: 350px;
+
+            resize: vertical;
+
+            padding: 18px;
+
+            border: none;
+            border-radius: 12px;
+
+            background: #1e2433;
+            color: #f8f8f2;
+
+            font-family: Consolas, "Courier New", monospace;
+            font-size: 15px;
+            line-height: 1.6;
+
+            outline: none;
+        }
+
+        /* 実行ボタン */
+
+        .run-area {
+            margin-top: 20px;
+
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        #runButton {
+            border: none;
+
+            padding: 12px 25px;
+
+            border-radius: 10px;
+
+            background: #435a92;
+            color: white;
+
+            font-size: 16px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        #runButton:hover {
+            opacity: 0.85;
+        }
+
+        #runButton:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        #status {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* 出力 */
+
+        .output {
+            margin-top: 25px;
+        }
+
+        .output-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        #output {
+            min-height: 180px;
+
+            padding: 18px;
+
+            border-radius: 12px;
+
+            background: #1e2433;
+            color: #f8f8f2;
+
+            font-family: Consolas, "Courier New", monospace;
+
+            white-space: pre-wrap;
+
+            overflow-x: auto;
+        }
+
+        /* フッター */
+
+        footer {
+            background: #202b4a;
+            color: white;
+
+            text-align: center;
+
+            padding: 25px 20px;
+
+            margin-top: 40px;
+
+            font-size: 14px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+
+            margin: 0 8px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* スマホ */
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 45px 20px;
+            }
+
+            header h1 {
+                font-size: 38px;
+            }
+
+            nav {
+                gap: 15px;
+            }
+
+            main {
+                padding: 35px 15px;
+            }
+
+            .editor-card {
+                padding: 18px;
+            }
+
+            #code {
+                min-height: 280px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>S-Labs</h1>
+        <p>Python Editor</p>
+    </header>
+
+    <nav>
+        <a href="/">ホーム</a>
+        <a href="/games/">ゲーム</a>
+        <a href="/factory/">製作所</a>
+        <a href="/column/">コラム</a>
+        <a href="/faq.html">FAQ</a>
+    </nav>
+
+    <main>
+
+        <div class="title">
+            <h2>🐍 Python Editor</h2>
+            <p>ブラウザ上でPythonを書いて実行できます。</p>
+        </div>
+
+        <div class="editor-card">
+
+            <div class="editor-title">
+                Pythonコード
+            </div>
+
+            <textarea id="code">print("Hello, S-Labs!")
+
+name = "えす"
+
+print("こんにちは、" + name + "さん！")</textarea>
+
+            <div class="run-area">
+
+                <button id="runButton" disabled>
+                    ⏳ Pythonを読み込み中...
+                </button>
+
+                <span id="status">
+                    初期化しています...
+                </span>
+
+            </div>
+
+            <div class="output">
+
+                <div class="output-title">
+                    出力
+                </div>
+
+                <div id="output"></div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <footer>
+
+        <div>
+            <a href="/">ホーム</a>
+            <a href="/games/">ゲーム</a>
+            <a href="/factory/">製作所</a>
+            <a href="/column/">コラム</a>
+            <a href="/faq.html">FAQ</a>
+            <a href="/privacy.html">プライバシーポリシー</a>
+        </div>
+
+        <p>© 2026 S-Labs</p>
+
+    </footer>
+
+
+    <script>
+
+        const code = document.getElementById("code");
+        const output = document.getElementById("output");
+        const runButton = document.getElementById("runButton");
+        const status = document.getElementById("status");
+
+        let pyodide = null;
+
+
+        // Pyodideを読み込む
+        async function initializePython() {
+
+            try {
+
+                status.textContent = "Pythonを読み込んでいます...";
+
+                pyodide = await loadPyodide();
+
+                status.textContent = "Pythonの準備完了！";
+
+                runButton.disabled = false;
+                runButton.textContent = "▶ 実行";
+
+            } catch (error) {
+
+                status.textContent = "Pythonの読み込みに失敗しました。";
+
+                output.textContent = error;
+
+                console.error(error);
+
+            }
+
+        }
+
+
+        // Pythonを実行
+        async function runPython() {
+
+            if (!pyodide) {
+                return;
+            }
+
+            output.textContent = "";
+
+            runButton.disabled = true;
+            runButton.textContent = "⏳ 実行中...";
+
+            try {
+
+                // print()などの出力を取得
+                pyodide.setStdout({
+                    batched: (text) => {
+                        output.textContent += text;
+                    }
+                });
+
+                pyodide.setStderr({
+                    batched: (text) => {
+                        output.textContent += text;
+                    }
+                });
+
+                await pyodide.runPythonAsync(code.value);
+
+            } catch (error) {
+
+                output.textContent += "\n" + error;
+
+            } finally {
+
+                runButton.disabled = false;
+                runButton.textContent = "▶ 実行";
+
+            }
+
+        }
+
+
+        runButton.addEventListener("click", runPython);
+
+
+        initializePython();
+
+    </script>
+
+</body>
+
+</html>
