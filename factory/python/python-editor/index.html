@@ -118,7 +118,9 @@ main {
     color: #777;
 }
 
-/* Monaco Editor */
+/* =========================
+   Monaco Editor
+========================= */
 
 #editor {
     width: 100%;
@@ -129,25 +131,56 @@ main {
 }
 
 /* =========================
-   Run Button
+   Button Area
 ========================= */
 
-.run-area {
+.button-area {
     display: flex;
     justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-top: 15px;
 }
 
-#runButton {
+.action-button {
     border: none;
-    background: #435a92;
     color: white;
-    padding: 12px 24px;
+    padding: 12px 20px;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     cursor: pointer;
     transition: 0.2s;
+}
+
+.action-button:hover {
+    transform: translateY(-1px);
+}
+
+/* Browser Save */
+
+#browserSaveButton {
+    background: #435a92;
+}
+
+#browserSaveButton:hover {
+    background: #202b4a;
+}
+
+/* File Save */
+
+#fileSaveButton {
+    background: #5d6fa5;
+}
+
+#fileSaveButton:hover {
+    background: #202b4a;
+}
+
+/* Run */
+
+#runButton {
+    background: #435a92;
 }
 
 #runButton:hover:not(:disabled) {
@@ -275,6 +308,15 @@ footer a:hover {
         height: 450px;
     }
 
+    .button-area {
+        justify-content: stretch;
+    }
+
+    .action-button {
+        flex: 1;
+        min-width: 140px;
+    }
+
 }
 
 </style>
@@ -308,6 +350,7 @@ footer a:hover {
 
         <div class="editor-header">
             <div class="file-name">📄 main.py</div>
+
             <div class="status" id="status">
                 Pythonを読み込んでいます...
             </div>
@@ -315,10 +358,27 @@ footer a:hover {
 
         <div id="editor"></div>
 
-        <div class="run-area">
-            <button id="runButton" disabled>
+        <div class="button-area">
+
+            <button
+                id="browserSaveButton"
+                class="action-button">
+                💾 ブラウザに保存
+            </button>
+
+            <button
+                id="fileSaveButton"
+                class="action-button">
+                📄 ファイルに保存
+            </button>
+
+            <button
+                id="runButton"
+                class="action-button"
+                disabled>
                 ▶ 実行
             </button>
+
         </div>
 
         <div class="output-title">
@@ -343,10 +403,21 @@ footer a:hover {
             最初から入っているコードにもコメントで簡単な説明があります。
             コードを書き換えて、いろいろ試してみてください！
         </p>
-        
+
         <p>
             <strong>▶ 実行</strong> ボタンを押すか、
             <strong>Ctrl + Enter</strong> でコードを実行できます。
+        </p>
+
+        <p>
+            <strong>💾 ブラウザに保存</strong>を押すと、
+            現在のコードをこのブラウザに保存できます。
+            次回このページを開いたときに自動的に復元されます。
+        </p>
+
+        <p>
+            <strong>📄 ファイルに保存</strong>を押すと、
+            現在のコードを <strong>main.py</strong> ファイルとして保存できます。
         </p>
 
         <h2>開発について</h2>
@@ -356,7 +427,7 @@ footer a:hover {
             ぜひプログラミングを体験してみてください。<br>
             ※このエディタの作成にあたって生成AIを使用しています。
         </p>
-        
+
     </section>
 
     <div class="back-area">
@@ -392,21 +463,10 @@ let editor;
 let pyodide;
 
 /* =========================
-   Monaco Editor
+   初期コード
 ========================= */
 
-require.config({
-    paths: {
-        vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.55.1/min/vs"
-    }
-});
-
-require(["vs/editor/editor.main"], function () {
-
-    editor = monaco.editor.create(
-        document.getElementById("editor"),
-        {
-            value: `# ================================
+const defaultCode = `# ================================
 # 🐍 Python Editor 使い方
 # ================================
 #
@@ -428,8 +488,44 @@ print("Hello, S-Labs!")
 name = "えす"
 
 print("こんにちは、" + name + "さん！")
-`,
+`;
+
+/* =========================
+   Monaco Editor
+========================= */
+
+require.config({
+    paths: {
+        vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.55.1/min/vs"
+    }
+});
+
+require(["vs/editor/editor.main"], function () {
+
+    /*
+     * ブラウザに保存されているコードを確認
+     */
+
+    const savedCode = localStorage.getItem(
+        "slabs_python_editor_code"
+    );
+
+    /*
+     * 保存されていれば保存データを使用。
+     * なければ初期コードを使用。
+     */
+
+    const startCode = savedCode !== null
+        ? savedCode
+        : defaultCode;
+
+    editor = monaco.editor.create(
+        document.getElementById("editor"),
+        {
+            value: startCode,
+
             language: "python",
+
             theme: "vs-dark",
 
             automaticLayout: true,
@@ -437,6 +533,7 @@ print("こんにちは、" + name + "さん！")
             fontSize: 15,
 
             tabSize: 4,
+
             insertSpaces: true,
 
             minimap: {
@@ -452,11 +549,15 @@ print("こんにちは、" + name + "さん！")
             },
 
             lineNumbers: "on",
+
             folding: true,
 
             suggestOnTriggerCharacters: true,
 
-            /* ★ 1行目とエディタ枠の間に余白 */
+            /*
+             * 1行目とエディタ枠の間に余白
+             */
+
             padding: {
                 top: 15,
                 bottom: 15
@@ -464,16 +565,109 @@ print("こんにちは、" + name + "さん！")
         }
     );
 
-    /* Ctrl + Enter */
+    /*
+     * 保存データがあった場合
+     */
+
+    if (savedCode !== null) {
+
+        document.getElementById("status").textContent =
+            "保存したコードを復元しました！";
+
+    }
+
+    /*
+     * Ctrl + Enterで実行
+     */
 
     editor.addCommand(
         monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter,
         function () {
+
             runPython();
+
         }
     );
 
 });
+
+/* =========================
+   ブラウザに保存
+========================= */
+
+function saveToBrowser() {
+
+    if (!editor) {
+        return;
+    }
+
+    const code = editor.getValue();
+
+    localStorage.setItem(
+        "slabs_python_editor_code",
+        code
+    );
+
+    document.getElementById("status").textContent =
+        "ブラウザに保存しました！";
+
+}
+
+/* =========================
+   ファイルに保存
+========================= */
+
+function saveToFile() {
+
+    if (!editor) {
+        return;
+    }
+
+    const code = editor.getValue();
+
+    /*
+     * Pythonコードからファイルを作成
+     */
+
+    const blob = new Blob(
+        [code],
+        {
+            type: "text/plain;charset=utf-8"
+        }
+    );
+
+    /*
+     * 一時的なURLを作成
+     */
+
+    const url = URL.createObjectURL(blob);
+
+    /*
+     * ダウンロード用リンクを作成
+     */
+
+    const link = document.createElement("a");
+
+    link.href = url;
+
+    link.download = "main.py";
+
+    document.body.appendChild(link);
+
+    link.click();
+
+    document.body.removeChild(link);
+
+    /*
+     * 一時URLを削除
+     */
+
+    URL.revokeObjectURL(url);
+
+    document.getElementById("status").textContent =
+        "main.py を保存しました！";
+
+}
 
 /* =========================
    Pyodide
@@ -481,15 +675,22 @@ print("こんにちは、" + name + "さん！")
 
 async function loadPython() {
 
-    const status = document.getElementById("status");
-    const output = document.getElementById("output");
-    const runButton = document.getElementById("runButton");
+    const status =
+        document.getElementById("status");
+
+    const output =
+        document.getElementById("output");
+
+    const runButton =
+        document.getElementById("runButton");
 
     try {
 
-        status.textContent = "Pythonを読み込んでいます...";
+        status.textContent =
+            "Pythonを読み込んでいます...";
 
-        const script = document.createElement("script");
+        const script =
+            document.createElement("script");
 
         script.src =
             "https://cdn.jsdelivr.net/pyodide/v0.27.1/full/pyodide.js";
@@ -499,38 +700,54 @@ async function loadPython() {
         await new Promise((resolve, reject) => {
 
             script.onload = resolve;
+
             script.onerror = reject;
 
         });
 
         pyodide = await loadPyodide();
 
+        /*
+         * 標準出力
+         */
+
         pyodide.setStdout({
+
             batched: function (text) {
 
                 output.textContent += text;
 
             }
+
         });
+
+        /*
+         * エラー出力
+         */
 
         pyodide.setStderr({
+
             batched: function (text) {
 
                 output.textContent += text;
 
             }
+
         });
 
-        status.textContent = "Python準備完了！";
+        status.textContent =
+            "Python準備完了！";
 
         output.textContent =
-            "Pythonの準備が完了しました。\nコードを実行できます。";
+            "Pythonの準備が完了しました。\n" +
+            "コードを実行できます。";
 
         runButton.disabled = false;
 
     } catch (error) {
 
-        status.textContent = "読み込みエラー";
+        status.textContent =
+            "読み込みエラー";
 
         output.textContent =
             "Pythonの読み込みに失敗しました。\n\n" +
@@ -550,9 +767,16 @@ async function runPython() {
         return;
     }
 
-    const output = document.getElementById("output");
+    const output =
+        document.getElementById("output");
+
+    const status =
+        document.getElementById("status");
 
     output.textContent = "";
+
+    status.textContent =
+        "Pythonを実行しています...";
 
     try {
 
@@ -560,22 +784,45 @@ async function runPython() {
             editor.getValue()
         );
 
+        status.textContent =
+            "実行完了！";
+
     } catch (error) {
 
         output.textContent =
             error.toString();
+
+        status.textContent =
+            "実行中にエラーが発生しました";
 
     }
 
 }
 
 /* =========================
-   Run Button
+   ボタン
 ========================= */
 
 document
+    .getElementById("browserSaveButton")
+    .addEventListener(
+        "click",
+        saveToBrowser
+    );
+
+document
+    .getElementById("fileSaveButton")
+    .addEventListener(
+        "click",
+        saveToFile
+    );
+
+document
     .getElementById("runButton")
-    .addEventListener("click", runPython);
+    .addEventListener(
+        "click",
+        runPython
+    );
 
 /* =========================
    Python読み込み開始
