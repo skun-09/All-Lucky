@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>404｜S-Labs</title>
+
+    <meta name="description" content="お探しのページは見つかりませんでした。">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family:
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                "Noto Sans JP",
+                sans-serif;
+
+            background: #f4f6fb;
+            color: #202b4a;
+
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        header {
+            background: linear-gradient(135deg, #202b4a, #435a92);
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 52px;
+            letter-spacing: 0.08em;
+        }
+
+        header p {
+            margin: 12px 0 0;
+            font-size: 18px;
+        }
+
+        main {
+            flex: 1;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 50px 20px;
+        }
+
+        .error-card {
+            width: 100%;
+            max-width: 700px;
+
+            background: white;
+            padding: 50px 30px;
+
+            border-radius: 22px;
+
+            text-align: center;
+
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .error-code {
+            font-size: 90px;
+            font-weight: bold;
+
+            color: #435a92;
+
+            line-height: 1;
+            margin-bottom: 20px;
+        }
+
+        .error-card h2 {
+            margin: 0 0 15px;
+            font-size: 28px;
+        }
+
+        .error-card p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .buttons {
+            margin-top: 30px;
+
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+
+            flex-wrap: wrap;
+        }
+
+        .button {
+            display: inline-block;
+
+            padding: 12px 24px;
+
+            border-radius: 10px;
+
+            text-decoration: none;
+
+            font-weight: bold;
+
+            background: #435a92;
+            color: white;
+
+            transition: 0.2s;
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        .button.sub {
+            background: #e8ebf3;
+            color: #435a92;
+        }
+
+        footer {
+            background: #202b4a;
+            color: white;
+
+            text-align: center;
+
+            padding: 25px 20px;
+
+            font-size: 14px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 8px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 600px) {
+
+            header {
+                padding: 45px 20px;
+            }
+
+            header h1 {
+                font-size: 42px;
+            }
+
+            .error-code {
+                font-size: 70px;
+            }
+
+            .error-card h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>S-Labs</h1>
+    <p>ページが見つかりません</p>
+</header>
+
+<main>
+
+    <div class="error-card">
+
+        <div class="error-code">404</div>
+
+        <h2>ページが存在しません</h2>
+
+        <p>
+            お探しのページは見つかりませんでした。<br>
+            URLが間違っているか、ページが移動・削除された可能性があります。
+        </p>
+
+        <div class="buttons">
+
+            <a href="/" class="button">
+                ホームへ戻る
+            </a>
+
+            <a href="/games/" class="button sub">
+                ゲームを見る
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+<footer>
+
+    <div>
+        <a href="/">ホーム</a>
+        <a href="/games/">ゲーム</a>
+        <a href="/factory/">製作所</a>
+        <a href="/column/">コラム</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="/privacy.html">プライバシーポリシー</a>
+    </div>
+
+    <p>© 2026 S-Labs</p>
+
+</footer>
+
+</body>
+</html>
