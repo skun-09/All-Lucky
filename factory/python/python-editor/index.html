@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>S-Labs｜Python Editor</title>
-<meta name="description" content="ブラウザ上でPythonコードを書いて実行できるPython Editorです。">
+
+<meta
+    name="description"
+    content="ブラウザ上でPythonコードを書いて実行できるPython Editorです。"
+>
 
 <style>
 
@@ -320,40 +327,60 @@ footer a:hover {
 }
 
 </style>
+
 </head>
 
 <body>
 
 <header>
+
     <h1>S-Labs</h1>
+
     <p>Python Editor</p>
+
 </header>
 
 <nav>
+
     <a href="/">ホーム</a>
+
     <a href="/games/">ゲーム</a>
+
     <a href="/factory/">製作所</a>
+
     <a href="/column/">コラム</a>
+
     <a href="/faq.html">FAQ</a>
+
 </nav>
 
 <main>
 
     <section class="hero">
+
         <h2>🐍 Python Editor</h2>
+
         <p>
             ブラウザ上でPythonコードを書いて、そのまま実行できます。
         </p>
+
     </section>
 
     <section class="editor-card">
 
         <div class="editor-header">
-            <div class="file-name">📄 main.py</div>
 
-            <div class="status" id="status">
+            <div class="file-name">
+                📄 main.py
+            </div>
+
+            <div
+                class="status"
+                id="status"
+            >
                 Pythonを読み込んでいます...
             </div>
+
         </div>
 
         <div id="editor"></div>
@@ -362,20 +389,23 @@ footer a:hover {
 
             <button
                 id="browserSaveButton"
-                class="action-button">
+                class="action-button"
+            >
                 💾 ブラウザに保存
             </button>
 
             <button
                 id="fileSaveButton"
-                class="action-button">
+                class="action-button"
+            >
                 📄 ファイルに保存
             </button>
 
             <button
                 id="runButton"
                 class="action-button"
-                disabled>
+                disabled
+            >
                 ▶ 実行
             </button>
 
@@ -431,9 +461,14 @@ footer a:hover {
     </section>
 
     <div class="back-area">
-        <a href="/factory/python/" class="back-button">
+
+        <a
+            href="/factory/python/"
+            class="back-button"
+        >
             ← Python作品一覧へ
         </a>
+
     </div>
 
 </main>
@@ -441,15 +476,26 @@ footer a:hover {
 <footer>
 
     <div>
+
         <a href="/">ホーム</a>
+
         <a href="/games/">ゲーム</a>
+
         <a href="/factory/">製作所</a>
+
         <a href="/column/">コラム</a>
+
         <a href="/faq.html">FAQ</a>
-        <a href="/privacy.html">プライバシーポリシー</a>
+
+        <a href="/privacy.html">
+            プライバシーポリシー
+        </a>
+
     </div>
 
-    <p>© 2026 S-Labs</p>
+    <p>
+        © 2026 S-Labs
+    </p>
 
 </footer>
 
@@ -460,6 +506,7 @@ footer a:hover {
 <script>
 
 let editor;
+
 let pyodide;
 
 /* =========================
@@ -495,101 +542,124 @@ print("こんにちは、" + name + "さん！")
 ========================= */
 
 require.config({
+
     paths: {
-        vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.55.1/min/vs"
+
+        vs:
+            "https://cdn.jsdelivr.net/npm/monaco-editor@0.55.1/min/vs"
+
     }
+
 });
 
-require(["vs/editor/editor.main"], function () {
+require(
+    ["vs/editor/editor.main"],
+    function () {
 
-    /*
-     * ブラウザに保存されているコードを確認
-     */
+        /*
+         * ブラウザに保存されているコードを確認
+         */
 
-    const savedCode = localStorage.getItem(
-        "slabs_python_editor_code"
-    );
+        const savedCode =
+            localStorage.getItem(
+                "slabs_python_editor_code"
+            );
 
-    /*
-     * 保存されていれば保存データを使用。
-     * なければ初期コードを使用。
-     */
+        /*
+         * 保存されていれば保存データを使用。
+         * なければ初期コードを使用。
+         */
 
-    const startCode = savedCode !== null
-        ? savedCode
-        : defaultCode;
+        const startCode =
+            savedCode !== null
+                ? savedCode
+                : defaultCode;
 
-    editor = monaco.editor.create(
-        document.getElementById("editor"),
-        {
-            value: startCode,
+        editor =
+            monaco.editor.create(
+                document.getElementById("editor"),
+                {
 
-            language: "python",
+                    value: startCode,
 
-            theme: "vs-dark",
+                    language: "python",
 
-            automaticLayout: true,
+                    theme: "vs-dark",
 
-            fontSize: 15,
+                    automaticLayout: true,
 
-            tabSize: 4,
+                    fontSize: 15,
 
-            insertSpaces: true,
+                    tabSize: 4,
 
-            minimap: {
-                enabled: false
-            },
+                    insertSpaces: true,
 
-            wordWrap: "off",
+                    minimap: {
+                        enabled: false
+                    },
 
-            autoIndent: "full",
+                    wordWrap: "off",
 
-            bracketPairColorization: {
-                enabled: true
-            },
+                    autoIndent: "full",
 
-            lineNumbers: "on",
+                    bracketPairColorization: {
+                        enabled: true
+                    },
 
-            folding: true,
+                    lineNumbers: "on",
 
-            suggestOnTriggerCharacters: true,
+                    folding: true,
 
-            /*
-             * 1行目とエディタ枠の間に余白
-             */
+                    suggestOnTriggerCharacters: true,
 
-            padding: {
-                top: 15,
-                bottom: 15
+                    /*
+                     * 1行目とエディタ枠の間に余白
+                     */
+
+                    padding: {
+
+                        top: 15,
+
+                        bottom: 15
+
+                    }
+
+                }
+
+            );
+
+        /*
+         * 保存データがあった場合
+         */
+
+        if (savedCode !== null) {
+
+            document.getElementById(
+                "status"
+            ).textContent =
+                "保存したコードを復元しました！";
+
+        }
+
+        /*
+         * Ctrl + Enterで実行
+         */
+
+        editor.addCommand(
+
+            monaco.KeyMod.CtrlCmd |
+            monaco.KeyCode.Enter,
+
+            function () {
+
+                runPython();
+
             }
-        }
-    );
 
-    /*
-     * 保存データがあった場合
-     */
-
-    if (savedCode !== null) {
-
-        document.getElementById("status").textContent =
-            "保存したコードを復元しました！";
+        );
 
     }
-
-    /*
-     * Ctrl + Enterで実行
-     */
-
-    editor.addCommand(
-        monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter,
-        function () {
-
-            runPython();
-
-        }
-    );
-
-});
+);
 
 /* =========================
    ブラウザに保存
@@ -598,17 +668,22 @@ require(["vs/editor/editor.main"], function () {
 function saveToBrowser() {
 
     if (!editor) {
+
         return;
+
     }
 
-    const code = editor.getValue();
+    const code =
+        editor.getValue();
 
     localStorage.setItem(
         "slabs_python_editor_code",
         code
     );
 
-    document.getElementById("status").textContent =
+    document.getElementById(
+        "status"
+    ).textContent =
         "ブラウザに保存しました！";
 
 }
@@ -620,33 +695,40 @@ function saveToBrowser() {
 function saveToFile() {
 
     if (!editor) {
+
         return;
+
     }
 
-    const code = editor.getValue();
+    const code =
+        editor.getValue();
 
     /*
      * Pythonコードからファイルを作成
      */
 
-    const blob = new Blob(
-        [code],
-        {
-            type: "text/plain;charset=utf-8"
-        }
-    );
+    const blob =
+        new Blob(
+            [code],
+            {
+                type:
+                    "text/plain;charset=utf-8"
+            }
+        );
 
     /*
      * 一時的なURLを作成
      */
 
-    const url = URL.createObjectURL(blob);
+    const url =
+        URL.createObjectURL(blob);
 
     /*
      * ダウンロード用リンクを作成
      */
 
-    const link = document.createElement("a");
+    const link =
+        document.createElement("a");
 
     link.href = url;
 
@@ -664,7 +746,9 @@ function saveToFile() {
 
     URL.revokeObjectURL(url);
 
-    document.getElementById("status").textContent =
+    document.getElementById(
+        "status"
+    ).textContent =
         "main.py を保存しました！";
 
 }
@@ -697,15 +781,29 @@ async function loadPython() {
 
         document.head.appendChild(script);
 
-        await new Promise((resolve, reject) => {
+        await new Promise(
+            (resolve, reject) => {
 
-            script.onload = resolve;
+                script.onload = resolve;
 
-            script.onerror = reject;
+                script.onerror = reject;
 
-        });
+            }
+        );
 
-        pyodide = await loadPyodide();
+        pyodide =
+            await loadPyodide();
+
+        /*
+         * Pygame CEを読み込む
+         */
+
+        status.textContent =
+            "Pygameを読み込んでいます...";
+
+        await pyodide.loadPackage(
+            "pygame-ce"
+        );
 
         /*
          * 標準出力
@@ -739,10 +837,11 @@ async function loadPython() {
             "Python準備完了！";
 
         output.textContent =
-            "Pythonの準備が完了しました。\n" +
+            "PythonとPygameの準備が完了しました。\n" +
             "コードを実行できます。";
 
-        runButton.disabled = false;
+        runButton.disabled =
+            false;
 
     } catch (error) {
 
@@ -750,7 +849,7 @@ async function loadPython() {
             "読み込みエラー";
 
         output.textContent =
-            "Pythonの読み込みに失敗しました。\n\n" +
+            "PythonまたはPygameの読み込みに失敗しました。\n\n" +
             error;
 
     }
@@ -764,7 +863,9 @@ async function loadPython() {
 async function runPython() {
 
     if (!pyodide || !editor) {
+
         return;
+
     }
 
     const output =
@@ -833,4 +934,5 @@ loadPython();
 </script>
 
 </body>
+
 </html>
