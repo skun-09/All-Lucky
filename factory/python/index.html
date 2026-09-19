@@ -197,6 +197,8 @@
         }
 
         .work-card {
+            display: block;
+
             background:
                 white;
 
@@ -209,6 +211,12 @@
             box-shadow:
                 0 5px 20px
                 rgba(0, 0, 0, 0.06);
+
+            text-decoration:
+                none;
+
+            color:
+                #202b4a;
 
             transition:
                 transform 0.25s,
@@ -230,35 +238,6 @@
 
             margin-bottom:
                 15px;
-        }
-
-        .sample-label {
-            display:
-                inline-block;
-
-            margin-bottom:
-                10px;
-
-            padding:
-                4px 10px;
-
-            background:
-                #435a92;
-
-            color:
-                white;
-
-            border-radius:
-                6px;
-
-            font-size:
-                11px;
-
-            font-weight:
-                bold;
-
-            letter-spacing:
-                0.08em;
         }
 
         .work-card h3 {
@@ -307,33 +286,6 @@
 
             font-weight:
                 bold;
-        }
-
-        /* =========================
-           Sample Notice
-        ========================= */
-
-        .sample-note {
-            margin-top:
-                20px;
-
-            padding:
-                12px 15px;
-
-            background:
-                #f4f6fb;
-
-            border-radius:
-                10px;
-
-            color:
-                #65708a;
-
-            font-size:
-                12px;
-
-            line-height:
-                1.6;
         }
 
         /* =========================
@@ -568,24 +520,22 @@
 
     <section class="works-grid">
 
-        <article class="work-card">
+        <a
+            href="/factory/python/python-editor/"
+            class="work-card"
+        >
 
             <div class="work-icon">
                 🐍
             </div>
 
-            <span class="sample-label">
-                SAMPLE
-            </span>
-
             <h3>
-                Pythonプログラム（サンプル）
+                Python Editor
             </h3>
 
             <p>
-                Pythonを使って制作したツールや
-                小さなプログラムなどを、
-                このようなカード形式で掲載していく予定です。
+                ブラウザ上でPythonコードを書いて、
+                そのまま実行できるプログラミング環境です。気軽にお試しいただけます。
             </p>
 
             <div class="tags">
@@ -595,21 +545,20 @@
                 </span>
 
                 <span class="tag">
-                    プログラミング
+                    Web
                 </span>
 
                 <span class="tag">
-                    PC
+                    Pyodide
+                </span>
+
+                <span class="tag">
+                    プログラミング
                 </span>
 
             </div>
 
-            <div class="sample-note">
-                ※このカードは掲載イメージのサンプルです。
-                実際の作品ではありません。
-            </div>
-
-        </article>
+        </a>
 
     </section>
 
@@ -628,7 +577,7 @@
 
         <p>
             S-Labsでは、Pythonを使ったプログラムや
-            ツールなどの制作にも挑戦していきます。
+            ツールなどの制作にも挑戦しています。
         </p>
 
         <p>
