@@ -26,9 +26,25 @@ export default {
 
     const object = await env.MY_BUCKET.get(key);
 
+    // ページが存在しない場合
     if (!object) {
-      return new Response("Not Found: " + key, {
-        status: 404
+      const errorPage = await env.MY_BUCKET.get("404.html");
+
+      if (!errorPage) {
+        return new Response("404 Not Found", {
+          status: 404
+        });
+      }
+
+      const headers = new Headers();
+
+      errorPage.writeHttpMetadata(headers);
+
+      headers.set("Content-Type", "text/html; charset=UTF-8");
+
+      return new Response(errorPage.body, {
+        status: 404,
+        headers
       });
     }
 
