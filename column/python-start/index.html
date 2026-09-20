@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+
+<html lang="ja">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ページタイトル -->
+  <title>S-Labs｜記事タイトル</title>
+
+  <!-- ページの説明 -->
+  <meta
+    name="description"
+    content="記事の内容を簡単に説明します。"
+  >
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: #f4f6fb;
+      color: #222;
+      font-family:
+        "Yu Gothic",
+        "YuGothic",
+        "Hiragino Kaku Gothic ProN",
+        Meiryo,
+        sans-serif;
+      line-height: 1.8;
+    }
+
+
+    /* =========================
+       ヘッダー
+    ========================= */
+
+    .header {
+      padding: 60px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #202b4a, #435a92);
+      color: white;
+    }
+
+    .header h1 {
+      margin: 0;
+      font-size: 48px;
+      letter-spacing: 0.08em;
+    }
+
+    .header p {
+      margin: 10px 0 0;
+      font-size: 17px;
+      opacity: 0.9;
+    }
+
+
+    /* =========================
+       ナビゲーション
+    ========================= */
+
+    .nav {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      padding: 15px 20px;
+      background: white;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .nav a {
+      padding: 8px 18px;
+      color: #435a92;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 8px;
+      transition: 0.2s;
+    }
+
+    .nav a:hover {
+      background: #eef1f8;
+      transform: translateY(-2px);
+    }
+
+
+    /* =========================
+       メイン
+    ========================= */
+
+    .content {
+      width: min(900px, calc(100% - 30px));
+      margin: 45px auto;
+    }
+
+    .article {
+      padding: 40px;
+      background: white;
+      border-radius: 20px;
+      box-shadow:
+        0 6px 20px rgba(0, 0, 0, 0.08);
+    }
+
+
+    /* =========================
+       日付
+    ========================= */
+
+    .article-date {
+      display: block;
+      margin-bottom: 8px;
+      color: #888;
+      font-size: 14px;
+    }
+
+
+    /* =========================
+       記事タイトル
+    ========================= */
+
+    .article h2 {
+      margin-top: 0;
+      color: #435a92;
+      font-size: 32px;
+    }
+
+    .article h3 {
+      margin-top: 35px;
+      color: #435a92;
+      font-size: 23px;
+    }
+
+    .article p {
+      color: #555;
+    }
+
+    /* =========================
+    リンクボタン
+    ========================= */
+
+    .article-button {
+    display: inline-block;
+    margin: 20px 0;
+    padding: 12px 24px;
+    background: #435a92;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 10px;
+    transition: 0.2s;
+    }
+
+    .article-button:hover {
+    background: #202b4a;
+    transform: translateY(-2px);
+    }
+
+
+    /* =========================
+       コード表示
+       
+       言語名は code-language を変更
+       例：
+       C++
+       Python
+       C#
+       JavaScript
+    ========================= */
+
+    .code-block {
+      position: relative;
+      margin: 25px 0;
+      padding: 45px 20px 20px;
+      background: #1e2433;
+      color: #f8f8f2;
+      border-radius: 12px;
+      overflow-x: auto;
+      box-shadow:
+        0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .code-language {
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: 7px 14px;
+      background: #435a92;
+      color: white;
+      border-radius: 12px 0 8px 0;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .code-block pre {
+      margin: 0;
+    }
+
+    .code-block code {
+      font-family:
+        Consolas,
+        "Courier New",
+        monospace;
+      font-size: 14px;
+      line-height: 1.7;
+      white-space: pre;
+    }
+
+
+    /* =========================
+       フッター
+    ========================= */
+
+    .footer {
+      margin-top: 60px;
+      padding: 30px 20px;
+      text-align: center;
+      background: #202b4a;
+      color: white;
+      font-size: 14px;
+    }
+
+    .footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .footer-links {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      margin: 0 8px;
+    }
+
+
+    /* =========================
+       スマホ
+    ========================= */
+
+    @media screen and (max-width: 700px) {
+
+      .header {
+        padding: 45px 15px;
+      }
+
+      .header h1 {
+        font-size: 38px;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+      }
+
+      .content {
+        width: calc(100% - 24px);
+        margin: 30px auto;
+      }
+
+      .article {
+        padding: 25px;
+      }
+
+      .article h2 {
+        font-size: 27px;
+      }
+
+      .code-block {
+        padding: 45px 15px 15px;
+      }
+
+      .code-block code {
+        font-size: 13px;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <!-- =========================
+       ヘッダー
+    ========================= -->
+
+  <header class="header">
+
+    <h1>S-Labs</h1>
+
+    <p>
+      S-Labsのコラム・記事
+    </p>
+
+  </header>
+
+
+  <!-- =========================
+       ナビゲーション
+    ========================= -->
+
+  <nav class="nav">
+
+    <a href="/column/">
+      コラム一覧
+    </a>
+
+    <a href="/">
+      ホーム
+    </a>
+
+  </nav>
+
+
+  <!-- =========================
+       メイン
+       
+       ▼ここから記事を書く▼
+    ========================= -->
+
+  <main class="content">
+
+    <article class="article">
+
+
+      <!-- =========================
+           日付
+           
+           例：
+           2026.09.20
+           ========================= -->
+
+      <span class="article-date">
+        2026.09.20
+      </span>
+
+
+      <!-- =========================
+           記事タイトル
+           
+           ↓タイトルを変更
+           ========================= -->
+
+      <h2>
+        Pythonを始めよう！
+      </h2>
+
+
+      <!-- =========================
+           導入
+           
+           記事の内容を簡単に紹介
+           ========================= -->
+
+      <p>
+        今回はPythonを始めるための入門を自分の体験談とともに解説します。
+      </p>
+
+
+      <!-- =========================
+           見出し
+           
+           ↓見出しを変更
+           ========================= -->
+
+      <h3>
+        そもそもPythonとは
+      </h3>
+
+
+      <!-- =========================
+           本文
+           ========================= -->
+
+      <p>
+        「自分の中」でのPythonを簡単に言うと、初心者向けのプログラミング言語です。
+        実際は機械学習など様々な分野で使用されとても汎用性のある言語ですが、
+        やはり簡単さが最初に浮かびます。一番最初にプログラミングをするときに
+        Pythonを選んだ理由もこれです。また拡張機能のような「パッケージ」も大量にあるため
+        汎用性も高いです。
+      </p>
+
+      <!-- =========================
+           コード
+           
+           言語名：
+           ↓ここを変更
+           
+           例：
+           C++
+           Python
+           C#
+           JavaScript
+           HTML
+           CSS
+           
+           注意：
+           コード内の < と > は
+           &lt; と &gt; にしてください。
+           ========================= -->
+
+      <div class="code-block">
+
+        <div class="code-language">
+          Python
+        </div>
+
+        <pre><code>print("Hello World!")</code></pre>
+
+      </div>
+
+      </div>
+
+
+      <!-- =========================
+           コードの説明
+           ========================= -->
+
+      <p>
+        これは「Hello World!」を表示させるプログラムです。一行で終わるとか最高ですね。
+      </p>
+
+      <p>
+        ですがいいところもあれば気になるところもあります。それは、、、処理速度の遅さです。
+        処理速度が遅いのはなかなかに致命的。とくに大量に計算するところでは大富豪の革命のように
+        最弱になります。まあ、最初のうちはそこまで気になりませんが。
+      </p>
+
+
+      <!-- =========================
+           見出し2
+           ========================= -->
+
+      <h3>
+        始める準備
+      </h3>
+
+
+      <p>
+        いきなりプログラミング！といっても環境を作らないとできるものもできません。
+        そのためにまずはPythonを書くことができるツールを用意しましょう。
+        ですがダウンロードとインストールはなかなか面倒くさい。
+        なので今回は普通にダウンロードをするソフトとブラウザでできるお勧めツール２つを紹介します。
+      </p>
+
+      <h3>
+        1.VSCode（Visual Studio Code）
+      </h3>
+
+
+      <p>
+        まあ定番ですね。自分も最初はこれで書きました。
+        何と言っても軽くて自由なところがいいです。拡張機能のおかげで自由にカスタマイズできるのがいいですね。
+        Pythonやるならこれで十分です。
+      </p>
+
+      <h3>
+        2.Python Editor
+      </h3>
+
+
+      <p>
+        ん？なにこれ？と思った方。実はこれS-labsオリジナルツールなんです。
+        気軽にプログラミングをやってみたい方にはうってつけです。
+        コードエディタ、実行結果のシンプルさなので自由さには欠けますが、まずはどんなものかを体験してみたい方にはお勧めです。
+        保存もできますよ。
+      </p>
+
+      <a
+        href="/factory/python/python-editor/"
+        class="article-button"
+        >
+        🐍 Python Editorを使ってみる
+     </a>
+
+      <!-- =========================
+           見出し3
+           ========================= -->
+
+      <h3>
+        コードを書く
+      </h3>
+
+
+      <p>
+        まずは「Hello World!」を表示してみましょう！
+      </p>
+
+      <div class="code-block">
+
+        <div class="code-language">
+          Python
+        </div>
+
+        <pre><code>print("Hello World!")</code></pre>
+
+      </div>
+
+      </div>
+
+      <p>
+        なんと簡単なのでしょう。これで完了です。実行してみましょう。
+        仕組みはprintというものにあります。
+        printはターミナルなどに指定の文字を表示してくれます。その指定の文字が
+        ("Hello World!")です。絶対に""をつけてくださいね。絶対ですよ？
+        理由はプログラミングの性質にあります。難しい話になりますが
+        ""がないと文字列として見てくれません。なのでHello World!を打ったらエラーになります。
+        変数などを表示させたい場合は""を打たないようにしてください。今度は変数として見られなくなり変数の名前だけが表示されてしまいます。
+        なかなかに自分も忘れることが最初はありました。
+      </p>
+
+      <p>
+        さあ、ここまでくるとPythonの旅が始まります。頑張ってください！
+      </p>
+
+      <!-- =========================
+           おわりに
+           ========================= -->
+
+      <h3>
+        おわりに
+      </h3>
+
+      <p>
+        ここまで読んでくださりありがとうございました。ほかのコラムもぜひご覧ください。シルバーウィーク最高！
+      </p>
+
+
+    </article>
+
+  </main>
+
+
+  <!-- =========================
+       フッター
+    ========================= -->
+
+  <footer class="footer">
+
+    <div class="footer-links">
+
+      <a href="/column/">
+        コラム一覧
+      </a>
+
+      <a href="/">
+        ホーム
+      </a>
+
+      <a href="/privacy.html">
+        プライバシーポリシー
+      </a>
+
+    </div>
+
+    <div>
+      © 2026 S-Labs
+    </div>
+
+  </footer>
+
+
+</body>
+
+</html>
